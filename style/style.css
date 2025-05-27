@@ -1,6 +1,9 @@
+
 body{
     background-color: black;
 }
+
+
 
 
 .flex{
@@ -23,7 +26,7 @@ margin-bottom: 50px;
 text-align: center;
 }
 
-HEAD
+
 .flex{
     display: flex;
 }
@@ -34,7 +37,9 @@ HEAD
 
 /* Quem_é_você */
 
-
+.img_icone_quem{
+    
+}
 
 /* Quem_é_você */
 
@@ -50,3 +55,10 @@ padding-top: 100px;
 
 /* login */
 /* entrada */ 
+/* entrada */ 
+
+#flex{
+    text-align: center;
+    color: white;
+    background-color: black;
+}
