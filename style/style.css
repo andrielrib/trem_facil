@@ -1,5 +1,6 @@
 body{
     background-color: black;
+<<<<<<< HEAD
 }
 
 .tela_carregamento{
@@ -20,3 +21,9 @@ text-align: center;
     display: flex;
 }
 
+=======
+    align-items: center;
+    color: white;
+    justify-content: center;
+}
+>>>>>>> ab0671ef182786ddbb3c14d7b1ff22b9a531dc53
