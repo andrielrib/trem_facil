@@ -1,10 +1,7 @@
-HEAD
+
 body{
     background-color: black;
 }
-
-
-
 
 .flex{
     display: flex;
@@ -26,7 +23,7 @@ margin-bottom: 50px;
 text-align: center;
 }
 
-HEAD
+
 .flex{
     display: flex;
 }
@@ -36,9 +33,27 @@ HEAD
 
 
 /* Quem_é_você */
+.center{
+    text-align: center;
+    padding-top: 240px;
+}
 
-.img_icone_quem{
+.logo_quemevoce {
     
+}
+
+.quem_e_voce{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.cliente_adm{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    border-radius: 100px;
+    height: 40px;
+    width: 415px;
+    background-color:#0549b1;
 }
 
 /* Quem_é_você */
@@ -47,6 +62,6 @@ HEAD
 
 #flex{
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
     background-color: black;
 }
