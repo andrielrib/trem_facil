@@ -1,8 +1,20 @@
+<<<<<<< HEAD
 body{
     background-color: black;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
+=======
+}
+
+.flex{
+    display: flex;
+}
+
+/* Carregamento */
+
+>>>>>>> d0db936ba6c2f730ce98e70ec3d8ee645e9d55d5
 .tela_carregamento{
     text-align: center;
     padding-top: 240px;
@@ -17,6 +29,7 @@ margin-bottom: 50px;
 text-align: center;
 }
 
+<<<<<<< HEAD
 .flex{
     display: flex;
 }
@@ -27,3 +40,17 @@ text-align: center;
     justify-content: center;
 }
 >>>>>>> ab0671ef182786ddbb3c14d7b1ff22b9a531dc53
+=======
+/* Carregamento */
+
+
+/* Quem_é_você */
+
+.img_icone_quem{
+    
+}
+
+/* Quem_é_você */
+=======
+>>>>>>> 9262f4b9845875f4ee9833041a775d7df80664b9
+>>>>>>> d0db936ba6c2f730ce98e70ec3d8ee645e9d55d5
