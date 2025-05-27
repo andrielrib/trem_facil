@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-body{
-    background-color: black;
-}
-=======
 HEAD
 body{
     background-color: black;
 }
 
-=======
 
->>>>>>> 1ebfd276c50f9e678b38a10c2db7405ec0f2c66a
+
 
 .flex{
     display: flex;
@@ -32,30 +26,21 @@ margin-bottom: 50px;
 text-align: center;
 }
 
-<<<<<<< HEAD
-=======
 HEAD
->>>>>>> 1ebfd276c50f9e678b38a10c2db7405ec0f2c66a
 .flex{
     display: flex;
 }
 
-<<<<<<< HEAD
-=======
-=======
-=======
->>>>>>> 1ebfd276c50f9e678b38a10c2db7405ec0f2c66a
+
 /* Carregamento */
 
 
 /* Quem_é_você */
 
-.quem_e_voce{
+.img_icone_quem{
     
 }
 
 /* Quem_é_você */
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1ebfd276c50f9e678b38a10c2db7405ec0f2c66a
+
+/* entrada */ 
