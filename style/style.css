@@ -1,6 +1,8 @@
 
 body{
     background-color: black;
+    color: white;
+
 }
 
 .flex{
@@ -58,10 +60,86 @@ text-align: center;
 
 /* Quem_é_você */
 
-/* entrada */ 
 
-#flex{
+/* login */
+
+.login_icon{
+text-align: center;
+padding-right: 35px;
+padding-top: 100px;
+}
+
+.text_volta{
     text-align: center;
+<<<<<<< HEAD
     color: rgb(255, 255, 255);
+=======
+    padding-right: 35px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.caixa_login{
+    border-radius: 50px;
+    background-color: #0549b1;
+    width: 380px;
+    height: 40px;
+}
+.margin{
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.caixa_verde_login{
+    border-radius: 50px;
+    width: 200px;
+    background-color: #00bf63;
+    text-align: center;
+    margin: 30px;
+    height: 50px;
+}
+.final_página{
+text-align: center;
+justify-content: center;
+padding-right: 35px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.centralizar1{
+text-align: center;
+padding: 12px;
+font-size: larger;
+}
+.centralizar2{
+text-align: center;
+margin: 3px;
+}
+.centralizar3{
+text-align: center;
+margin: 3px;
+}
+.flex_login{
+    display: flex;
+justify-content: center;
+}
+
+/* login */
+
+<<<<<<< HEAD
+
+/* entrada */ 
+/* entrada */
+
+=======
+/* entrada */ 
+>>>>>>> eba1054b2afb5eab346739d09172542f24e7cc47
+
+.centro{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding-top: 240px;
+    color: white;
+>>>>>>> 5ea42ffc58fe8a08b3da6867d88bedea49131405
     background-color: black;
+}
+
+.cor{
+    border-radius: 100px;
 }
