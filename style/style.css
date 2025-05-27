@@ -104,13 +104,24 @@ justify-content: center;
 
 /* login */
 
+<<<<<<< HEAD
 
 /* entrada */ 
 /* entrada */
 
+=======
+/* entrada */ 
+>>>>>>> eba1054b2afb5eab346739d09172542f24e7cc47
 
-#flex{
+.centro{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    padding-top: 240px;
     color: white;
     background-color: black;
+}
+
+.cor{
+    background-color:#3254ea;
+    border-radius: 100px;
 }
