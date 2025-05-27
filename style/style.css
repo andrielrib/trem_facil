@@ -1,0 +1,21 @@
+body{
+    background-color: black;
+}
+
+.tela_carregamento{
+    text-align: center;
+    padding-top: 240px;
+}
+
+.logo_carregamento{
+text-align: center;
+margin-bottom: 50px;
+}
+
+.bolinhas_carregamento{
+text-align: center;
+}
+
+.flex{
+    display: flex;
+}
