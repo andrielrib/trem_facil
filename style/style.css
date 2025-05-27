@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 body{
     background-color: black;
 }
+=======
+HEAD
+body{
+    background-color: black;
+}
+
+
+
+>>>>>>> 8eb1d3a18905a53799f2337e6dade9618b650606
 
 .flex{
     display: flex;
@@ -22,6 +32,15 @@ margin-bottom: 50px;
 text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+HEAD
+.flex{
+    display: flex;
+}
+
+
+>>>>>>> 8eb1d3a18905a53799f2337e6dade9618b650606
 /* Carregamento */
 
 
@@ -31,6 +50,7 @@ text-align: center;
 
 /* Quem_é_você */
 
+<<<<<<< HEAD
 
 /* login */
 
@@ -41,3 +61,6 @@ padding-top: 100px;
 }
 
 /* login */
+=======
+/* entrada */ 
+>>>>>>> 8eb1d3a18905a53799f2337e6dade9618b650606
