@@ -1,4 +1,4 @@
-HEAD
+
 body{
     background-color: black;
 }
@@ -26,7 +26,7 @@ margin-bottom: 50px;
 text-align: center;
 }
 
-HEAD
+
 .flex{
     display: flex;
 }
@@ -43,6 +43,18 @@ HEAD
 
 /* Quem_é_você */
 
+
+/* login */
+
+.login_icon{
+text-align: center;
+padding-right: 30px;
+padding-top: 100px;
+}
+
+
+/* login */
+/* entrada */ 
 /* entrada */ 
 
 .centro{
