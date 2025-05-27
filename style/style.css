@@ -45,8 +45,10 @@ HEAD
 
 /* entrada */ 
 
-#flex{
+.centro{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    padding-top: 240px;
     color: white;
     background-color: black;
 }
