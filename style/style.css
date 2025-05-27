@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 body{
     background-color: black;
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-
-=======
 }
 
 .flex{
@@ -14,7 +8,6 @@ body{
 
 /* Carregamento */
 
->>>>>>> d0db936ba6c2f730ce98e70ec3d8ee645e9d55d5
 .tela_carregamento{
     text-align: center;
     padding-top: 240px;
@@ -29,28 +22,22 @@ margin-bottom: 50px;
 text-align: center;
 }
 
-<<<<<<< HEAD
-.flex{
-    display: flex;
-}
-
-=======
-    align-items: center;
-    color: white;
-    justify-content: center;
-}
->>>>>>> ab0671ef182786ddbb3c14d7b1ff22b9a531dc53
-=======
 /* Carregamento */
 
 
 /* Quem_é_você */
 
-.img_icone_quem{
-    
-}
+
 
 /* Quem_é_você */
-=======
->>>>>>> 9262f4b9845875f4ee9833041a775d7df80664b9
->>>>>>> d0db936ba6c2f730ce98e70ec3d8ee645e9d55d5
+
+
+/* login */
+
+.login_icon{
+text-align: center;
+padding-right: 30px;
+padding-top: 100px;
+}
+
+/* login */
