@@ -54,7 +54,7 @@ padding-top: 100px;
 
 
 /* login */
-/* entrada */ 
+
 /* entrada */ 
 
 .centro{
@@ -63,4 +63,9 @@ padding-top: 100px;
     padding-top: 240px;
     color: white;
     background-color: black;
+}
+
+.cor{
+    background-color:#3254ea;
+    border-radius: 100px;
 }
