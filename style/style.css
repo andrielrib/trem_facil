@@ -110,6 +110,10 @@ text-align: center;
     padding-top: 240px;
 }
 
+.logo_quemevoce {
+    
+}
+
 .quem_e_voce{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(255, 255, 255);
@@ -484,12 +488,124 @@ text-align: center;
     border-radius: 100px;
     background-color:#3254ea ;
     padding: 1px px;
-    border: none;
     font-size: 16px;
-    cursor: pointer;
     border-radius: 12px;
 }
 
 .preto{
     color: black;
 }
+
+/* pesquisa */
+
+.blue{
+    color: #66a0cf;
+}
+
+.red{
+    color: rgb(235, 75, 75);
+}
+
+.Green{
+    color: #00bf63;
+}
+
+.Ciano{
+    color: aquamarine;
+}
+
+.paragrafo_pesquisa{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: x-large;
+    margin-top: 180px;
+    padding: -200;
+}
+
+.barra_de_pesquisa{
+    border: 3px solid white;
+    border-radius: 50px;  
+    width: 260px;
+    height: 30px;
+    margin: 40px;
+    margin-left: 75px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pesquisar{
+    margin: 10px;
+}
+
+.icon_trem_pesquisa{
+    
+}
+
+/* pesquisa */
+
+.blue{
+    color: #66a0cf;
+}
+
+.red{
+    color: rgb(235, 75, 75);
+}
+
+.Green{
+    color: #00bf63;
+}
+
+.Ciano{
+    color: aquamarine;
+}
+
+.paragrafo_pesquisa{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: x-large;
+    margin-top: 180px;
+    padding: -200;
+}
+
+.barra_de_pesquisa{
+    border: 3px solid white;
+    border-radius: 50px;  
+    width: 260px;
+    height: 30px;
+    margin: 40px;
+    margin-left: 75px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pesquisar{
+    margin: 10px;
+}
+
+.icon_trem_pesquisa{
+    
+}
+/* entrada */
+
+/* rotas fixadas */
+
+#for{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.centro_rota {
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+.manio{
+    margin: 10px;
+}
+
+.flex{
+    display: flex;
+}
+/* rotas fixadas */
