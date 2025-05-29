@@ -1,4 +1,22 @@
 
+
+/*rotas*/
+.img_rotas{
+height: 850px;
+width: 380px;
+
+}
+.ver_fixados{
+background-color: #0ca217;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+
+/*rotas*/
+
+
+
 body{
     background-color: black;
     color: white;
