@@ -1,4 +1,25 @@
 
+
+/*rotas*/
+.img_rotas{
+margin: 62px;
+}
+.ver_fixados{
+background-color: #0ca217;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;justify-content: center;
+
+
+}
+
+.menus{
+
+
+}
+
+/*rotas*/
+
+
+
 body{
     background-color: black;
     color: white;
@@ -365,9 +386,38 @@ text-align: center;
 .sensor{
     margin: 10px;
 }
-.img_seta{
+.img{
     margin: 10px;
 }
+.titulo1{
+    font-size: 30;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.titulo2{
+    font-size: 20;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
+.subt1{
+    margin: 5px;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.subt2{
+    margin: 5px;
+    font-size: large;
+    color: #00bf63;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
+.textinho{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
+
+
 
 /* Sensores */
 
