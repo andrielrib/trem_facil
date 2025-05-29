@@ -8,10 +8,15 @@ width: 380px;
 }
 .ver_fixados{
 background-color: #0ca217;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;justify-content: center;
+
 
 }
 
+.menus{
+
+
+}
 
 /*rotas*/
 
