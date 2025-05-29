@@ -435,9 +435,7 @@ text-align: center;
     border-radius: 100px;
     background-color:#3254ea ;
     padding: 1px px;
-    border: none;
     font-size: 16px;
-    cursor: pointer;
     border-radius: 12px;
 }
 
@@ -448,10 +446,22 @@ text-align: center;
 /* entrada */
 
 /* rotas fixadas */
-.centro_rota {
+
+#for{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.centro_rota {
     text-align: center;
     color: white;
     background-color: black;
+}
+
+.manio{
+    margin: 10px;
+}
+
+.flex{
+    display: flex;
 }
 /* rotas fixadas */
