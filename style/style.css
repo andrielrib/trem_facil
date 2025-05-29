@@ -1,4 +1,74 @@
 
+
+/*rotas*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.img_rotas  {
+    width: 90%;
+    max-height: 65vh;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+ 
+}
+.ver_fixados {
+    margin: 20px 0;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    padding: 40px 0;
+    background-color: black;
+}
+
+.ver_fixados button {
+    background-color: #0ca217;
+    color: white;
+    padding: 13px 80px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ver_fixados button:hover {
+    background-color: #089015;
+}
+
+.menus img {
+  margin-left: 18px;
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    margin-top: auto;
+   
+}
+
+
+/*rotas*/
+
+
+
 body{
     background-color: black;
     color: white;
@@ -38,6 +108,10 @@ text-align: center;
 .center{
     text-align: center;
     padding-top: 240px;
+}
+
+.logo_quemevoce {
+    
 }
 
 .quem_e_voce{
@@ -486,12 +560,124 @@ text-align: center;
     border-radius: 100px;
     background-color:#3254ea ;
     padding: 1px px;
-    border: none;
     font-size: 16px;
-    cursor: pointer;
     border-radius: 12px;
 }
 
 .preto{
     color: black;
 }
+
+/* pesquisa */
+
+.blue{
+    color: #66a0cf;
+}
+
+.red{
+    color: rgb(235, 75, 75);
+}
+
+.Green{
+    color: #00bf63;
+}
+
+.Ciano{
+    color: aquamarine;
+}
+
+.paragrafo_pesquisa{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: x-large;
+    margin-top: 180px;
+    padding: -200;
+}
+
+.barra_de_pesquisa{
+    border: 3px solid white;
+    border-radius: 50px;  
+    width: 260px;
+    height: 30px;
+    margin: 40px;
+    margin-left: 75px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pesquisar{
+    margin: 10px;
+}
+
+.icon_trem_pesquisa{
+    
+}
+
+/* pesquisa */
+
+.blue{
+    color: #66a0cf;
+}
+
+.red{
+    color: rgb(235, 75, 75);
+}
+
+.Green{
+    color: #00bf63;
+}
+
+.Ciano{
+    color: aquamarine;
+}
+
+.paragrafo_pesquisa{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: x-large;
+    margin-top: 180px;
+    padding: -200;
+}
+
+.barra_de_pesquisa{
+    border: 3px solid white;
+    border-radius: 50px;  
+    width: 260px;
+    height: 30px;
+    margin: 40px;
+    margin-left: 75px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pesquisar{
+    margin: 10px;
+}
+
+.icon_trem_pesquisa{
+    
+}
+/* entrada */
+
+/* rotas fixadas */
+
+#for{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.centro_rota {
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+.manio{
+    margin: 10px;
+}
+
+.flex{
+    display: flex;
+}
+/* rotas fixadas */
