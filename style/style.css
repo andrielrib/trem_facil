@@ -1,8 +1,29 @@
 
+
+/*rotas*/
+.img_rotas{
+margin: 62px;
+}
+.ver_fixados{
+background-color: #0ca217;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;justify-content: center;
+
+
+}
+
+.menus{
+
+
+}
+
+/*rotas*/
+
+
+
 body{
     background-color: black;
     color: white;
-
+    margin: 0px;
 }
 
 .flex{
@@ -357,6 +378,53 @@ text-align: center;
 
 /* Cadastro 2 */
 
+/* Sensores */
+
+.flex_sensor{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.sensor{
+    margin: 10px;
+}
+.img{
+    margin: 10px;
+}
+.titulo1{
+    font-size: 30;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.titulo2{
+    font-size: 20;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
+.subt1{
+    margin: 5px;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.subt2{
+    margin: 5px;
+    font-size: large;
+    color: #00bf63;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
+.textinho{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
+
+
+
+/* Sensores */
+
 /* entrada */ 
 
 .centro{
@@ -426,3 +494,59 @@ text-align: center;
 .icon_trem_pesquisa{
     
 }
+
+/* pesquisa */
+
+.blue{
+    color: #66a0cf;
+}
+
+.red{
+    color: rgb(235, 75, 75);
+}
+
+.Green{
+    color: #00bf63;
+}
+
+.Ciano{
+    color: aquamarine;
+}
+
+.paragrafo_pesquisa{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: x-large;
+    margin-top: 180px;
+    padding: -200;
+}
+
+.barra_de_pesquisa{
+    border: 3px solid white;
+    border-radius: 50px;  
+    width: 260px;
+    height: 30px;
+    margin: 40px;
+    margin-left: 75px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pesquisar{
+    margin: 10px;
+}
+
+.icon_trem_pesquisa{
+    
+}
+/* entrada */
+
+/* rotas fixadas */
+.centro_rota {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+/* rotas fixadas */
