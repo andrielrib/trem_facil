@@ -2,7 +2,7 @@
 body{
     background-color: black;
     color: white;
-
+    margin: 0px;
 }
 
 .flex{
@@ -38,10 +38,6 @@ text-align: center;
 .center{
     text-align: center;
     padding-top: 240px;
-}
-
-.logo_quemevoce {
-    
 }
 
 .quem_e_voce{
@@ -356,6 +352,24 @@ text-align: center;
 }
 
 /* Cadastro 2 */
+
+/* Sensores */
+
+.flex_sensor{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.sensor{
+    margin: 10px;
+}
+.img_seta{
+    margin: 10px;
+}
+
+/* Sensores */
 
 /* entrada */ 
 
