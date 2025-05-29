@@ -394,3 +394,14 @@ text-align: center;
 .preto{
     color: black;
 }
+
+/* entrada */
+
+/* rotas fixadas */
+.centro_rota {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+/* rotas fixadas */
