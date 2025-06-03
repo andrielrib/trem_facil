@@ -1,4 +1,12 @@
+body{
+    background-color: black;
+    color: white;
+    margin: 0px;
+}
 
+.flex{
+    display: flex;
+}
 
 /*rotas*/
 *{
@@ -7,14 +15,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 .img_rotas  {
     width: 90%;
     max-height: 65vh;
@@ -67,17 +67,6 @@ body {
 
 /*rotas*/
 
-
-
-body{
-    background-color: black;
-    color: white;
-    margin: 0px;
-}
-
-.flex{
-    display: flex;
-}
 
 /* Carregamento */
 
@@ -318,7 +307,7 @@ text-align: center;
     text-align: center;
 }
 .margin_cadastro1{
-    margin: 10px;
+    margin: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: larger;
 }
@@ -548,24 +537,23 @@ text-align: center;
 
 /* entrada */ 
 
-.centro{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    padding-top: 240px;
-    color: white;
-    background-color: black;
+.img_entrada{
+text-align: center;
+padding-top: 100px;
 }
 
-.cor{
-    border-radius: 100px;
+.text_entrada{
+text-align: center;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.caixa_azul_entrada{
     background-color:#3254ea ;
-    padding: 1px px;
-    font-size: 16px;
-    border-radius: 12px;
-}
-
-.preto{
-    color: black;
+    border-radius: 20px;
+    width: 200px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 50px;
 }
 
 /* pesquisa */
