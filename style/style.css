@@ -545,15 +545,22 @@ padding-top: 100px;
 .text_entrada{
 text-align: center;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-size: larger;
+}
+
+.alinhar_entrada{
+    padding-left: 115px;
+    padding-right: 115px;
 }
 
 .caixa_azul_entrada{
-    background-color:#3254ea ;
-    border-radius: 20px;
-    width: 200px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 50px;
+background-color:#3254ea ;
+border-radius: 20px;
+width: 200px;
+text-align: center;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+height: 50px;
+padding: 10px;
 }
 
 /* pesquisa */
