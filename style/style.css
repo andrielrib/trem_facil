@@ -596,17 +596,16 @@ padding: 10px;
 .barra_de_pesquisa{
     border: 3px solid white;
     border-radius: 50px;  
-    width: 260px;
-    height: 30px;
+    width: 330px;
+    height: 40px;
     margin: 40px;
-    margin-left: 75px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: space-between;
 }
 
 .pesquisar{
-    margin: 10px;
+    margin: 0px;
 }
 
 .icon_trem_pesquisa{
