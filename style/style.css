@@ -636,14 +636,14 @@ padding: 10px;
     text-align: center;
     font-size: x-large;
     margin-top: 180px;
-    padding: -200;
+    width: 430px;
 }
 
 .barra_de_pesquisa{
     border: 3px solid white;
     border-radius: 50px;  
     width: 260px;
-    height: 30px;
+    height: 40px;
     margin: 40px;
     margin-left: 75px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -652,7 +652,19 @@ padding: 10px;
 }
 
 .pesquisar{
-    margin: 10px;
+    margin: 0px;
+    font-size: larger;
+    width: 74px;
+    height: 34px;
+    padding-left: 10px;
+    padding-top: 4px;
+}
+
+.trem_2{
+    text-align: center;
+    padding-left: 65px;
+    padding-right: 65px;
+    width: 430px;
 }
 
 .icon_trem_pesquisa{
