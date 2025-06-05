@@ -674,9 +674,6 @@ padding: 10px;
 
 /* rotas fixadas */
 
-#for{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
 .centro_rota {
     text-align: center;
@@ -688,7 +685,30 @@ padding: 10px;
     margin: 10px;
 }
 
-.flex{
+.flex_emcima{
     display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.texto_emcima{
+    padding-left: 100px;
+}
+
+.flex_textos{
+    display: flex;
+    justify-content: space-between;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.flex_caixa{
+text-align: center;
+justify-content: space-between;
+}
+
+.caixa_azul_específico{
+    background-color: #0549b1;
+    border-radius: 50px;
+}
+
 /* rotas fixadas */
