@@ -775,3 +775,59 @@ font-size: larger;
 
 
 /* rotas fixadas */
+
+/* Suporte e Alertas */
+
+.suporEalert{
+    border-radius: 0px 50px 50px 0px;
+    background-color: #0549b1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 40px;
+    text-align: center;
+    width: 300px;
+    padding-top: 2px;
+    font-size: x-large;
+}
+
+.texto_sobre{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.caixa_selecione{
+    background-color: #0549b1;
+    border-radius: 50px;
+    width: 300;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+
+}
+
+.coisas{
+margin: 50px;
+}
+
+.caixa_verde_supEale{
+    border-radius: 50px;
+    width: 230px;
+    background-color: #00bf63;
+    text-align: center;
+    justify-content: center;
+    height: 50px;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Suporte e Alertas */
