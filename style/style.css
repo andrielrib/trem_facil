@@ -2,6 +2,7 @@ body{
     background-color: black;
     color: white;
     margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .flex{
@@ -143,7 +144,7 @@ padding-top: 100px;
     height: 50px;
     text-align: center;
     color: white;
-
+    border: none;
 }
 .margin{
     margin: 10px;
@@ -152,10 +153,11 @@ padding-top: 100px;
 .caixa_verde_login{
     border-radius: 50px;
     width: 230px;
-    background-color: #00bf63;
+    background-color: #31a06a;
     text-align: center;
     justify-content: center;
     height: 50px;
+    color: white
   
 }
 .final_página{
@@ -168,7 +170,7 @@ padding-right: 100px;
 text-align: center;
 padding: 12px;
 font-size: larger;
-
+border: none;
 }
 
 .centralizar2{
@@ -393,6 +395,7 @@ text-align: center;
     margin: 30px;
     margin-left: 50px;
     height: 50px;
+    color: white;
 }
 .final_cadastro2{
     text-align: center;
