@@ -694,21 +694,48 @@ padding: 10px;
     padding-left: 100px;
 }
 
-.flex_textos{
+.flex_textos1{
     display: flex;
-    justify-content: space-between;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-left: 50px;
-    padding-right: 50px;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 30px;
+    padding-right: 20px;
 }
+
+.flex_textos2{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
 
 .flex_caixa{
 text-align: center;
 justify-content: space-between;
+display: flex;
+padding-left: 20px;
+padding-right: 20px;
+font-size: larger;
 }
 
-.caixa_azul_específico{
+.caixa_azul_específico1{
     background-color: #0549b1;
-    border-radius: 50px;
+    border-radius: 20px;
+    height: 60px;
+    width: 150px;
+    padding-top: 20px;
 }
+
+.caixa_azul_específico2{
+    background-color: #0549b1;
+    border-radius: 20px;
+    height: 60px;
+    width: 150px;
+    padding-top: 10px;
+}
+
+
 
 /* rotas fixadas */
