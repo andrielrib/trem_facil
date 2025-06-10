@@ -142,6 +142,8 @@ padding-top: 100px;
     width: 430px;
     height: 50px;
     text-align: center;
+    color: white;
+    border:none;
 }
 .margin{
     margin: 10px;
