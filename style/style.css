@@ -2,6 +2,7 @@ body{
     background-color: black;
     color: white;
     margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .flex{
@@ -394,6 +395,7 @@ text-align: center;
     margin: 30px;
     margin-left: 50px;
     height: 50px;
+    color: white;
 }
 .final_cadastro2{
     text-align: center;
