@@ -11,6 +11,21 @@ body {
 }
 
 /*rotas*/
+
+.caixa_verde_rotas {
+    cursor: pointer;
+    transition: all 0, 3s ease;
+    color: white;
+    background-color: #58b125;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 50px;
+    padding: 10px;
+}
+
 * {
     margin: 0;
     padding: 0;
