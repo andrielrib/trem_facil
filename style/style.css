@@ -324,6 +324,10 @@ text-align: center;
     font-size: larger;
 }
 .caixa_verde_cadastro1{
+    cursor: pointer;
+    transition: all 0,3s ease;
+    color: white;
+    color: white;
     border-radius: 50px;
     width: 320px;
     background-color: #00bf63;
@@ -571,6 +575,7 @@ font-size: larger;
     cursor: pointer;
     transition: all 0,3s ease;
     color: white;
+    border: none;
     background-color:#3254ea ;
     border-radius: 20px;
     border: none;
