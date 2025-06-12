@@ -506,7 +506,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 1px;
-    margin-right: 40px;
+    margin-right: 30px;
     margin-left: 20px;
 }
 
@@ -514,12 +514,22 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 5px;
+<<<<<<< HEAD
+=======
+    background-color: black;
+    border: none;
+    color: white;    
+>>>>>>> 5946b91751dc3f02d21ff7cfac23487fedad35fa
 }
 
 .font_and_size_sub {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: medium;
+<<<<<<< HEAD
     margin: 1px;
+=======
+    margin: 1px; 
+>>>>>>> 5946b91751dc3f02d21ff7cfac23487fedad35fa
 }
 
 .tit {
@@ -549,6 +559,9 @@ body {
 .mma {
     margin: 5px;
     color: #00bf63;
+    background-color: black;
+    border: none;
+    text-decoration: underline;
 }
 
 .m {
@@ -561,20 +574,76 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 1px;
-    margin-right: 30px;
     color: #0867d5;
-    text-align: center;
+    background-color: black;
+    border: none;
 }
 
 .tit_baixo2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 1px;
-    margin-right: 30px;
     color: #ff5757;
+    background-color: black;
+    border: none;
+}
+
+.centralizar_perfil{
     text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+
+.theme-checkbox {
+  --toggle-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 6.25em;
+  height: 3.125em;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+  background: -o-linear-gradient(left, #2a2a2a 50%, #efefef 50%) no-repeat;
+  background: linear-gradient(to right, #2a2a2a 50%, #efefef 50%) no-repeat;
+  background-size: 205%;
+  background-position: 0;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 99em;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--toggle-size);
+}
+
+.theme-checkbox::before {
+  content: "";
+  width: 2.25em;
+  height: 2.25em;
+  position: absolute;
+  top: 0.438em;
+  left: 0.438em;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+  background: -o-linear-gradient(left, #2a2a2a 50%, #efefef 50%) no-repeat;
+  background: linear-gradient(to right, #2a2a2a 50%, #efefef 50%) no-repeat;
+  background-size: 205%;
+  background-position: 100%;
+  border-radius: 50%;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+  left: calc(100% - 2.25em - 0.438em);
+  background-position: 0;
+}
+
+.theme-checkbox:checked {
+  background-position: 100%;
+}
+
+>>>>>>> 5946b91751dc3f02d21ff7cfac23487fedad35fa
 /* Perfil */
 
 /* entrada */
