@@ -256,7 +256,6 @@ text-align: center;
 .final_redefinir{
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-right: 20px;
 }
 .caixa_verde_redefinir{
     border-radius: 50px;
@@ -265,8 +264,9 @@ text-align: center;
     text-align: center;
     justify-content: center;
     margin: 30px;
-    margin-left: 100px;
     height: 50px;
+    color: white;
+    border: none;
 }
 .centralizar_redefinir{
     text-align: center;
