@@ -5,54 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../style/style.css">
-    <script src="/script/login.js"></script>
 </head>
 
- <div class="login_icon">
-        <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="260" height="210">
+<div class="login_icon">
+    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="260" height="210">
+</div>
+
+<div class="text_volta">
+    <strong>
+        <h1>Bem vindo de</h1>
+    </strong>
+    <strong>
+        <h1 class="margin">volta!</h1>
+    </strong>
+</div>
+
+<form id="loginForm">
+    <div>
+        <strong>
+            <p class="margin">Email ou telefone:</p>
+        </strong>
+        <input type="text" class="caixa_login" id="username">
     </div>
 
-    <div class="text_volta">
+    <div>
         <strong>
-            <h1>Bem vindo de</h1>
+            <p class="margin">Senha:</p>
         </strong>
-        <strong>
-            <h1 class="margin">volta!</h1>
-        </strong>
+        <input type="password" class="caixa_login" id="password">
     </div>
 
-    <form id="loginForm">
+    <br>
+    <br>
+    <div class="final_página">
+        <input type="submit" value="ENTRAR" class="caixa_verde_login">
         <div>
             <strong>
-                <p class="margin">Email ou telefone:</p>
+                <p class="margin">Esqueceu sua senha?</p>
             </strong>
-            <input type="text" class="caixa_login" id="username">
-        </div>
-
-        <div>
-            <strong>
-                <p class="margin">Senha:</p>
-            </strong>
-            <input type="password" class="caixa_login" id="password">
-        </div>
-
-        <br>
-        <br>
-        <div class="final_página">
-            <input type="submit" value="ENTRAR" class="caixa_verde_login"> 
-
-            <div>
-                <strong>
-                    <p class="margin">Esqueceu sua senha?</p>
-                </strong>
-                <div class="flex_login">
-                    <p class="centralizar2">Clique</p>
-                    <input type="button" value="Aqui" onclick="alert('Função de recuperação ainda não implementada')">
-                </div>
+            <div class="flex_login">
+                <p class="centralizar2">Clique</p>
+                <input type="button" value="Aqui" onclick="alert('Função de recuperação ainda não implementada')">
             </div>
         </div>
-    </form>
-
+    </div>
+</form>
+<script src="../script/login.js"></script>
 </body>
 
 </html>
