@@ -514,22 +514,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 5px;
-<<<<<<< HEAD
-=======
-    background-color: black;
-    border: none;
-    color: white;    
->>>>>>> 5946b91751dc3f02d21ff7cfac23487fedad35fa
 }
 
 .font_and_size_sub {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: medium;
-<<<<<<< HEAD
     margin: 1px;
-=======
-    margin: 1px; 
->>>>>>> 5946b91751dc3f02d21ff7cfac23487fedad35fa
 }
 
 .tit {
