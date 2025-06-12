@@ -568,13 +568,16 @@ font-size: larger;
 }
 
 .caixa_azul_entrada{
-background-color:#3254ea ;
-border-radius: 20px;
-width: 200px;
-text-align: center;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-height: 50px;
-padding: 10px;
+    transform: scale(0,5px);
+    color: white;
+    background-color:#3254ea ;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 50px;
+    padding: 10px;
 }
 
 /* pesquisa */
