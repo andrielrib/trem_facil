@@ -470,12 +470,15 @@ text-align: center;
 .font_and_size{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
-    margin: 5px;    
+    margin: 5px;
+    background-color: black;
+    border: none;
+    color: white;    
 }
 .font_and_size_sub{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: medium;
-    margin: 1px;    
+    margin: 1px; 
 }
 .tit{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -500,6 +503,9 @@ text-align: center;
 .mma{
     margin: 5px;
     color: #00bf63;
+    background-color: black;
+    border: none;
+    text-decoration: underline;
 }
 .m{
     margin: 5px;
@@ -510,9 +516,7 @@ text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 1px;
-    margin-right: 30px;
     color: #0867d5;
-    text-align: center;
     background-color: black;
     border: none;
 }
@@ -520,12 +524,15 @@ text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 1px;
-    margin-right: 30px;
     color: #ff5757;
-    text-align: center;
     background-color: black;
     border: none;
 }
+
+.centralizar_perfil{
+    text-align: center;
+}
+
 
 .theme-checkbox {
   --toggle-size: 16px;
