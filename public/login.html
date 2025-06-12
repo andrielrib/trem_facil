@@ -8,9 +8,7 @@
     <script src="/script/login.js"></script>
 </head>
 
-<body>
-
-    <div class="login_icon">
+ <div class="login_icon">
         <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="260" height="210">
     </div>
 
@@ -23,43 +21,37 @@
         </strong>
     </div>
 
-
-    <div>
-        <strong>
-            <p class="margin">Email ou telefone:</p>
-        </strong>
-
-        <input type="text" class="caixa_login">
-    </div>
-
-
-    <strong>
-        <p class="margin">Senha:</p>
-    </strong>
-
-    <input type="text" class="caixa_login">
-
-
-    <br>
-    <br>
-    <div class="final_página">
-
-        
-    <input type="submit" value="ENTRAR" class="caixa_verde_login"> 
-        
+    <form id="loginForm">
         <div>
             <strong>
-                <p class="margin">Esqueceu sua senha?</p>
+                <p class="margin">Email ou telefone:</p>
             </strong>
+            <input type="text" class="caixa_login" id="username">
+        </div>
 
+        <div>
+            <strong>
+                <p class="margin">Senha:</p>
+            </strong>
+            <input type="password" class="caixa_login" id="password">
+        </div>
 
-            <div class="flex_login">
-                
-                <p class="centralizar2">Clique</p>
-                <input type="submit" value="Aqui">
+        <br>
+        <br>
+        <div class="final_página">
+            <input type="submit" value="ENTRAR" class="caixa_verde_login"> 
+
+            <div>
+                <strong>
+                    <p class="margin">Esqueceu sua senha?</p>
+                </strong>
+                <div class="flex_login">
+                    <p class="centralizar2">Clique</p>
+                    <input type="button" value="Aqui" onclick="alert('Função de recuperação ainda não implementada')">
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
 </body>
 
