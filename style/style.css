@@ -726,7 +726,7 @@ justify-content: space-between;
 display: flex;
 padding-left: 20px;
 padding-right: 20px;
-font-size: larger;
+font-size: large;
 }
 
 .caixa_azul_específico1{
@@ -734,7 +734,7 @@ font-size: larger;
     border-radius: 20px;
     height: 60px;
     width: 150px;
-    padding-top: 20px;
+    padding-top: 15px;
 }
 
 .caixa_azul_específico2{
@@ -742,7 +742,7 @@ font-size: larger;
     border-radius: 20px;
     height: 60px;
     width: 150px;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 .pontos{
@@ -799,13 +799,14 @@ font-size: larger;
 .caixa_selecione{
     background-color: #0549b1;
     border-radius: 50px;
-    width: 300;
+    width: 330;
+    height: 40PX;
     text-align: center;
     display: flex;
     justify-content: space-between;
-    padding-left: 50px;
-    padding-right: 50px;
-
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5PX;
 }
 
 .coisas{
