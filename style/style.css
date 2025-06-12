@@ -610,6 +610,11 @@ font-size: larger;
 }
 
 /* pesquisa */
+#phone{
+    border: none;
+    color: white;
+    background-color: black;
+}
 
 .blue{
     color: #66a0cf;

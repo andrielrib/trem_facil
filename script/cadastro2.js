@@ -1,47 +1,27 @@
-document.addEventListener("DOMContentLoaded", function(){
-    const formulario = document.getElementById("formulario_cadas_2");
-    
-    formulario.addEventListener("submit", function(e){
-    e.preventDefault();
+document.getElementById('formulario_cadas_2').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    let valido = true;
+        const telefone = document.getElementById('telefone').value.trim();
+        const senha = document.getElementById('senha').value.trim();
+        const confirmar = document.getElementById('confirmar_senha').value.trim();
 
-    // para limpar os erros
-    document.getElementById("erroNome").textContent = "";
-    document.getElementById("erroEmail").textContent = "";
-    document.getElementById("erroSenha").textContent = "";
+        const phoneRegex = /^\d{10,15}$/;
 
-    const nome = document .getElementById("nome").value.trim();
-    const email = document .getElementById("email").value.trim();
-    const senha = document .getElementById("senha").value.trim();
+        if (!telefone || !phoneRegex.test(telefone)) {
+            alert('Por favor, insira um telefone válido (somente números, entre 10 e 15 dígitos).');
+            return;
+        }
 
-    console.log(nome);
-    console.log(email);
-    console.log(senha);
+        if (!senha || senha.length < 6) {
+            alert('A senha deve conter pelo menos 6 caracteres.');
+            return;
+        }
 
-    if (nome.length < 3){
-        document.getElementById("erroNome").textContent = "O nome deve ter pelo menos 3 caracteres";
-        valido = false;
-    }
+        if (senha !== confirmar) {
+            alert('As senhas não coincidem.');
+            return;
+        }
 
-    if (senha.length < 6){
-        document.getElementById("erroSenha").textContent = "O senha deve ter pelo menos 6 caracteres";
-        valido = false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if(!emailRegex.test(email)) {
-        document.getElementById("erroEmail").textContent = "E-mail Inválido.";
-        valido = false;
-    }
-
-    if(valido) {
-        alert("Formulário enviado com sucesso!");
-        formulario.reset();
-        window.location.href= "menu.html";
-    }
-
-
+        alert('Cadastro validado com sucesso!');
+       window.location.href = "rotas.html"
     });
-});
