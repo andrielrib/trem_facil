@@ -1,34 +1,36 @@
-body{
+body {
     background-color: black;
     color: white;
     margin: 0px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
 }
 
-.flex{
+.flex {
     display: flex;
 }
 
 /*rotas*/
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-.img_rotas  {
+.img_rotas {
     width: 90%;
     max-height: 65vh;
     object-fit: contain;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     text-align: center;
- 
+
 }
+
 .ver_fixados {
     margin: 20px 0;
 }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -58,12 +60,12 @@ body{
 }
 
 .menus img {
-  margin-left: 18px;
+    margin-left: 18px;
     width: 90%;
     max-width: 350px;
     height: auto;
     margin-top: auto;
-   
+
 }
 
 
@@ -72,22 +74,22 @@ body{
 
 /* Carregamento */
 
-.tela_carregamento{
+.tela_carregamento {
     text-align: center;
     padding-top: 240px;
 }
 
-.logo_carregamento{
-text-align: center;
-margin-bottom: 50px;
+.logo_carregamento {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.bolinhas_carregamento{
-text-align: center;
+.bolinhas_carregamento {
+    text-align: center;
 }
 
 
-.flex{
+.flex {
     display: flex;
 }
 
@@ -96,20 +98,21 @@ text-align: center;
 
 /* login */
 
-.login_icon{
-text-align: center;
-padding-right: 35px;
-padding-top: 100px;
+.login_icon {
+    text-align: center;
+    padding-right: 35px;
+    padding-top: 100px;
 }
 
-.text_volta{
+.text_volta {
     text-align: center;
     color: rgb(255, 255, 255);
     padding-right: 35px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 }
-.caixa_login{
+
+.caixa_login {
     border-radius: 50px;
     background-color: #0549b1;
     width: 430px;
@@ -118,11 +121,13 @@ padding-top: 100px;
     color: white;
     border: none;
 }
-.margin{
+
+.margin {
     margin: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.caixa_verde_login{
+
+.caixa_verde_login {
     border-radius: 50px;
     width: 230px;
     background-color: #31a06a;
@@ -130,55 +135,57 @@ padding-top: 100px;
     justify-content: center;
     height: 50px;
     color: white
-  
-}
-.final_página{
-text-align: center;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-padding-left: 100px;
-padding-right: 100px;
-}
-.centralizar1{
-text-align: center;
-padding: 12px;
-font-size: larger;
-border: none;
 }
 
-.centralizar2{
-text-align: center;
-margin: 3px;
+.final_página {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 100px;
+    padding-right: 100px;
 }
-.flex_login{
+
+.centralizar1 {
+    text-align: center;
+    padding: 12px;
+    font-size: larger;
+    border: none;
+}
+
+.centralizar2 {
+    text-align: center;
+    margin: 3px;
+}
+
+.flex_login {
     display: flex;
-justify-content: center;
+    justify-content: center;
 }
 
 /* login */
 
 /* Esqueceu sua senha? */
 
-.img_carinha_esqueci{
+.img_carinha_esqueci {
     width: 430px;
     height: 300px;
-text-align: center;
+    text-align: center;
 }
 
-.text_esqueci{
-justify-content: center;
-text-align: center;
-width: 430px;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-font-size: larger;
+.text_esqueci {
+    justify-content: center;
+    text-align: center;
+    width: 430px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
 }
 
-.p{
-margin-top: 5px;
-margin-bottom: 5px;
-width: 430px;
+.p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 430px;
 }
 
-.caixa_esqueci{
+.caixa_esqueci {
     border-radius: 50px;
     width: 230px;
     background-color: #0549b1;
@@ -186,13 +193,15 @@ width: 430px;
     justify-content: center;
     height: 50px;
 }
-.centralizar_esqueci{
+
+.centralizar_esqueci {
     text-align: center;
     padding: 5px;
     font-size: xx-large;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.caixa_reeviar{
+
+.caixa_reeviar {
     border-radius: 50px;
     width: 230px;
     background-color: #0cc0df;
@@ -200,14 +209,15 @@ width: 430px;
     justify-content: center;
     height: 50px;
 }
-.centralizar_reenviar{
+
+.centralizar_reenviar {
     text-align: center;
     padding: 7px;
     font-size: 23px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.alinhar{
+.alinhar {
     width: 430px;
     text-align: center;
     padding-left: 100;
@@ -218,46 +228,51 @@ width: 430px;
 
 /* Redefinir senha */
 
-.img_carinha_redefinir{
+.img_carinha_redefinir {
     width: 389px;
     height: 300px;
-text-align: center;
+    text-align: center;
 }
 
-.text_redefinir{
+.text_redefinir {
     text-align: center;
     color: rgb(255, 255, 255);
     padding-right: 35px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 }
-.caixa_redefinir{
+
+.caixa_redefinir {
     border-radius: 50px;
     background-color: #0549b1;
     width: 330px;
     height: 40px;
     margin-left: 50px;
     text-align: center;
-    border:none;
+    border: none;
     color: white;
 }
-.sub1{
+
+.sub1 {
     margin: 10px;
     margin-right: 150px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 }
-.sub2{
+
+.sub2 {
     margin: 10px;
     margin-right: 70px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 }
-.final_redefinir{
+
+.final_redefinir {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.caixa_verde_redefinir{
+
+.caixa_verde_redefinir {
     border-radius: 50px;
     width: 230px;
     background-color: #00bf63;
@@ -268,37 +283,42 @@ text-align: center;
     color: white;
     border: none;
 }
-.centralizar_redefinir{
+
+.centralizar_redefinir {
     text-align: center;
     padding: 12px;
     font-size: larger;
 }
-.img_carinha{
+
+.img_carinha {
     width: 400px;
     height: 300px;
-text-align: center;
+    text-align: center;
 }
 
 /* Cadastro 1 */
 
-.cadastro1_icon{
+.cadastro1_icon {
     text-align: center;
     padding-right: 35px;
     padding-top: 100px;
 }
-.caixa_cadastro1{
+
+.caixa_cadastro1 {
     border-radius: 50px;
     background-color: #0549b1;
     width: 400px;
     height: 60px;
     text-align: center;
 }
-.margin_cadastro1{
+
+.margin_cadastro1 {
     margin: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: larger;
 }
-.caixa_verde_cadastro1{
+
+.caixa_verde_cadastro1 {
     border-radius: 50px;
     width: 320px;
     background-color: #00bf63;
@@ -308,29 +328,34 @@ text-align: center;
     margin-left: 50px;
     height: 50px;
 }
-.final_cadastro1{
+
+.final_cadastro1 {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-right: 20px;
 }
-.centralizar_cadastro1{
+
+.centralizar_cadastro1 {
     text-align: center;
     padding: 9px;
     font-size: x-large;
 }
-.flex_circulo{
+
+.flex_circulo {
     display: flex;
     justify-content: center;
     text-align: center;
 }
-.circulo_esquerda_cadastro1{
+
+.circulo_esquerda_cadastro1 {
     background: white;
     border-radius: 50%;
     width: 20px;
     height: 20px;
     margin: 10px;
 }
-.circulo_direito_cadastro1{
+
+.circulo_direito_cadastro1 {
     width: 18px;
     height: 18px;
     border: 2px solid white;
@@ -343,25 +368,28 @@ text-align: center;
 
 /* Cadastro 2 */
 
-.cadastro2_icon{
+.cadastro2_icon {
     text-align: center;
     padding-right: 35px;
     padding-top: 100px;
 }
-.caixa_cadastro2{
+
+.caixa_cadastro2 {
     border-radius: 50px;
     background-color: #0549b1;
     width: 400px;
     height: 60px;
     text-align: center;
 }
-.margin_cadastro2{
+
+.margin_cadastro2 {
     margin: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: larger;
-    
+
 }
-.caixa_verde_cadastro2{
+
+.caixa_verde_cadastro2 {
     border-radius: 50px;
     width: 320px;
     background-color: #00bf63;
@@ -372,22 +400,26 @@ text-align: center;
     height: 50px;
     color: white;
 }
-.final_cadastro2{
+
+.final_cadastro2 {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-right: 20px;
 }
-.centralizar_cadastro2{
+
+.centralizar_cadastro2 {
     text-align: center;
     padding: 9px;
     font-size: x-large;
 }
-.flex_circulo{
+
+.flex_circulo {
     display: flex;
     justify-content: center;
     text-align: center;
 }
-.circulo_esquerda_cadastro2{
+
+.circulo_esquerda_cadastro2 {
     width: 18px;
     height: 18px;
     border: 2px solid white;
@@ -395,7 +427,8 @@ text-align: center;
     background-color: transparent;
     margin: 10px;
 }
-.circulo_direita_cadastro2{
+
+.circulo_direita_cadastro2 {
     background: white;
     border-radius: 50%;
     width: 20px;
@@ -407,43 +440,50 @@ text-align: center;
 
 /* Sensores */
 
-.flex_sensor{
+.flex_sensor {
     display: flex;
     justify-content: space-between;
     margin-left: 30px;
     margin-right: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.sensor{
+
+.sensor {
     margin: 10px;
 }
-.img{
+
+.img {
     margin: 10px;
 }
-.titulo1{
+
+.titulo1 {
     font-size: 30;
     margin: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.titulo2{
+
+.titulo2 {
     font-size: 20;
     margin: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 30px;
 }
-.subt1{
+
+.subt1 {
     margin: 5px;
     font-size: large;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.subt2{
+
+.subt2 {
     margin: 5px;
     font-size: large;
     color: #00bf63;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 30px;
 }
-.textinho{
+
+.textinho {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 30px;
 }
@@ -451,62 +491,73 @@ text-align: center;
 /* Sensores */
 
 /* Perfil */
-.foto_perfil{
+.foto_perfil {
     text-align: center;
     width: 430px;
 }
-.flex_nome{
+
+.flex_nome {
     display: flex;
     text-align: center;
-    justify-content: center;   
+    justify-content: center;
 }
-.flex_outros{
+
+.flex_outros {
     display: flex;
     justify-content: space-between;
     margin: 1px;
     margin-right: 40px;
     margin-left: 20px;
 }
-.font_and_size{
+
+.font_and_size {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
-    margin: 5px;    
+    margin: 5px;
 }
-.font_and_size_sub{
+
+.font_and_size_sub {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: medium;
-    margin: 1px;    
+    margin: 1px;
 }
-.tit{
+
+.tit {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 1px;
-    margin-left: 20px; 
+    margin-left: 20px;
 }
-.sub_tit{
+
+.sub_tit {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: medium;
     margin: 1px;
     margin-left: 20px;
 }
-.flex_linha{
+
+.flex_linha {
     display: flex;
     margin-left: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.ma{
+
+.ma {
     margin: 5px;
 }
-.mma{
+
+.mma {
     margin: 5px;
     color: #00bf63;
 }
-.m{
+
+.m {
     margin: 5px;
     margin-left: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.tit_baixo1{
+
+.tit_baixo1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 1px;
@@ -514,7 +565,8 @@ text-align: center;
     color: #0867d5;
     text-align: center;
 }
-.tit_baixo2{
+
+.tit_baixo2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 1px;
@@ -522,31 +574,32 @@ text-align: center;
     color: #ff5757;
     text-align: center;
 }
+
 /* Perfil */
 
-/* entrada */ 
+/* entrada */
 
-.img_entrada{
-text-align: center;
-padding-top: 100px;
+.img_entrada {
+    text-align: center;
+    padding-top: 100px;
 }
 
-.text_entrada{
-text-align: center;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-font-size: larger;
+.text_entrada {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
 }
 
-.alinhar_entrada{
+.alinhar_entrada {
     padding-left: 115px;
     padding-right: 115px;
 }
 
-.caixa_azul_entrada{
+.caixa_azul_entrada {
     cursor: pointer;
-    transition: all 0,3s ease;
+    transition: all 0, 3s ease;
     color: white;
-    background-color:#3254ea ;
+    background-color: #3254ea;
     border-radius: 20px;
     border: none;
     width: 200px;
@@ -557,29 +610,29 @@ font-size: larger;
 }
 
 /* pesquisa */
-#phone{
+#phone {
     border: none;
     color: white;
     background-color: black;
 }
 
-.blue{
+.blue {
     color: #66a0cf;
 }
 
-.red{
+.red {
     color: rgb(235, 75, 75);
 }
 
-.Green{
+.Green {
     color: #00bf63;
 }
 
-.Ciano{
+.Ciano {
     color: aquamarine;
 }
 
-.paragrafo_pesquisa{
+.paragrafo_pesquisa {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     font-size: x-large;
@@ -587,9 +640,9 @@ font-size: larger;
     padding: -200;
 }
 
-.barra_de_pesquisa{
+.barra_de_pesquisa {
     border: 3px solid white;
-    border-radius: 50px;  
+    border-radius: 50px;
     width: 330px;
     height: 40px;
     margin: 40px;
@@ -598,30 +651,30 @@ font-size: larger;
     justify-content: space-between;
 }
 
-.pesquisar{
+.pesquisar {
     margin: 0px;
 }
 
 
 /* pesquisa */
 
-.blue{
+.blue {
     color: #66a0cf;
 }
 
-.red{
+.red {
     color: rgb(235, 75, 75);
 }
 
-.Green{
+.Green {
     color: #00bf63;
 }
 
-.Ciano{
+.Ciano {
     color: aquamarine;
 }
 
-.paragrafo_pesquisa{
+.paragrafo_pesquisa {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     font-size: x-large;
@@ -629,9 +682,9 @@ font-size: larger;
     width: 430px;
 }
 
-.barra_de_pesquisa{
+.barra_de_pesquisa {
     border: 3px solid white;
-    border-radius: 50px;  
+    border-radius: 50px;
     width: 260px;
     height: 40px;
     margin: 40px;
@@ -641,7 +694,7 @@ font-size: larger;
     justify-content: space-between;
 }
 
-.pesquisar{
+.pesquisar {
     margin: 0px;
     font-size: larger;
     width: 74px;
@@ -650,7 +703,7 @@ font-size: larger;
     padding-top: 4px;
 }
 
-.trem_2{
+.trem_2 {
     text-align: center;
     padding-left: 65px;
     padding-right: 65px;
@@ -661,6 +714,27 @@ font-size: larger;
 
 /* rotas fixadas */
 
+.seta{
+    background-color: black;
+    border: none;
+}
+
+#botao_notifica{
+    justify-content: center
+}
+
+.caixa_azul_rf {
+    cursor: pointer;
+    color: white;
+    background-color: #3254ea;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 50px;
+    padding: 10px;
+}
 
 .centro_rota {
     text-align: center;
@@ -668,20 +742,20 @@ font-size: larger;
     background-color: black;
 }
 
-.manio{
+.manio {
     margin: 10px;
 }
 
-.flex_emcima{
+.flex_emcima {
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.texto_emcima{
+.texto_emcima {
     padding-left: 100px;
 }
 
-.flex_textos1{
+.flex_textos1 {
     display: flex;
     justify-content: space-between;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -689,7 +763,7 @@ font-size: larger;
     padding-right: 20px;
 }
 
-.flex_textos2{
+.flex_textos2 {
     display: flex;
     justify-content: space-between;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -698,16 +772,16 @@ font-size: larger;
 }
 
 
-.flex_caixa{
-text-align: center;
-justify-content: space-between;
-display: flex;
-padding-left: 20px;
-padding-right: 20px;
-font-size: large;
+.flex_caixa {
+    text-align: center;
+    justify-content: space-between;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: large;
 }
 
-.caixa_azul_específico1{
+.caixa_azul_específico1 {
     background-color: #0549b1;
     border-radius: 20px;
     height: 60px;
@@ -715,7 +789,7 @@ font-size: large;
     padding-top: 15px;
 }
 
-.caixa_azul_específico2{
+.caixa_azul_específico2 {
     background-color: #0549b1;
     border-radius: 20px;
     height: 60px;
@@ -723,13 +797,13 @@ font-size: large;
     padding-top: 5px;
 }
 
-.pontos{
+.pontos {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 430px;
 }
 
-.caixa_azul_específico3{
+.caixa_azul_específico3 {
     background-color: #0549b1;
     border-radius: 20px;
     height: 60px;
@@ -738,14 +812,14 @@ font-size: large;
     font-size: large;
 }
 
-.center{
+.center {
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 0px;
     height: 40px;
 }
 
-.notificar{
+.notificar {
     background-color: #0549b1;
     border-radius: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -759,7 +833,7 @@ font-size: large;
 
 /* Suporte e Alertas */
 
-.suporEalert{
+.suporEalert {
     border-radius: 0px 50px 50px 0px;
     background-color: #0549b1;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -770,11 +844,11 @@ font-size: large;
     font-size: x-large;
 }
 
-.texto_sobre{
+.texto_sobre {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.caixa_selecione{
+.caixa_selecione {
     background-color: #0549b1;
     border-radius: 50px;
     width: 330;
@@ -787,11 +861,11 @@ font-size: large;
     padding-top: 5PX;
 }
 
-.coisas{
-margin: 50px;
+.coisas {
+    margin: 50px;
 }
 
-.caixa_verde_supEale{
+.caixa_verde_supEale {
     border-radius: 50px;
     width: 300px;
     background-color: #00bf63;
@@ -800,13 +874,13 @@ margin: 50px;
     height: 70px;
 }
 
-.centralizar_enviar{
+.centralizar_enviar {
     margin-left: 65px;
     margin-bottom: 110px;
     margin-top: 110px;
 }
 
-.centralizar_text_alert{
+.centralizar_text_alert {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: x-large;
     padding: 20px;
