@@ -1,11 +1,18 @@
-function reenviarCodigo() {
-    const codigo = document.getElementById('codigo').value.trim();
+document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('codigo');
 
-    if (/^\d{4,}$/.test(codigo)) {
-        console.log("Código digitado:", codigo);
-        window.location.href = 'redefenir_senha.html';
-        
-    } else {
-        alert("Por favor, digite pelo menos 4 números.");
-    }
-}
+    input.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            const code = input.value.trim();
+            if (/^\d{6}$/.test(code)) {
+                window.location.href = 'redefinir_senha'; 
+            } else {
+                alert("Digite um código de 6 dígitos válido.");
+            }
+        }
+    });
+
+    window.reenviarCodigo = () => {
+        location.reload();
+    };
+});
