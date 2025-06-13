@@ -395,8 +395,9 @@ body {
 .caixa_cadastro2 {
     border-radius: 50px;
     background-color: #0549b1;
-    width: 400px;
-    height: 60px;
+    color: white;
+    width: 100px;
+    height: 30px;
     text-align: center;
 }
 
@@ -466,6 +467,16 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.quadradoZ{
+    border-radius: 50px;
+    background-color: #0549b1;
+    color: white;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+}
+
 .sensor {
     margin: 10px;
 }
@@ -532,12 +543,63 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     margin: 5px;
+    color: white;
+    background-color: black;
+    border: none;
 }
 
 .font_and_size_sub {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: medium;
     margin: 1px;
+}
+
+.theme-checkbox {
+  --toggle-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 6.25em;
+  height: 3.125em;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 0;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 99em;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--toggle-size);
+}
+
+.theme-checkbox::before {
+  content: "";
+  width: 2.25em;
+  height: 2.25em;
+  position: absolute;
+  top: 0.438em;
+  left: 0.438em;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 100%;
+  border-radius: 50%;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+  left: calc(100% - 2.25em - 0.438em);
+  background-position: 0;
+}
+
+.theme-checkbox:checked {
+  background-position: 100%;
 }
 
 .tit {
@@ -598,6 +660,15 @@ body {
 
 .centralizar_perfil{
     text-align: center;
+}
+
+.flex_perfil{
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_icones{
+    border: none;
 }
 
 /* Perfil */
