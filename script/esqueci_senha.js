@@ -1,21 +1,10 @@
-function validarCodigo() {
+function reenviarCodigo() {
     const codigo = document.getElementById('codigo').value.trim();
 
-
-    if (codigo === "") {
-        alert("Por favor, digite o código de confirmação.");
-        return;
+    if (/^\d{4,}$/.test(codigo)) {
+        console.log("Código digitado:", codigo);
+        window.location.href = 'redefenir_senha.html';
+    } else {
+        alert("Por favor, digite pelo menos 4 números.");
     }
-
-
-    const regex = /^\d{6}$/;
-    if (!regex.test(codigo)) {
-        alert("O código deve conter exatamente 6 números.");
-        return;
-    }
-
-
-
-
-    window.location.href = "redefinir_senha.js";
 }
