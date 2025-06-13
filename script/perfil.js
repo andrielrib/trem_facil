@@ -9,3 +9,7 @@ function telaSensor(){
 function telaPesquisa(){
     window.location.href = "pesquisa.html";
 }
+
+function telaSuporteAlerta(){
+    window.location.href = "suporte_alerta.html";
+}
