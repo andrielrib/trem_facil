@@ -5,3 +5,7 @@ function telaInicial(){
 function telaSensor(){
     window.location.href = "sensor.html";
 }
+
+function telaPesquisa(){
+    window.location.href = "pesquisa.html";
+}
