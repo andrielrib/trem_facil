@@ -20,5 +20,12 @@
             alert('Login válido! Prosseguindo...');
             window.location.href = "rotas.html";
         });
+
+function trocar_senha(){
+    
+    window.location.href = "esqueci_senha.html"; 
+
+};
+
  
        
