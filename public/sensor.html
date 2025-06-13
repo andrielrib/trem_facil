@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensorres Inteligentes</title>
     <link rel="stylesheet" href="../style/style.css">
+    <script src="../script/sensor.js"></script>
 </head>
 <body>
     
@@ -13,8 +14,8 @@
 
 <div class="flex_sensor">
     <strong><h1 class="sensor">Sensor 01</h1></strong>
-    <button class="btn_seta" onclick="redirecionarSensor()">
-        <img src="../assets/img/seta_baixo.png" alt="seta para baixo" width="60" height="40" class="img_seta">
+    <button class="btn_seta">
+        <img src="../assets/img/seta_baixo.png" onclick="trocaSensor()" alt="seta para baixo" width="60" height="40" class="img_seta">
     </button>
 </div>
 
@@ -51,7 +52,6 @@
     <button class="button_icones"><img src="../assets/icons/tela_perfil_icon.png" alt="icone da tela de perfil" width="86" height="70"></button>
 </div>
 
-<script src="../scripts/sensor.js"></script>
 
 </body>
 </html>
