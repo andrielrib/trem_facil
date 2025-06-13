@@ -101,6 +101,9 @@ body {
 
 .bolinhas_carregamento {
     text-align: center;
+   display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 
