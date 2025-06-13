@@ -1,4 +1,4 @@
-ript>
-        setTimeout(function() {
-            window.location.href = "tela_inicial.html";
-        }, 5000); 
+
+setInterval(() => {
+    window.location.href = "tela_inicial.html";
+}, 5000); 
