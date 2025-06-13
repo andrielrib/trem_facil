@@ -13,8 +13,6 @@ body {
 /*rotas*/
 
 .caixa_verde_rotas {
-    cursor: pointer;
-    transition: all 0, 3s ease;
     color: white;
     background-color: #58b125;
     border-radius: 20px;
@@ -33,29 +31,20 @@ body {
 }
 
 .img_rotas {
-    width: 90%;
-    max-height: 65vh;
-    object-fit: contain;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    width: 430px;
+    height: 670px;
     text-align: center;
-
+    padding-top: 20px;
 }
 
 .ver_fixados {
-    margin: 20px 0;
+    margin: 10px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 400px;
-    height: 100%;
-    padding: 40px 0;
-    background-color: black;
+.centralizar_rotas{
+    text-align: center;
+    height: 50px;
+    width: 430px;
 }
 
 .ver_fixados button {
@@ -655,6 +644,7 @@ body {
 
 .button_icones{
     border: none;
+    background-color: black;
 }
 
 /* Perfil */
