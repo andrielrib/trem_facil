@@ -1,3 +1,5 @@
-function redirecionarSensor() {
-    window.location.href = 'sensor_específico.html';
-}
+function trocaSensor(){
+    
+    window.location.href = "sensor_específico.html"; 
+
+};
