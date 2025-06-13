@@ -9,7 +9,9 @@
 
 <body>
 
-<strong><h1>Sensores Inteligentes:</h1></strong>
+    <strong>
+        <h1>Sensores Inteligentes:</h1>
+    </strong>
     <img src="../assets/img/sensor.PNG" alt="Sensores" width="400" height="400" class="img_sensores">
     <hr style="border: 2px solid #0549b1;">
 
@@ -29,6 +31,32 @@
     </div>
     <div class="textos_em_baixo">
         <p class="titulo2">Trens que passaram hoje:</p>
+        <div>
+            <html lang="en">
+
+            <head>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+            </head>
+
+            <body>
+                <input type="text" id="calendar" style="display: none;" class="quadradoZ">
+
+                <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                <script>
+                    const calendarInput = document.getElementById('calendar');
+                    const calendar = flatpickr(calendarInput, {
+                        onChange: function (selectedDates, dateStr, instance) {
+                            calendarInput.style.display = 'none'; 
+                        }
+                    });
+
+                    document.getElementById('openCalendar').addEventListener('click', () => {
+                        calendarInput.style.display = 'inline-block';
+                        calendar.open(); 
+                    });
+                </script>
+            </body>
+        </div>
         <u class="subt2">Alterar Data</u>
         <br>
         <p class="textinho">TF3 - ida e volta</p>
