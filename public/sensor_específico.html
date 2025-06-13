@@ -46,13 +46,13 @@
                     const calendarInput = document.getElementById('calendar');
                     const calendar = flatpickr(calendarInput, {
                         onChange: function (selectedDates, dateStr, instance) {
-                            calendarInput.style.display = 'none'; // Oculta após selecionar
+                            calendarInput.style.display = 'none'; 
                         }
                     });
 
                     document.getElementById('openCalendar').addEventListener('click', () => {
                         calendarInput.style.display = 'inline-block';
-                        calendar.open(); // Abre o calendário do Flatpickr
+                        calendar.open(); 
                     });
                 </script>
             </body>
