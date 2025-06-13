@@ -965,8 +965,13 @@ body {
 }
 
 .coisas {
+<<<<<<< HEAD
     margin-left: 50px;
     margin-top: 90px;
+=======
+    margin: 
+    35px;
+>>>>>>> cb1201d82ec8f94ff82dd6ad0b234439c4d54676
 }
 
 .caixa_verde_supEale {
