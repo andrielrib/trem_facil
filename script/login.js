@@ -26,5 +26,6 @@ function trocar_senha(){
     window.location.href = "esqueci_senha.html"; 
 
 };
+
  
        
