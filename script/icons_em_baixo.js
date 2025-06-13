@@ -1,5 +1,5 @@
-function telaInicial(){
-    window.location.href = "tela_inicial.html";
+function telaRotas(){
+    window.location.href = "rotas.html";
 }
 
 function telaSensor(){
