@@ -13,3 +13,7 @@ function telaPesquisa(){
 function telaSuporteAlerta(){
     window.location.href = "suporte_alerta.html";
 }
+
+function telaPerfil(){
+    window.location.href = "perfil.html";
+}
