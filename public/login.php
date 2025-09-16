@@ -7,7 +7,6 @@ if ($mysqli->connect_errno) {
 
 session_start();
 
-
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: login.php");
@@ -16,24 +15,24 @@ if (isset($_GET['logout'])) {
 
 $msg = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $login = $_POST["login"] ?? "";   
-    $senha = $_POST["senha"] ?? "";
+    $user = $_POST["username"] ?? "";
+    $pass = $_POST["password"] ?? "";
 
     $stmt = $mysqli->prepare("SELECT id_usuario, nome_completo, senha, tipo_usuarios FROM usuarios WHERE email=? OR telefone=?");
-    $stmt->bind_param("ss", $login, $login);
+    $stmt->bind_param("ss", $user, $user);
     $stmt->execute();
     $result = $stmt->get_result();
-    $usuario = $result->fetch_assoc();
+    $dados = $result->fetch_assoc();
     $stmt->close();
 
-    if ($usuario && password_verify($senha, $usuario['senha'])) {
-        $_SESSION["user_id"] = $usuario["id_usuario"];
-        $_SESSION["username"] = $usuario["nome_completo"];
-        $_SESSION["tipo_usuario"] = $usuario["tipo_usuarios"];
+    if ($dados && password_verify($pass, $dados['senha'])) {
+        $_SESSION["user_id"] = $dados["id_usuario"];
+        $_SESSION["username"] = $dados["nome_completo"];
+        $_SESSION["tipo_usuario"] = $dados["tipo_usuarios"];
         header("Location: login.php");
         exit;
     } else {
-        $msg = "Email/Telefone ou senha incorretos!";
+        $msg = "Usuário ou senha incorretos!";
     }
 }
 ?>
@@ -59,8 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h3>Login</h3>
     <?php if ($msg): ?><p class="msg"><?= $msg ?></p><?php endif; ?>
     <form method="post">
-      <input type="text" name="login" placeholder="Email ou Telefone" required>
-      <input type="password" name="senha" placeholder="Senha" required>
+      <input type="text" name="username" placeholder="Email ou Telefone" required>
+      <input type="password" name="password" placeholder="Senha" required>
       <button type="submit">Entrar</button>
     </form>
   </div>
