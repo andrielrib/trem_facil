@@ -20,26 +20,30 @@ if ($tipo) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrada</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div class="img_entrada">
-        <img src="../assets/icons/trem_bala_icon.png" alt="icone trem bala" width="300" height="250">
+        <img src="assets/icons/trem_bala_icon.png" alt="icone trem bala" width="300" height="250">
     </div>
+
+    <br><br>
 
     <div class="text_entrada">
         <h1>Quem é você?</h1>
     </div>
 
+    <br><br><br>
+
     <div class="alinhar_entrada">
 
-        <a href="entrada.php?tipo=1">
+        <a href="trens.php?tipo=1">
             <button class="caixa_azul_entrada"><h2>Cliente</h2></button>
         </a>
 
         <br><br>
 
-        <a href="entrada.php?tipo=2">
+        <a href="supoerte_alerta.php?tipo=2">
             <button class="caixa_azul_entrada" id="admin-button"><h2>Administrador</h2></button>
         </a>
     </div>

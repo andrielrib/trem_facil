@@ -45,7 +45,7 @@
             </strong>
             <div class="flex_login">
                 <p class="centralizar2">Clique</p>
-                <input type="button" value="Aqui" onclick="trocar_senha()">
+                <a href="esqueci_senha.php"><input type="button" value="Aqui" onclick="trocar_senha()"></a>
             </div>
         </div>
     </div>
