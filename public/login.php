@@ -25,14 +25,14 @@
         <strong>
             <p class="margin">Email ou telefone:</p>
         </strong>
-        <input type="text" class="caixa_login" id="username">
+        <input type="text" class="caixa_login" id="username" required>
     </div>
 
     <div>
         <strong>
             <p class="margin">Senha:</p>
         </strong>
-        <input type="password" class="caixa_login" id="password">
+        <input type="password" class="caixa_login" id="password" required>
     </div>
 
     <br>
