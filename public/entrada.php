@@ -17,15 +17,13 @@
     <br><br><br><br><br><br>
 
     <div class="alinhar_entrada">
-        <button id="btn_entrar" class="caixa_azul_entrada">
-            <h2>Entrada</h2>        
-        </button>
+
+        <a href="login.php"><button id="btn_entrar" class="caixa_azul_entrada"><h2>Entrar</h2></button></a>
 
         <br><br>
 
-        <button id="btn_cadastrar" class="caixa_azul_entrada">
-            <h2>Cadastrar</h2>
-        </button>
+        <a href="cadastro1.php"><button id="btn_cadastrar" class="caixa_azul_entrada"><h2>Cadastrar</h2></button></a>
+
     </div>
 <script src="../script/entrada.js"></script>
 </div>
