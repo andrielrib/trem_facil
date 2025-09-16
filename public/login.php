@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
 
 <div class="login_icon">
-    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="260" height="210">
+    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="600" height="550">
 </div>
 
 <form id="loginForm">
@@ -76,11 +76,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <strong>
             <p class="margin">Email ou telefone:</p>
         </strong>
-        <input type="text" name="login" required>
+        <input type="text" class="caixa_login" name="login" required>
         <strong>
             <p class="margin">Senha:</p>
         </strong>
-        <input type="password" name="senha" required>
+        <input type="password" class="caixa_login" name="senha" required>
 
         <div class="final_página">
         <input type="submit" value="ENTRAR" class="caixa_verde_login">
