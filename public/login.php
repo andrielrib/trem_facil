@@ -1,10 +1,54 @@
 <html lang="en">
 
+<?php
+
+$mysqli = new mysqli("localhost", "root", "root", "trem_facil");
+if ($mysqli->connect_errno) {
+    die("Erro de conexão: " . $mysqli->connect_error);
+}
+
+session_start();
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+
+$msg = "";
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $user = $_POST["username"] ?? "";
+    $pass = $_POST["password"] ?? "";
+
+    $stmt = $mysqli->prepare("SELECT id_usuario, nome_completo, senha, tipo_usuarios FROM usuarios WHERE email=? OR telefone=?");
+    $stmt->bind_param("ss", $user, $user);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $dados = $result->fetch_assoc();
+    $stmt->close();
+
+    if ($dados && password_verify($pass, $dados['senha'])) {
+        $_SESSION["user_id"] = $dados["id_usuario"];
+        $_SESSION["username"] = $dados["nome_completo"];
+        $_SESSION["tipo_usuario"] = $dados["tipo_usuarios"];
+        header("Location: login.php");
+        exit;
+    } else {
+        $msg = "Usuário ou senha incorretos!";
+    }
+}
+?>
+
+<!doctype html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../style/style.css">
+<meta charset="utf-8">
+<title>Login Trem Fácil</title>
+<link rel="stylesheet" href="../style/style.css">
 </head>
 
 <div class="login_icon">
