@@ -1,6 +1,6 @@
-CREATE DATABASE trem_facil
+CREATE DATABASE trem_facil;
 
-USE trem_facil 
+USE trem_facil ;
 
 CREATE TABLE usuarios (
 
@@ -18,7 +18,7 @@ data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 CREATE TABLE  sensores    (
 id_sensores INT AUTO_INCREMENT PRIMARY KEY,
 nome_sensor VARCHAR(120) UNIQUE NOT NULL,
-data_sensor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+data_sensor TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE  rotas    (
