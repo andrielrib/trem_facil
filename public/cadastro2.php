@@ -27,7 +27,7 @@
 
         <br><br>
         <div class="final_cadastro2">
-            <button type="submit" class="caixa_verde_cadastro2"><p class="centralizar_cadastro2">REGISTRAR</p></button>
+            <a href="login.php"><button type="submit" class="caixa_verde_cadastro2"><p class="centralizar_cadastro2">REGISTRAR</p></button></a>
         </div>
     </form>
 </div>
