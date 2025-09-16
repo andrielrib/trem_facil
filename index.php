@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$mysqli = new mysqli("localhost", "root", "", "trem_facil");
+$mysqli = new mysqli("localhost", "root", "root", "trem_facil");
 
 if ($mysqli->connect_errno) {
     die("Erro ao conectar ao MySQL: " . $mysqli->connect_error);
@@ -13,6 +13,7 @@ if ($tipo) {
     $_SESSION['tipo_usuario'] = $tipo;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
