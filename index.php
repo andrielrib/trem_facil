@@ -1,11 +1,8 @@
 <?php
+
+include '../../trem_facil-main/trem_facil/public/db.php';
+
 session_start();
-
-$mysqli = new mysqli("localhost", "root", "root", "trem_facil");
-
-if ($mysqli->connect_errno) {
-    die("Erro ao conectar ao MySQL: " . $mysqli->connect_error);
-}
 
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : null;
 
@@ -13,7 +10,6 @@ if ($tipo) {
     $_SESSION['tipo_usuario'] = $tipo;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
