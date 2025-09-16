@@ -1,6 +1,6 @@
 <?php
 
-include '../../trem_facil-main/trem_facil/public/db.php';
+include 'public/db.php';
 
 session_start();
 
