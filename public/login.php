@@ -1,6 +1,6 @@
 <?php
 
-$mysqli = new mysqli("localhost", "root", "", "trem_facil");
+$mysqli = new mysqli("localhost", "root", "root", "trem_facil");
 if ($mysqli->connect_errno) {
     die("Erro de conexão: " . $mysqli->connect_error);
 }
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
 <meta charset="utf-8">
 <title>Login Trem Fácil</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
 
