@@ -7,10 +7,7 @@
 <body>
     
 
-<Div flex_funções>
-    <img src="peril" alt="">
-
-
+<Div 
 
 
 </Div>
