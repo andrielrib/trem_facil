@@ -22,7 +22,7 @@
             <strong>
                 <p class="margin_cadastro1">Nome completo:</p>
             </strong>
-            <input type="text" class="caixa_login" id="nome_completo">
+            <input type="text" class="caixa_login" id="nome_completo" required>
         </div>
 
 
@@ -30,7 +30,7 @@
             <strong>
                 <p class="margin_cadastro1">CPF:</p>
             </strong>
-            <input type="text" class="caixa_login" id="cpf">
+            <input type="text" class="caixa_login" id="cpf" required>
         </div>
 
 
@@ -38,7 +38,7 @@
             <strong>
                 <p class="margin_cadastro1">CEP:</p>
             </strong>
-            <input type="text" class="caixa_login" id="cep">
+            <input type="text" class="caixa_login" id="cep" required>
         </div>
 
 
@@ -46,7 +46,7 @@
             <strong>
                 <p class="margin_cadastro1">Email:</p>
             </strong>
-            <input type="text" class="caixa_login" id="email">
+            <input type="text" class="caixa_login" id="email" required>
         </div>
 
 
@@ -55,9 +55,9 @@
        
        
         <div class="final_cadastro1">
-            <button type="submit" class="caixa_verde_cadastro1">
-                <strong><p class="centralizar_cadastro1">PRÓXIMO</p></strong>
-            </button>
+
+            <a href="cadastro2.php"><button type="submit" class="caixa_verde_cadastro1"><strong><p class="centralizar_cadastro1">PRÓXIMO</p></strong></button></a>
+
         </div>
 
 
