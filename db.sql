@@ -1,6 +1,6 @@
-CREATE DATABASE trem_facil
+CREATE DATABASE trem_facil;
 
-USE trem_facil 
+USE trem_facil ;
 
 CREATE TABLE usuarios (
 
