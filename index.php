@@ -33,13 +33,13 @@ if ($tipo) {
 
     <div class="alinhar_entrada">
 
-        <a href="trens.php?tipo=1">
+        <a href="public/entrada.php?tipo=1">
             <button class="caixa_azul_entrada"><h2>Cliente</h2></button>
         </a>
 
         <br><br>
 
-        <a href="supoerte_alerta.php?tipo=2">
+        <a href="public/entrada.php?tipo=2">
             <button class="caixa_azul_entrada" id="admin-button"><h2>Administrador</h2></button>
         </a>
     </div>

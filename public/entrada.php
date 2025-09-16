@@ -10,11 +10,14 @@
     <div class="img_entrada">
         <img src="../assets/icons/trem_bala_icon.png" alt="icone trem bala" width="300" height="250">
     </div>
-    <br><br>
+
+    <br><br><br>
+
     <div class="text_entrada">
         <h1>Jà possui conta?</h1>
     </div>
-    <br><br><br><br><br><br>
+    
+    <br><br>
 
     <div class="alinhar_entrada">
 
