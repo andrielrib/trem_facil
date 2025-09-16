@@ -27,11 +27,7 @@
         <select class="caixa_selecione">
             <option value="valor1">Garuva</option>
             <option value="valor2" selected>Joinville</option>
-<<<<<<< HEAD
             <option value="valor3">São paulo</option>
-=======
-            <option value="valor3">São Paulo</option>
->>>>>>> cb1201d82ec8f94ff82dd6ad0b234439c4d54676
         </select>
 
 
@@ -44,15 +40,9 @@
             <h3>Selecione aqui</h3>
         </div>
         <select class="caixa_selecione">
-<<<<<<< HEAD
             <option value="valor1">Linha 1-Azul</option>
             <option value="valor2" selected>Linha 8-Diamante</option>
             <option value="valor3">Ferrovia Norte-Sul</option>
-=======
-            <option value="valor1">Linha 10-Turquesa</option>
-            <option value="valor2" selected>Linha 2-Verde</option>
-            <option value="valor3">Linha 2 (Guapimirim-Rio)</option>
->>>>>>> cb1201d82ec8f94ff82dd6ad0b234439c4d54676
         </select>
 
 
