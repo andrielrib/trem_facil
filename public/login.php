@@ -1,7 +1,7 @@
 <?php
 
 
-$mysqli = new mysqli("localhost", "root", "root", "trem_facil");
+$mysqli = new mysqli("localhost", "root", "", "trem_facil");
 if ($mysqli->connect_errno) {
     die("Erro de conexão: " . $mysqli->connect_error);
 }
