@@ -994,11 +994,90 @@ body {
     padding: 20px;
 }
 
-
-
-
-
-
-
-
 /* Suporte e Alertas */
+
+/*pagina_inicial*\
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #000; /* fundo preto */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Logo */
+.logo img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.logo h2 {
+    font-size: 24px;
+    color: #fff;
+}
+
+.logo span {
+    color: #00ff88; /* verde destaque */
+}
+
+/* Boas-vindas */
+.bemvindo {
+    margin: 20px 0;
+    font-size: 18px;
+    color: #fff;
+}
+
+.bemvindo span {
+    color: #00ff88;
+    font-weight: bold;
+}
+
+/* Menu */
+.menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #004aad;
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+    box-shadow: 4px 4px 0px #00cfff;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 0px #00ffcc;
+}
+
+.card img {
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-weight: bold;
+    font-size: 16px;
+}
+/*pagina_inicial
