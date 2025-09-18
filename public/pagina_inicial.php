@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trem Fácil</title>
   <link rel="stylesheet" href="../style/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
 
-    <div class="logo_trem">
-      <img src="../assets/icons/trem_bala_icon.png" alt="Logo Trem Fácil">
+    <div class="login_icon">
+         <img src="../assets/icons/trem_bala_icon.png" alt="icone trem bala" width="350" height="350">
+ 
       <h2>Trem <span>Fácil</span></h2>
     </div>
 
@@ -20,26 +20,23 @@
     <div class="menu flex">
         <div>
             <a href="#" class="card">
-              <img src="../assets/icons/perfil.png" alt="Perfil">
-        
-            </a>
+              <img src="../assets/icons/perfil.png" alt="Perfil" width=150px>
+    
       
             <a href="#" class="card">
-              <img src="../assets/icons/trens.png.png" alt="Trens">
+              <img src="../assets/icons/trens.png." alt="Trens" width=150px>
            
-            </a>
-
         </div>
         <div>
 
 
             <a href="#" class="card">
-              <img src="../assets/icons/sensores.png" alt="Sensores">
+              <img src="../assets/icons/sensores.png" alt="Sensores"width=150px>
              
             </a>
       
             <a href="#" class="card">
-              <img src="../assets/icons/estacoes.png.png" alt="Estações">
+              <img src="../assets/icons/estacoes.png." alt="Estações"width=150px>
             
             </a>
 
