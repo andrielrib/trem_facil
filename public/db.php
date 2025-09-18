@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "trem_facil";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
