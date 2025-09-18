@@ -7,10 +7,7 @@
 <body>
     
 
-<div>
 
-<img src="" alt="">
-</div>
 
 
 
