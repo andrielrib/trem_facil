@@ -72,6 +72,17 @@ body {
 
 }
 
+.menu{
+    display: flex;
+}
+
+.logo_trem {
+    display: flex;
+
+width: 200px;
+
+
+}
 
 /*rotas*/
 
