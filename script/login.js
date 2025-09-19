@@ -18,7 +18,7 @@
             }
 
             alert('Login válido! Prosseguindo...');
-            window.location.href = "rotas.html";
+            window.location.href = "pagina_inicial.php";
         });
 
 function trocar_senha(){
