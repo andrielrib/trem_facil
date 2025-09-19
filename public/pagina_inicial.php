@@ -29,7 +29,7 @@
     }
 
     h2 span {
-      color: #00bf63;
+      color:  #31a06a;
     }
 
     .bemvindo {
@@ -60,10 +60,10 @@
 
     <div class="login_icon">
       <img src="../assets/icons/trem_bala_icon.png" alt="Ícone trem bala">
-      <h2>Trem <span>Fácil</span></h2>
+      <h2><span>Bem vindo!</span></h2>
     </div>
 
-    <h3 class="bemvindo">BEM VINDO(A),<br><span>Usuário</span></h3>
+  
 
     <div class="menu">
       <a href="#" class="card">
