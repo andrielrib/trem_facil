@@ -7,41 +7,83 @@
   <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:black;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .login_icon img {
+      max-width: 250px;
+    }
+
+    h2 {
+      margin: 10px 0;
+      font-size: 2rem;
+    }
+
+    h2 span {
+      color:  #31a06a;
+    }
+
+    .bemvindo {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .card img {
+      width: 150px;
+      height: auto;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
   <div class="container">
 
     <div class="login_icon">
-         <img src="../assets/icons/trem_bala_icon.png" alt="icone trem bala" width="350" height="350">
- 
-      <h2>Trem <span>Fácil</span></h2>
+      <img src="../assets/icons/trem_bala_icon.png" alt="Ícone trem bala">
+      <h2><span>Bem vindo!</span></h2>
     </div>
 
-    <h3 class="bemvindo">BEM VINDO(A),<br><span></span></h3>
+  
 
-    <div class="menu flex">
-        <div>
-            <a href="#" class="card">
-              <img src="../assets/icons/perfil.png" alt="Perfil" width=150px>
-    
-      
-            <a href="#" class="card">
-              <img src="../assets/icons/trens.png." alt="Trens" width=150px>
-           
-        </div>
-        <div>
+    <div class="menu">
+      <a href="#" class="card">
+        <img src="../assets/icons/perfil.png" alt="Perfil">
+      </a>
 
+      <a href="#" class="card">
+        <img src="../assets/icons/trens.png" alt="Trens">
+      </a>
 
-            <a href="#" class="card">
-              <img src="../assets/icons/sensores.png" alt="Sensores"width=150px>
-             
-            </a>
-      
-            <a href="#" class="card">
-              <img src="../assets/icons/estacoes.png." alt="Estações"width=150px>
-            
-            </a>
+      <a href="#" class="card">
+        <img src="../assets/icons/sensores.png" alt="Sensores">
+      </a>
 
-        </div>
+      <a href="#" class="card">
+        <img src="../assets/icons/estacoes.png" alt="Estações">
+      </a>
     </div>
   </div>
 </body>
 </html>
+
+      
