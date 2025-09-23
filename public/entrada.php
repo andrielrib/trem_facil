@@ -28,7 +28,7 @@
         <a href="cadastro1.php"><button id="btn_cadastrar" class="caixa_azul_entrada"><h2>Cadastrar</h2></button></a>
 
     </div>
-<script src="../script/entrada.js"></script>
+
 </div>
 </body>
 </html>

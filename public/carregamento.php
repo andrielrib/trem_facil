@@ -16,6 +16,6 @@
       <img src="../assets/img/03-42-07-846_512.webp" alt="bolinhas de Carregamento">
     </div>
   </div>
-<script src="../script/carregamento.js"></script>
+
 </body>
 </html>
