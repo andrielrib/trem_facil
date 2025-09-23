@@ -16,6 +16,9 @@
       <img src="../assets/img/03-42-07-846_512.webp" alt="bolinhas de Carregamento">
     </div>
   </div>
-
-</body>
-</html>
+<script>
+    setTimeout(function() {
+      window.location.href = "../index.php";
+    }, 5000);
+  </script>
+</head>
