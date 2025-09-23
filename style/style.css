@@ -1014,4 +1014,30 @@ height: 550px;
 
 /* Suporte e Alertas */
 
+/* Estações */
 
+.flex_estacao{
+    display: flex;
+    padding: 50px;
+    color: white;
+}
+
+.title{ 
+    cursor: pointer;
+    transition: all 0, 3s ease;
+    color: white;
+    background-color: #3254ea;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 50px;
+    padding: 10px;
+
+}
+
+
+
+
+/* Estações */
