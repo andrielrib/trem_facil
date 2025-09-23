@@ -23,5 +23,5 @@ document.getElementById('formulario_cadas_2').addEventListener('submit', functio
         }
 
         alert('Cadastro validado com sucesso!');
-       window.location.href = "rotas.html"
+       window.location.href = "pagina_inicial.php"
     });

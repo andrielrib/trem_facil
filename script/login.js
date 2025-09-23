@@ -23,7 +23,7 @@
 
 function trocar_senha(){
     
-    window.location.href = "esqueci_senha.html"; 
+    window.location.href = "esqueci_senha.php"; 
 
 };
 

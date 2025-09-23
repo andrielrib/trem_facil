@@ -15,5 +15,5 @@ function telaSuporteAlerta(){
 }
 
 function telaPerfil(){
-    window.location.href = "perfil.html";
+    window.location.href = "perfil.php";
 }

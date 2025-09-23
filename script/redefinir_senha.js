@@ -15,5 +15,5 @@ document.getElementById('redefinir').addEventListener('submit', function(e) {
     }
 
     alert('Senha redefinida com sucesso!');
-     window.location.href = "login.html"
+     window.location.href = "login.php"
 });
