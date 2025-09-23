@@ -147,6 +147,7 @@ height: 550px;
 .margin {
     margin: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 80px;
 }
 
 .caixa_verde_login {
