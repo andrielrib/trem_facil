@@ -11,7 +11,7 @@ telefone varchar(11) UNIQUE NOT NULL,
 CEP varchar (8) UNIQUE NOT NUll,
 CPF Varchar (11) UNIQUE NOT null ,
 senha VARCHAR(255) UNIQUE NOT NULL,
-tipo_usuarios VARCHAR(20) NOT NULL CHECK (tipo_usuarios IN ('1', '2')),
+tipo_usuarios NOT NULL CHECK (tipo_usuarios IN ('1', '2')),
 data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
