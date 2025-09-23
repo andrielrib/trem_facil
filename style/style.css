@@ -1049,7 +1049,6 @@ height: 550px;
 
 /* Suporte e Alertas */
 
-<<<<<<< HEAD
 
 /* Mobile Responsiveness for iPhone 14 Pro Max and similar (up to 480px) */
 @media (max-width: 480px) {
@@ -1120,9 +1119,6 @@ height: 550px;
     }
 }
 
-=======
-/* Estações */
->>>>>>> f3e135415abe4669be68631417c791113b106ebd
 
 /* Estações */
 
@@ -1131,11 +1127,11 @@ height: 550px;
   align-items: center;
   gap: 16px;
   padding: 16px 50px;
-  background-color: #000000; /* fundo preto para contraste, altere se quiser */
+  background-color: #000000;
 }
 
 .btn_seta {
-  background-color: #0f254c; /* azul escuro */
+  background-color: #0f254c;
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -1169,17 +1165,15 @@ height: 550px;
 }
 
 .title:hover {
-  background-color: #2847c1; /* efeito hover */
+  background-color: #2847c1;
 }
 
-/* Linha divisor */
 .divisor {
   border: none;
   border-top: 2px solid #3254ea;
   margin: 0 50px 12px 50px;
 }
 
-/* Container do input busca e ícone */
 .search_container {
   position: relative;
   width: 300px;
@@ -1212,4 +1206,4 @@ height: 550px;
   font-weight: 700;
 }
 
-/* Fim Estações */
+/* Estações */
