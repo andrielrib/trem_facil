@@ -38,5 +38,5 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
 
     alert("Primeira etapa concluída");
-  window.location.href = 'cadastro2.html'
+  window.location.href = 'cadastro2.php'
 });

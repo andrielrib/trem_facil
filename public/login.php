@@ -53,15 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-<<<<<<< HEAD
-<div class="login_icon">
-    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="750" height="650">
-</div>
-=======
   <div class="login_icon">
-    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="600" height="550">
+    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="750" height="650">
   </div>
->>>>>>> df94fcd48075374a1504e92703932fbd653e2607
 
   <form id="loginForm">
     <?php if (!empty($_SESSION["user_id"])): ?>
@@ -72,59 +66,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       </div>
 
 
-<<<<<<< HEAD
-  <?php else: ?>
-    <div class="centralizar1">
-      <h3>Login</h3>
-      <?php if ($msg): ?><p class="msg"><?= $msg ?></p><?php endif; ?>
-      <form method="post">
-        <strong>
-            <p class="margin">Email ou telefone:</p>
-        </strong>
-        <input type="text" class="caixa_login" name="login" required>
-        <strong>
-            <p class="margin">Senha:</p>
-        </strong>
-        <input type="password" class="caixa_login" name="senha" required>
-=======
     <?php else: ?>
-      <div class="text_volta">
-        <h1>Login</h1>
-      </div>
->>>>>>> df94fcd48075374a1504e92703932fbd653e2607
+      <div class="centralizar1">
 
-      <br><br><br><br>
+        <h1 class="margin">Login</h1>
 
-      <div class="final_página">
-        <?php if ($msg): ?><p class="msg"><?= $msg ?></p><?php endif; ?>
-        <form method="post">
-          <strong>
-            <h2 class="margin">Email ou telefone:</h2>
-          </strong>
-          <input type="text" class="caixa_login" name="login" required>
-          <div><br></div>
-          <strong>
-            <h2 class="margin">Senha:</h2>
-          </strong>
-          <input type="password" class="caixa_login" name="senha" required>
-          <div><br><br></div>
-          <div class="final_página">
-            <input type="submit" value="ENTRAR" class="caixa_verde_login">
-            <div>
-              <div><br><br><br></div>
-              <strong>
-                <h2 class="margin">Esqueceu sua senha?</h2>
-              </strong>
-              <div class="flex_login">
-                <a href="redefinir_senha.php"><input type="button" class="caixa_verde_login" value="Clique aqui" onclick="trocar_senha()"></a>
+        <br><br><br>
+
+        <div class="final_página">
+          <?php if ($msg): ?><p class="msg"><?= $msg ?></p><?php endif; ?>
+          <form method="post">
+            <strong>
+              <h2 class="margin">Email ou telefone:</h2>
+            </strong>
+            <input type="text" class="caixa_login" name="login" required>
+            <div><br></div>
+            <strong>
+              <h2 class="margin">Senha:</h2>
+            </strong>
+            <input type="password" class="caixa_login" name="senha" required>
+            <div><br><br></div>
+            <div class="final_página">
+              <input type="submit" value="ENTRAR" class="caixa_verde_login">
+              <div>
+                <div><br></div>
+                <strong>
+                  <h2 class="margin">Esqueceu sua senha?</h2>
+                </strong>
+                <div class="flex_login">
+                  <a href="redefinir_senha.php"><input type="button" class="caixa_verde_login" value="Clique aqui" onclick="trocar_senha()"></a>
+                </div>
               </div>
             </div>
-          </div>
 
-        </form>
+          </form>
+        </div>
+      <?php endif; ?>
       </div>
-    <?php endif; ?>
-    </div>
 
 </body>
 

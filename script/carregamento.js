@@ -1,4 +1,4 @@
 
 setInterval(() => {
-    window.location.href = "tela_inicial.html";
-}, 5000); 
+    window.location.href = "index.php";
+}, 9000000000); 

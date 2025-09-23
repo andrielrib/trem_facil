@@ -15,8 +15,7 @@
         <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="260" height="210">
     </div>
 
-
-    <form id="loginForm">
+    <form id="loginForm" class="centralizar1">
         <div>
             <strong>
                 <p class="margin_cadastro1">Nome completo:</p>
@@ -52,12 +51,15 @@
         <br>
         <br>
        
-       
-        <div class="final_cadastro1">
+       <div class="final_página">
+
+          <div class="final_cadastro1">
 
             <a href="cadastro2.php"><button type="submit" class="caixa_verde_cadastro1"><strong><p class="centralizar_cadastro1">PRÓXIMO</p></strong></button></a>
 
         </div>
+
+       </div>
 
 
     </form>
