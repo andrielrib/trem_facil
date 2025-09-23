@@ -42,19 +42,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 
-<!doctype html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Login Trem Fácil</title>
-  <link rel="stylesheet" href="../style/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada</title>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
 
   <div class="login_icon">
-    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="750" height="650">
+    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="200" height="150">
   </div>
 
   <form id="loginForm">
@@ -69,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php else: ?>
       <div class="centralizar1">
 
-        <h1 class="margin">Login</h1>
+        <h3 class="text_volta">Login</h3>
 
         <br><br><br>
 
@@ -79,17 +78,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <strong>
               <h2 class="margin">Email ou telefone:</h2>
             </strong>
-            <input type="text" class="caixa_login" name="login" required>
+            <input type="text" class="caixa_login" name="login" required width= 350px;
+    height: 55px;>
             <div><br></div>
             <strong>
               <h2 class="margin">Senha:</h2>
             </strong>
             <input type="password" class="caixa_login" name="senha" required>
-            <div><br><br></div>
+            <div><br><br><br></div>
             <div class="final_página">
               <input type="submit" value="ENTRAR" class="caixa_verde_login">
               <div>
-                <div><br></div>
+                <div><br><br><br><br></div>
                 <strong>
                   <h2 class="margin">Esqueceu sua senha?</h2>
                 </strong>
