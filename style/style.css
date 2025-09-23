@@ -88,9 +88,6 @@ height: 550px;
 
 /*rotas*/
 
-
-
-
  * {
       margin: 0;
       padding: 0;
@@ -1052,6 +1049,7 @@ height: 550px;
 
 /* Suporte e Alertas */
 
+<<<<<<< HEAD
 
 /* Mobile Responsiveness for iPhone 14 Pro Max and similar (up to 480px) */
 @media (max-width: 480px) {
@@ -1122,6 +1120,9 @@ height: 550px;
     }
 }
 
+=======
+/* Estações */
+>>>>>>> f3e135415abe4669be68631417c791113b106ebd
 
 /* Estações */
 

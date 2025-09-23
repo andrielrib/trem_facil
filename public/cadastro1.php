@@ -65,7 +65,6 @@
     </form>
 
 
-    <script src="../script/cadastro1.js"></script>
 
 
     <div class="flex_circulo">

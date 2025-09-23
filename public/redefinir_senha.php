@@ -29,6 +29,6 @@
     </div>
 </form>
 
-<script src="../script/redefinir_senha.js"></script>
+
 </body>
 </html>

@@ -33,6 +33,6 @@
         </div>
     </div>
 
-    <script src="../scripts/esqueci_senha.js"></script>
+  
 </body>
 </html>
