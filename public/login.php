@@ -53,9 +53,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
+<<<<<<< HEAD
+<div class="login_icon">
+    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="750" height="650">
+</div>
+=======
   <div class="login_icon">
     <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="600" height="550">
   </div>
+>>>>>>> df94fcd48075374a1504e92703932fbd653e2607
 
   <form id="loginForm">
     <?php if (!empty($_SESSION["user_id"])): ?>
@@ -66,10 +72,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       </div>
 
 
+<<<<<<< HEAD
+  <?php else: ?>
+    <div class="centralizar1">
+      <h3>Login</h3>
+      <?php if ($msg): ?><p class="msg"><?= $msg ?></p><?php endif; ?>
+      <form method="post">
+        <strong>
+            <p class="margin">Email ou telefone:</p>
+        </strong>
+        <input type="text" class="caixa_login" name="login" required>
+        <strong>
+            <p class="margin">Senha:</p>
+        </strong>
+        <input type="password" class="caixa_login" name="senha" required>
+=======
     <?php else: ?>
       <div class="text_volta">
         <h1>Login</h1>
       </div>
+>>>>>>> df94fcd48075374a1504e92703932fbd653e2607
 
       <br><br><br><br>
 
