@@ -16,7 +16,7 @@
     </div>
 
 
-    <form id="loginForm">
+    <form id="loginForm" class="centralizar1">
         <div>
             <strong>
                 <p class="margin_cadastro1">Nome completo:</p>

@@ -147,6 +147,7 @@ height: 550px;
 .margin {
     margin: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 80px;
 }
 
 .caixa_verde_login {
@@ -1013,5 +1014,72 @@ height: 550px;
 }
 
 /* Suporte e Alertas */
+
+/* Mobile Responsiveness for iPhone 14 Pro Max and similar (up to 480px) */
+@media (max-width: 480px) {
+    /* Cadastro 1 Mobile Adjustments */
+    .cadastro1_icon {
+        padding-top: 50px;
+        padding-right: 10px;
+    }
+
+    .cadastro1_icon img {
+        width: 150px;
+        height: 120px;
+    }
+
+    .caixa_login {
+        width: 90%;
+        height: 50px;
+        font-size: 18px;
+        margin: 0 auto 10px auto;
+        display: block;
+    }
+
+    .margin_cadastro1 {
+        font-size: 16px;
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .caixa_verde_cadastro1 {
+        width: 90%;
+        height: 50px;
+        margin: 20px auto;
+        font-size: 18px;
+    }
+
+    .final_cadastro1 {
+        padding-right: 10px;
+    }
+
+    .centralizar_cadastro1 {
+        padding: 10px;
+        font-size: 18px;
+        
+    }
+
+    .flex_circulo {
+        margin-top: 20px;
+    }
+
+    .circulo_esquerda_cadastro1,
+    .circulo_direito_cadastro1 {
+        width: 15px;
+        height: 15px;
+        margin: 5px;
+    }
+
+    /* General mobile adjustments */
+    body {
+        padding: 0 10px;
+    }
+
+    form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
 
 
