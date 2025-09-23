@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Estações</title>
-    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="../style/style.css" />
     <style>
-        /* Adicionando CSS diretamente para facilitar */
         body {
             margin: 0;
             background-color: #000;
@@ -35,8 +34,8 @@
             border-radius: 50%;
         }
         .btn_seta img {
-            width: 20px;
-            height: 20px;
+            width: 40px;
+            height: 40px;
         }
         .title {
             background-color: #3254ea;
@@ -114,11 +113,11 @@
             filter: invert(54%) sepia(83%) saturate(4908%) hue-rotate(211deg) brightness(100%) contrast(101%);
             transition: transform 0.3s ease;
         }
-        /* Arrow down by default */
+
         .estacao_header.collapsed img.icon_arrow {
             transform: rotate(0deg);
         }
-        /* Arrow up when expanded */
+
         .estacao_header.expanded img.icon_arrow {
             transform: rotate(180deg);
         }
@@ -145,7 +144,6 @@
             min-width: 120px;
         }
 
-        /* Footer bottom icons */
         .footer_nav {
             position: fixed;
             bottom: 0;
@@ -164,8 +162,8 @@
             cursor: pointer;
         }
     </style>
+
     <script>
-      // Script para toggle expandir/recolher as listas das estações
       window.addEventListener('DOMContentLoaded', () => {
         const headers = document.querySelectorAll('.estacao_header');
         headers.forEach(header => {
@@ -185,12 +183,13 @@
         });
       });
     </script>
+
 </head>
 <body>
 
     <div class="flex_estacao">
         <button class="btn_seta" aria-label="Voltar" onclick="history.back()">
-            <img src="./assets/icons/seta_esquerda.png" alt="Seta apontando para esquerda" />
+            <img src="../assets/icons/seta_esquerda.png" alt="Seta apontando para esquerda" />
         </button>
         <h2 class="title">ESTAÇÕES</h2>
     </div>
