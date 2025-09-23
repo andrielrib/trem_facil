@@ -1049,30 +1049,167 @@ height: 550px;
 
 /* Suporte e Alertas */
 
-/* Estações */
+<<<<<<< HEAD
 
-.flex_estacao{
-    display: flex;
-    padding: 50px;
-    color: white;
+/* Mobile Responsiveness for iPhone 14 Pro Max and similar (up to 480px) */
+@media (max-width: 480px) {
+    /* Cadastro 1 Mobile Adjustments */
+    .cadastro1_icon {
+        padding-top: 50px;
+        padding-right: 10px;
+    }
+
+    .cadastro1_icon img {
+        width: 150px;
+        height: 120px;
+    }
+
+    .caixa_login {
+        width: 90%;
+        height: 50px;
+        font-size: 18px;
+        margin: 0 auto 10px auto;
+        display: block;
+    }
+
+    .margin_cadastro1 {
+        font-size: 16px;
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .caixa_verde_cadastro1 {
+        width: 90%;
+        height: 50px;
+        margin: 20px auto;
+        font-size: 18px;
+        background-color: #00bf63;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #efefef;
+    }
+
+    .final_cadastro1 {
+        padding-right: 10px;
+    }
+
+    .centralizar_cadastro1 {
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .flex_circulo {
+        margin-top: 20px;
+    }
+
+    .circulo_esquerda_cadastro1,
+    .circulo_direito_cadastro1 {
+        width: 15px;
+        height: 15px;
+        margin: 5px;
+    }
+
+    /* General mobile adjustments */
+    body {
+        padding: 0 10px;
+    }
+
+    form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
 }
 
-.title{ 
-    cursor: pointer;
-    transition: all 0, 3s ease;
-    color: white;
-    background-color: #3254ea;
-    border-radius: 20px;
-    border: none;
-    width: 200px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 50px;
-    padding: 10px;
-
-}
-
-
-
+=======
+/* Estações */
+>>>>>>> f3e135415abe4669be68631417c791113b106ebd
 
 /* Estações */
+
+.flex_estacao {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 50px;
+  background-color: #000000; /* fundo preto para contraste, altere se quiser */
+}
+
+.btn_seta {
+  background-color: #0f254c; /* azul escuro */
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.btn_seta img {
+  display: block;
+}
+
+.title {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  background-color: #3254ea;
+  border-radius: 20px;
+  border: none;
+  width: 200px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+}
+
+.title:hover {
+  background-color: #2847c1; /* efeito hover */
+}
+
+/* Linha divisor */
+.divisor {
+  border: none;
+  border-top: 2px solid #3254ea;
+  margin: 0 50px 12px 50px;
+}
+
+/* Container do input busca e ícone */
+.search_container {
+  position: relative;
+  width: 300px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.icon_search {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555555;
+}
+
+.input_search {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: none;
+  border-bottom: 1.5px solid #000000;
+  font-size: 1rem;
+  color: #444444;
+  background-color: transparent;
+  outline: none;
+}
+
+.input_search::placeholder {
+  color: #555555;
+  font-weight: 700;
+}
+
+/* Fim Estações */
