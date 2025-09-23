@@ -1105,87 +1105,153 @@ height: 550px;
 /* Estações */
 
 .flex_estacao {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 50px;
-  background-color: #000000;
-}
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            gap: 10px;
+        }
+        .btn_seta {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .btn_seta:hover {
+            background-color: #2847c1;
+            border-radius: 50%;
+        }
+        .btn_seta img {
+            width: 20px;
+            height: 20px;
+        }
+        .title {
+            background-color: #3254ea;
+            border-radius: 20px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            user-select: none;
+        }
+        hr.divisor {
+            border: none;
+            border-top: 2px solid #3254ea;
+            margin: 0 15px 10px;
+        }
+        .search_container {
+            position: relative;
+            width: calc(100% - 60px);
+            max-width: 320px;
+            margin: 0 30px 20px;
+        }
+        .input_search {
+            width: 100%;
+            padding: 10px 40px;
+            font-size: 1rem;
+            border: none;
+            border-bottom: 2px solid #3254ea;
+            background-color: transparent;
+            color: #ccc;
+            outline: none;
+        }
+        .input_search::placeholder {
+            color: #777;
+        }
+        .icon_search {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            filter: invert(100%);
+            width: 18px;
+            height: 18px;
+        }
+        .estacao_section {
+            margin: 0 15px 15px;
+            border-bottom: 1px solid #3254ea;
+        }
+        .estacao_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 5px 0;
+            user-select: none;
+        }
+        .estacao_header h3 {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            gap: 10px;
+            margin: 0;
+        }
+        .estacao_header img.icon_estacao {
+            width: 30px;
+            height: 30px;
+        }
+        .estacao_header img.icon_arrow {
+            width: 24px;
+            height: 24px;
+            filter: invert(54%) sepia(83%) saturate(4908%) hue-rotate(211deg) brightness(100%) contrast(101%);
+            transition: transform 0.3s ease;
+        }
 
-.btn_seta {
-  background-color: #0f254c;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-}
+        .estacao_header.collapsed img.icon_arrow {
+            transform: rotate(0deg);
+        }
 
-.btn_seta img {
-  display: block;
-}
+        .estacao_header.expanded img.icon_arrow {
+            transform: rotate(180deg);
+        }
 
-.title {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: white;
-  background-color: #3254ea;
-  border-radius: 20px;
-  border: none;
-  width: 200px;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 700;
-  font-size: 1.25rem;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 10px;
-}
+        .estacao_list {
+            display: none;
+            padding-left: 40px;
+            padding-bottom: 10px;
+            color: #ddd;
+        }
+        .estacao_list.expanded {
+            display: block;
+        }
+        .estacao_list ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 5px 0 0 0;
+            font-size: 0.85rem;
+            gap: 10px 20px;
+        }
+        .estacao_list ul li {
+            min-width: 120px;
+        }
 
-.title:hover {
-  background-color: #2847c1;
-}
-
-.divisor {
-  border: none;
-  border-top: 2px solid #3254ea;
-  margin: 0 50px 12px 50px;
-}
-
-.search_container {
-  position: relative;
-  width: 300px;
-  margin-left: 50px;
-  margin-bottom: 20px;
-}
-
-.icon_search {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: #555555;
-}
-
-.input_search {
-  width: 100%;
-  padding: 12px 12px 12px 40px;
-  border: none;
-  border-bottom: 1.5px solid #000000;
-  font-size: 1rem;
-  color: #444444;
-  background-color: transparent;
-  outline: none;
-}
-
-.input_search::placeholder {
-  color: #555555;
-  font-weight: 700;
-}
+        .footer_nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 360px;
+            background-color: #000;
+            border-top: 2px solid #3254ea;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        .footer_nav img {
+            width: 30px;
+            height: 30px;
+            filter: invert(54%) sepia(83%) saturate(4908%) hue-rotate(211deg) brightness(100%) contrast(101%);
+            cursor: pointer;
+        }
 
 /* Estações */
