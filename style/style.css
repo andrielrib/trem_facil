@@ -1052,9 +1052,7 @@ height: 550px;
 
 /* Suporte e Alertas */
 
-<<<<<<< HEAD
-/* Estações */
-=======
+
 /* Mobile Responsiveness for iPhone 14 Pro Max and similar (up to 480px) */
 @media (max-width: 480px) {
     /* Cadastro 1 Mobile Adjustments */
@@ -1124,30 +1122,93 @@ height: 550px;
     }
 }
 
->>>>>>> ca0b325279b5684533f0081b0d1789a4178285fc
-
-.flex_estacao{
-    display: flex;
-    padding: 50px;
-    color: white;
-}
-
-.title{ 
-    cursor: pointer;
-    transition: all 0, 3s ease;
-    color: white;
-    background-color: #3254ea;
-    border-radius: 20px;
-    border: none;
-    width: 200px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 50px;
-    padding: 10px;
-
-}
-
-
-
 
 /* Estações */
+
+.flex_estacao {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 50px;
+  background-color: #000000; /* fundo preto para contraste, altere se quiser */
+}
+
+.btn_seta {
+  background-color: #0f254c; /* azul escuro */
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.btn_seta img {
+  display: block;
+}
+
+.title {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  background-color: #3254ea;
+  border-radius: 20px;
+  border: none;
+  width: 200px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+}
+
+.title:hover {
+  background-color: #2847c1; /* efeito hover */
+}
+
+/* Linha divisor */
+.divisor {
+  border: none;
+  border-top: 2px solid #3254ea;
+  margin: 0 50px 12px 50px;
+}
+
+/* Container do input busca e ícone */
+.search_container {
+  position: relative;
+  width: 300px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.icon_search {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555555;
+}
+
+.input_search {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: none;
+  border-bottom: 1.5px solid #000000;
+  font-size: 1rem;
+  color: #444444;
+  background-color: transparent;
+  outline: none;
+}
+
+.input_search::placeholder {
+  color: #555555;
+  font-weight: 700;
+}
+
+/* Fim Estações */
