@@ -88,33 +88,67 @@ height: 550px;
 
 /*rotas*/
 
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    
+    }
 
-/* Carregamento 
-
-.tela_carregamento {
-    text-align: center;
-    padding-top: 240px;
-}
-
-.logo_carregamento {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.bolinhas_carregamento {
-    text-align: center;
-   display: flex;
-    justify-content: center;
-    gap: 10px;
-}
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fff; 
+      font-family: Arial, sans-serif;
+    background-color: black;
+    }
 
 
-.flex {
-    display: flex;
-}
+    .tela_carregamento {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+      text-align: center;
+
+    }
+
+    .logo_carregamento img {
+      max-width: 70%;
+      height: auto;
+    }
+
+    .bolinhas_carregamento img {
+      max-width: 80%;
+      height: auto;
+    }
+
+    
+    @media (min-width: 768px) {
+      .logo_carregamento img {
+        max-width: 50%;
+      }
+      .bolinhas_carregamento img {
+        max-width: 40%;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .logo_carregamento img {
+        max-width: 35%;
+      }
+      .bolinhas_carregamento img {
+        max-width: 25%;
+      }
+    }
 
 
-/* Carregamento */
 
 /* login */
 
@@ -997,6 +1031,7 @@ height: 550px;
 
 /* Suporte e Alertas */
 
+
 /* Mobile Responsiveness for iPhone 14 Pro Max and similar (up to 480px) */
 @media (max-width: 480px) {
     /* Cadastro 1 Mobile Adjustments */
@@ -1029,6 +1064,9 @@ height: 550px;
         height: 50px;
         margin: 20px auto;
         font-size: 18px;
+        background-color: #00bf63;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #efefef;
     }
 
     .final_cadastro1 {
@@ -1038,7 +1076,6 @@ height: 550px;
     .centralizar_cadastro1 {
         padding: 10px;
         font-size: 18px;
-        
     }
 
     .flex_circulo {
@@ -1065,3 +1102,90 @@ height: 550px;
 }
 
 
+/* Estações */
+
+.flex_estacao {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 50px;
+  background-color: #000000;
+}
+
+.btn_seta {
+  background-color: #0f254c;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.btn_seta img {
+  display: block;
+}
+
+.title {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  background-color: #3254ea;
+  border-radius: 20px;
+  border: none;
+  width: 200px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+}
+
+.title:hover {
+  background-color: #2847c1;
+}
+
+.divisor {
+  border: none;
+  border-top: 2px solid #3254ea;
+  margin: 0 50px 12px 50px;
+}
+
+.search_container {
+  position: relative;
+  width: 300px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.icon_search {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555555;
+}
+
+.input_search {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: none;
+  border-bottom: 1.5px solid #000000;
+  font-size: 1rem;
+  color: #444444;
+  background-color: transparent;
+  outline: none;
+}
+
+.input_search::placeholder {
+  color: #555555;
+  font-weight: 700;
+}
+
+/* Estações */

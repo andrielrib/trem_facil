@@ -32,7 +32,7 @@
         </div>
     </form>
 </div>
-<script src="../script/cadastro2.js"></script>
+
 <div class="flex_circulo">
     <div class="circulo_esquerda_cadastro2"></div>
     <div class="circulo_direita_cadastro2"></div>

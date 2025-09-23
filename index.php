@@ -56,6 +56,6 @@ if ($tipo) {
         ?>
     </div>
 
-    <script src="../script/tela_inicial.js"></script>
+    <script src="../script/(index).js"></script>
 </body>
 </html>

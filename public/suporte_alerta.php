@@ -92,8 +92,7 @@
     <br>
     <br>
 
-        <script src="../script/icons_em_baixo.js"></script>
-
+       
         <div class="flex_perfil">
         <button class="button_icones" onclick="telaRotas()"><img src="../assets/icons/tela_inicial_icon.png" alt="icone da tela inicial" width="86" height="70"></button>
         <button class="button_icones" onclick="telaSensor()"><img src="../assets/icons/tela_sensor_icon.png" alt="icone da tela de sensores" width="86" height="70"></button>
