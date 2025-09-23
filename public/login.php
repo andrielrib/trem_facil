@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
 
 <div class="login_icon">
-    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="600" height="550">
+    <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="750" height="650">
 </div>
 
 <form id="loginForm">
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
   <?php else: ?>
-    <div class="card">
+    <div class="centralizar1">
       <h3>Login</h3>
       <?php if ($msg): ?><p class="msg"><?= $msg ?></p><?php endif; ?>
       <form method="post">
