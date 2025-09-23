@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     <?php else: ?>
-      <div class="centralizar1">
+      <div>
 
         <h3 class="text_volta">Login</h3>
 
@@ -78,8 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <strong>
               <h2 class="margin">Email ou telefone:</h2>
             </strong>
-            <input type="text" class="caixa_login" name="login" required width= 350px;
-    height: 55px;>
+            <input type="text" class="caixa_login" name="login" required>
             <div><br></div>
             <strong>
               <h2 class="margin">Senha:</h2>
