@@ -1052,6 +1052,9 @@ height: 550px;
 
 /* Suporte e Alertas */
 
+<<<<<<< HEAD
+/* Estações */
+=======
 /* Mobile Responsiveness for iPhone 14 Pro Max and similar (up to 480px) */
 @media (max-width: 480px) {
     /* Cadastro 1 Mobile Adjustments */
@@ -1121,4 +1124,30 @@ height: 550px;
     }
 }
 
+>>>>>>> ca0b325279b5684533f0081b0d1789a4178285fc
 
+.flex_estacao{
+    display: flex;
+    padding: 50px;
+    color: white;
+}
+
+.title{ 
+    cursor: pointer;
+    transition: all 0, 3s ease;
+    color: white;
+    background-color: #3254ea;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 50px;
+    padding: 10px;
+
+}
+
+
+
+
+/* Estações */
