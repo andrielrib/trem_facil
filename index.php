@@ -121,6 +121,7 @@ if ($tipo) {
         @media (max-width: 480px) {
             .text_entrada h1 {
                 font-size: 1.5em;
+                color: white;
             }
 
             .caixa_azul_entrada {
