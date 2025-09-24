@@ -21,14 +21,14 @@
 
     <div class="alinhar_entrada">
 
-        <a href="login.php"><button id="btn_entrar" class="caixa_azul_entrada"><h2>Entrar</h2></button></a>
+        <a href="estacoes.php"><button id="btn_entrar" class="caixa_azul_entrada"><h2>Entrar</h2></button></a>
 
         <br><br>
 
         <a href="cadastro1.php"><button id="btn_cadastrar" class="caixa_azul_entrada"><h2>Cadastrar</h2></button></a>
 
     </div>
-<script src="../script/entrada.js"></script>
+
 </div>
 </body>
 </html>
