@@ -11,6 +11,36 @@
         <img src="../assets/icons/estações.png" alt="Estações" width="150" height="50">
     </div>
 
+
+<hr style="border: 2px solid #0549b1;">
+<div class="flex_sensor">
+    <strong><h1 class="sensor">Estação do Príncipe</h1></strong>
+    <img src="../assets/img/seta_baixo.png" alt="seta para baixo" width="60" height="40" class="img_seta">
+
+<p> Agulhas Negras Jarivatuba Costa e Silva Centro
+    Itaum Centro    Tupy Centro    
+Vila Nova Centro
+Itaum Centro
+Itaum Sul
+Itaum Pirabeiraba
+Agulhas Negras
+Jarivatuba
+Costa e Silva Centro
+Itaum Centro
+Tupy Centro
+Vla Nova Centro
+Itaum Centro
+Itaum Sul
+Itaum Pirabeiraba
+Agulhas Negras
+Jarivatuba
+Costa e Silva Centro
+Itaum Centro
+Tupy Centro
+Vla Nova Centro
+Itaum Centro
+Itaum Sul
+Itaum Pirabeiraba
 <hr style="border: 2px solid #0549b1;">
 <div class="flex_sensor">
     <strong><h1 class="sensor">Estação Costa e Silva</h1></strong>
