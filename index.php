@@ -1,4 +1,5 @@
 <?php
+
 include '../public/db.php';
 
 session_start();
@@ -24,7 +25,7 @@ if ($tipo) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrada</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <style>
         
         body {
@@ -124,8 +125,9 @@ if ($tipo) {
             }
 
             .img_entrada img {
-                width: 200px; 
+                width: 400px; 
                 height: auto;
+              
             }
         }
 
