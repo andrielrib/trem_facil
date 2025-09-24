@@ -1,5 +1,5 @@
 <?php
-include 'public/db.php';
+include '../public/db.php';
 
 session_start();
 
@@ -194,6 +194,6 @@ if ($tipo) {
         ?>
     </div>
 
-    <script src="../script/(index).js"></script>
+
 </body>
 </html>
