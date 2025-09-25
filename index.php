@@ -91,19 +91,6 @@ if ($tipo) {
             font-size: 1.1em;
         }
 
-        .resultado {
-            margin-top: 20px;
-            font-size: 1.2em;
-        }
-
-        .resultado h2 {
-            margin: 0;
-        }
-
-        .resultado span {
-            font-weight: bold;
-        }
-
        
         @media (max-width: 768px) { 
             body {
@@ -134,18 +121,13 @@ if ($tipo) {
         @media (max-width: 480px) {
             .text_entrada h1 {
                 font-size: 1.5em;
+                color: white;
             }
 
             .caixa_azul_entrada {
                 padding: 10px 15px;
                 font-size: 0.9em;
             }
-
-            .resultado {
-                font-size: 1em;
-                padding: 0 10px;
-            }
-        }
 
        
         @media (min-width: 1024px) {
@@ -160,7 +142,9 @@ if ($tipo) {
                 margin: 0 10px;
             }
         }
-    </style>
+    
+     } </style>
+
 </head>
 <body>
     <div class="img_entrada">
@@ -168,6 +152,7 @@ if ($tipo) {
     </div>
 
     <div class="text_entrada">
+
         <h1>Quem é você?</h1>
     </div>
 
@@ -183,18 +168,6 @@ if ($tipo) {
 
         <a href="public/entrada.php?tipo=2">
             <button class="caixa_azul_entrada" id="admin-button"><h2>Administrador</h2></button>
-        </a>
-    </div>
-
-    <div class="resultado">
-        <?php
-        if ($tipo == "1") {
-            echo "<h2>Você entrou como <span style='color:blue;'>Cliente</span>.</h2>";
-        } elseif ($tipo == "2") {
-            echo "<h2>Você entrou como <span style='color:red;'>Administrador</span>.</h2>";
-        }
-        ?>
-    </div>
 
 
 </body>
