@@ -20,7 +20,7 @@
 
     <div class="alinhar_entrada">
 
-        <a href="estacoes.php"><button id="btn_entrar" class="caixa_azul_entrada"><h2>Entrar</h2></button></a>
+        <a href="login.php"><button id="btn_entrar" class="caixa_azul_entrada"><h2>Entrar</h2></button></a>
 
         <br><br>
 
