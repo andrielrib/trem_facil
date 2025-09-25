@@ -54,7 +54,7 @@ if ($tipo) {
         }
 
         .img_entrada img {
-            max-width: 80%;
+            max-width: 100%;
             height: auto;
             width: auto; 
         }
@@ -78,8 +78,8 @@ if ($tipo) {
             background-color: #007BFF;
             color: #ffffff;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
+            padding: 12px 25px;
+            font-size: 1.1em;
             font-family: 'Segoe UI', sans-serif;
             font-weight: bold;
             border-radius: 8px;
@@ -103,7 +103,7 @@ if ($tipo) {
 
         .caixa_azul_entrada h2 {
             margin: 0;
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
 
@@ -121,12 +121,12 @@ if ($tipo) {
             }
 
             .caixa_azul_entrada {
-                padding: 12px 20px;
-                font-size: 1em;
+                padding: 10px 18px;
+                font-size: 0.9em;
             }
 
             .img_entrada img {
-                max-width: 60%; 
+                max-width: 70%; 
             }
         }
 
@@ -136,8 +136,8 @@ if ($tipo) {
             }
 
             .caixa_azul_entrada {
-                padding: 10px 15px;
-                font-size: 0.9em;
+                padding: 8px 12px;
+                font-size: 0.8em;
             }
 
             .container {
@@ -155,7 +155,7 @@ if ($tipo) {
 
             .caixa_azul_entrada {
                 width: auto;
-                min-width: 200px; 
+                min-width: 180px; 
             }
 
             .container {
