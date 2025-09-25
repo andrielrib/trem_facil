@@ -256,6 +256,7 @@ body {
     max-width: 300px;
     height: 60px;
     text-align: center;
+    border: none;
 }
 
 .margin_cadastro1 {
@@ -297,7 +298,6 @@ body {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 30px;
 }
 
 .circulo_esquerda_cadastro1 {
@@ -351,18 +351,21 @@ body {
     margin-left: 50px;
     height: 50px;
     color: white;
+    border: none;
 }
 
 .final_cadastro2 {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-right: 20px;
+    border: none;
 }
 
 .centralizar_cadastro2 {
     text-align: center;
     padding: 9px;
     font-size: x-large;
+    border: none;
 }
 
 .flex_circulo {
@@ -649,12 +652,11 @@ padding-bottom: 50px;
     background-color: #3254ea;
     border-radius: 20px;
     border: none;
+    width: 200px;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 10px;
     height: 50px;
-    width: 200px;
-    
+    padding: 10px;
 }
 
 /* pesquisa */
