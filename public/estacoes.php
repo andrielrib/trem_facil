@@ -124,6 +124,26 @@ $estacoes = [
         ]
     ]
 ];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $page = $_POST['redirect_page'] ?? '';
+    switch ($page) {
+        case 'sensores':
+            header('Location: sensor.php');
+            exit();
+        case 'trens':
+            header('Location: trens.php');
+            exit();
+        case 'estacoes':
+            header('Location: estacoes.php');
+            exit();
+        case 'perfil':
+            header('Location: perfil.php');
+            exit();
+        default:
+            header('Location: index.php'); 
+            
+    }
+}
 ?>
 
 
@@ -313,10 +333,30 @@ $estacoes = [
 </div>
 
 <footer>
-    <button title="Sensores"><img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensor" width="60" height="60"></button>
-    <button title="Trens"><img src="../assets/icons/tela_tren_icon.png" alt="botão para tela sensor" width="60" height="60"></button>
-    <button title="Estacoes"><img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela sensor" width="60" height="60"></button>
-    <button title="Perfil"><img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela sensor" width="60" height="60"></button>
+  <form action="" method="post" style="display: inline;">
+    <input type="hidden" name="redirect_page" value="sensores">
+    <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
+        <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
+    </button>
+</form>
+<form action="" method="post" style="display: inline; margin-left: 10px;">
+    <input type="hidden" name="redirect_page" value="trens">
+    <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
+        <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
+    </button>
+</form>
+<form action="" method="post" style="display: inline; margin-left: 10px;">
+    <input type="hidden" name="redirect_page" value="estacoes">
+    <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
+        <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
+    </button>
+</form>
+<form action="" method="post" style="display: inline; margin-left: 10px;">
+    <input type="hidden" name="redirect_page" value="perfil">
+    <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
+        <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
+    </button>
+</form>
 </footer>
 
 <script>
