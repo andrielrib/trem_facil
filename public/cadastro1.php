@@ -102,8 +102,8 @@ function validateCPF($cpf)
 </head>
 
 <body>
-    <div class="img_carinha_redefinir">
-        <img src="../assets/icons/trem_bala_icon.png" alt="Ícone Trem" width="260" height="210" class="img_carinha_redefinir">
+    <div class="i">
+        <img src="../assets/icons/trem_bala_icon.png" alt="Ícone Trem" width="260" height="210" class="">
     </div>
     <br>
 
