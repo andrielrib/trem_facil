@@ -168,6 +168,7 @@ body {
 .alinhar {
     width: 430px;
     text-align: center;
+    justify-content: center;
     padding-left: 100;
     padding-right: 100;
 }
