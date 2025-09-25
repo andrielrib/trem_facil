@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <h3 class="text_volta">Login</h3>
 
-        <br><br><br>
+        <br><br>
 
         <div class="final_página">
           <?php if ($msg): ?><p class="msg"><?= $msg ?></p><?php endif; ?>
@@ -84,11 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               <h2 class="margin">Senha:</h2>
             </strong>
             <input type="password" class="caixa_login" name="senha" required>
-            <div><br><br><br></div>
+            <div><br><br></div>
             <div class="final_página">
               <input type="submit" value="ENTRAR" class="caixa_verde_login">
               <div>
-                <div><br><br><br><br></div>
+                <div><br><br></div>
                 <strong>
                   <h2 class="margin">Esqueceu sua senha?</h2>
                 </strong>
