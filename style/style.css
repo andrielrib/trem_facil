@@ -242,7 +242,6 @@ body {
 /* Cadastro 1 */
 
 .cadastro1_icon {
-    text-align: center;
     padding: 50px 20px 20px 20px;
 }
 
@@ -328,8 +327,6 @@ body {
 
 .cadastro2_icon {
     text-align: center;
-    padding-right: 35px;
-    padding-top: 100px;
 }
 
 .caixa_cadastro2 {
