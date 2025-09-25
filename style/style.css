@@ -177,8 +177,7 @@ body {
 /* Redefinir senha */
 
 .img_carinha_redefinir {
-    width: 389px;
-    height: 300px;
+    padding: 20px;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -256,12 +255,9 @@ body {
     max-width: 300px;
     height: 60px;
     text-align: center;
-    margin: 10px auto;
-    
 }
 
 .margin_cadastro1 {
-    margin: 10px 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
     text-align: center;
