@@ -1,5 +1,4 @@
 <?php
-// Exibir estações simuladas num array para simulação do mockup
 $estacoes = [
     [
         "nome" => "Terminal Central",
@@ -136,7 +135,6 @@ $estacoes = [
     <title>Estações</title>
 
     <style>
-        /* Reset and basic */
         * {
             box-sizing: border-box;
         }
@@ -147,14 +145,12 @@ $estacoes = [
             color: #fff;
         }
 
-        /* Container mobile style */
         .container {
             max-width: 430px;
             margin: 20px auto;
             padding: 0 10px;
         }
 
-        /* Header */
         header {
             display: flex;
             align-items: center;
@@ -187,7 +183,6 @@ $estacoes = [
             text-align: center;
         }
 
-        /* Search input */
         #searchInput {
             width: 100%;
             background: transparent;
@@ -208,7 +203,6 @@ $estacoes = [
             color: #fff;
         }
 
-        /* Station card */
         .station {
             margin-bottom: 25px;
             border-bottom: 2px solid #0538a7;
@@ -244,7 +238,6 @@ $estacoes = [
             transform: rotate(180deg);
         }
 
-        /* Lines list */
         .lines-list {
             display: none;
             margin-top: 10px;
@@ -261,17 +254,16 @@ $estacoes = [
             width: calc(33.3% - 10px);
         }
 
-        /* Footer menu mockup */
         footer {
             background: #000;
             padding: 15px 0 25px;
             display: flex;
             justify-content: space-around;
             border-top: 1px solid #0a5fff;
-            position: fixed; /* Adicionado */
-            bottom: 0;      /* Adicionado */
-            width: 100%;    /* Adicionado */
-            z-index: 1000;  /* Adicionado para garantir que fique acima de outros elementos */
+            position: fixed; 
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
         }
         footer button {
             background: transparent;
@@ -321,16 +313,14 @@ $estacoes = [
 </div>
 
 <footer>
-    <button title="Sensores">&#128246;</button>
-    <button title="Trens">&#128649;</button>
-    <button title="Estacoes">&#127970;</button>
-    <button title="Perfil">&#128100;</button>
+    <button title="Sensores"><img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensor" width="60" height="60"></button>
+    <button title="Trens"><img src="../assets/icons/tela_tren_icon.png" alt="botão para tela sensor" width="60" height="60"></button>
+    <button title="Estacoes"><img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela sensor" width="60" height="60"></button>
+    <button title="Perfil"><img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela sensor" width="60" height="60"></button>
 </footer>
 
 <script>
-    // Inicialmente, só o primeiro está aberto, outros fechados
     document.addEventListener('DOMContentLoaded', () => {
-        // Fechar todos menos o primeiro
         const stations = document.querySelectorAll('.station');
         stations.forEach((station, idx) => {
             const lines = station.querySelector('.lines-list');
@@ -345,7 +335,6 @@ $estacoes = [
         });
     });
 
-    // Toggle linhas visibilidade
     function toggleLines(index) {
         const lines = document.getElementById('lines-' + index);
         const arrow = document.getElementById('arrow-' + index);
@@ -358,7 +347,6 @@ $estacoes = [
         }
     }
 
-    // Filtro de busca
     function filterStations() {
         const input = document.getElementById('searchInput');
         const filter = input.value.toLowerCase();
