@@ -62,7 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // CPF validation function
-function validateCPF($cpf) {
+function validateCPF($cpf)
+{
     // Remove any non-numeric characters
     $cpf = preg_replace('/\D/', '', $cpf);
 
@@ -98,42 +99,18 @@ function validateCPF($cpf) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - Parte 1</title>
     <link rel="stylesheet" href="../style/style.css">
-    <style>
-        .error-message {
-            color: #ff5757;
-            font-size: 14px;
-            margin-top: 5px;
-            display: block;
-        }
-        .success-message {
-            color: #00bf63;
-            font-size: 14px;
-            margin-top: 5px;
-            display: block;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input:focus {
-            outline: 2px solid #00bf63;
-            outline-offset: 2px;
-        }
-    </style>
+
 </head>
 
 <body>
-    <div class="cadastro1_icon">
-        <img src="../assets/icons/trem_bala_icon.png" alt="Ícone Trem" width="260" height="210">
+    <div class="img_carinha_redefinir">
+        <img src="../assets/icons/trem_bala_icon.png" alt="Ícone Trem" width="260" height="210" class="img_carinha_redefinir">
     </div>
     <br>
     <br>
@@ -150,49 +127,51 @@ function validateCPF($cpf) {
     <?php endif; ?>
 
     <div>
-        <form id="formulario_cadas_1" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form class="margin_cadastro1" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
-            <strong><p class="margin_cadastro2">Nome completo:</p></strong>
+            <strong>
+                <p class="margin_cadastro1">Nome completo:</p>
+            </strong>
             <input type="text"
-                   class="caixa_login"
-                   id="nome_completo"
-                   name="nome_completo"
-                   value="<?php echo htmlspecialchars($nome_completo); ?>"
-                   required
-                   placeholder="Digite seu nome completo">
+                class="caixa_cadastro1"
+                name="nome_completo"
+                value="<?php echo htmlspecialchars($nome_completo); ?>"
+                required>
 
-            <strong><p class="margin_cadastro2">CPF:</p></strong>
+            <strong>
+                <p class="margin_cadastro1">CPF:</p>
+            </strong>
             <input type="text"
-                   class="caixa_login"
-                   id="cpf"
-                   name="cpf"
-                   value="<?php echo htmlspecialchars($cpf); ?>"
-                   required
-                   placeholder="000.000.000-00"
-                   maxlength="14">
+                class="caixa_cadastro1"
+                name="cpf"
+                value="<?php echo htmlspecialchars($cpf); ?>"
+                required
+                maxlength="14">
 
-            <strong><p class="margin_cadastro2">CEP:</p></strong>
+            <strong>
+                <p class="margin_cadastro1">CEP:</p>
+            </strong>
             <input type="text"
-                   class="caixa_login"
-                   id="cep"
-                   name="cep"
-                   value="<?php echo htmlspecialchars($cep); ?>"
-                   required
-                   placeholder="00000-000"
-                   maxlength="9">
+                class="caixa_cadastro1"
+                name="cep"
+                value="<?php echo htmlspecialchars($cep); ?>"
+                required
+                maxlength="9">
 
-            <strong><p class="margin_cadastro2">Email:</p></strong>
+            <strong>
+                <p class="margin_cadastro1">Email:</p>
+            </strong>
             <input type="email"
-                   class="caixa_login"
-                   id="email"
-                   name="email"
-                   value="<?php echo htmlspecialchars($email); ?>"
-                   required
-                   placeholder="seu.email@exemplo.com">
+                class="caixa_cadastro1"
+                name="email"
+                value="<?php echo htmlspecialchars($email); ?>"
+                required>
 
             <br><br>
             <div class="final_cadastro2">
-                <a href="cadastro2.php"><button type="submit" class="caixa_verde_cadastro2"><p class="centralizar_cadastro2">PRÓXIMO</p></button></a>
+                <a href="cadastro2.php"><button type="submit" class="caixa_verde_cadastro2">
+                        <p class="centralizar_cadastro2">PRÓXIMO</p>
+                    </button></a>
             </div>
         </form>
     </div>
@@ -243,4 +222,5 @@ function validateCPF($cpf) {
         });
     </script>
 </body>
+
 </html>
