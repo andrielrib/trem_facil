@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style/style.css">
     <script src="../script/sensor.js"></script>
 </head>
+
 <body>
     
 <strong><h1>Sensores Inteligentes:</h1></strong>
