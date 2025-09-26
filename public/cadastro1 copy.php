@@ -25,6 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "CPF é obrigatório.";
     } elseif (strlen($cpf_clean) != 11) {
         $errors[] = "CPF deve ter 11 dígitos.";
+    } elseif (!$this->validateCPF($cpf_clean)) {
+        $errors[] = "CPF inválido.";
     }
 
   

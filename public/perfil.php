@@ -1,320 +1,334 @@
 <?php
 session_start();
 
-// Credenciais do banco (SUBSTITUA PELAS SUAS REAIS!)
-$host = 'localhost';
-$username = 'root';  // Usuário MySQL
-$password = '';      // Senha MySQL (vazia para local)
-$dbname = 'trem_facil';
+// Simulação de dados carregados de banco ou sessão
+$user = [
+    'id' => 329,
+    'nome' => 'Nome',
+    'cargo' => 'Administrador',
+    'permissoes' => 'Geral',
+    'foto' => 'default-profile.png' // arquivo de imagem padrão
+];
 
-// Conexão com o banco
-$conn = new mysqli($host, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Erro de conexão com o banco: " . $conn->connect_error);
-}
-$conn->set_charset("utf8mb4");  // Suporte a UTF-8 para nomes com acentos
-
-$user_id = intval($_SESSION['user_id']);
-
-// Carrega dados do usuário do BD
-$stmt = $conn->prepare("SELECT nome_completo, tipo_usuarios FROM usuarios WHERE id_usuario = ?");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-if ($row = $result->fetch_assoc()) {
-    $user = [
-        'id' => $user_id,
-        'nome' => $row['nome_completo'] ?? $_SESSION['user_nome'] ?? 'Nome do Usuário',
-        'cargo' => $row['tipo_usuarios'] == 1 ? 'Administrador' : 'Usuário',  // Adaptado ao schema
-        'permissoes' => 'Geral',  // Hardcoded, pois não está no schema
-        'foto' => $_SESSION['user_foto'] ?? 'default_profile.png' 
-    ];
-    // Sincroniza sessão com BD
-    $_SESSION['user_nome'] = $user['nome'];
-} else {
-    // Usuário não encontrado no BD
-    session_destroy();
-    header('Location: login.php');
-    exit;
-}
-$stmt->close();
-
-// Handler para atualizar nome (POST AJAX) - Adaptado ao BD
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_name'])) {
-    $novoNome = trim($_POST['nome']);
-    if (!empty($novoNome) && mb_strlen($novoNome) <= 120) {  // Limite do BD: VARCHAR(120)
-        $stmt = $conn->prepare("UPDATE usuarios SET nome_completo = ? WHERE id_usuario = ?");
-        $stmt->bind_param("si", $novoNome, $user_id);
-        if ($stmt->execute()) {
-            if ($stmt->affected_rows > 0) {
-                $_SESSION['user_nome'] = $novoNome;
-                echo json_encode(['success' => true, 'nome' => $novoNome]);
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Usuário não encontrado ou sem alterações']);
-            }
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Erro no banco de dados']);
-        }
-        $stmt->close();
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Nome inválido (máx. 120 caracteres)']);
+// Atualização do nome via POST (edição inline)
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['novo_nome'])) {
+        $user['nome'] = trim($_POST['novo_nome']);
     }
-    $conn->close();
-    exit;
-}
 
-// Handler para upload de foto (POST)
-$upload_error = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_photo'])) {
-    if (isset($_FILES['profile_photo']) && $_FILES['profile_photo']['error'] === UPLOAD_ERR_OK) {
-        $fileTmpPath = $_FILES['profile_photo']['tmp_name'];
-        $fileName = basename($_FILES['profile_photo']['name']);
-        $fileSize = $_FILES['profile_photo']['size'];
-        $fileType = $_FILES['profile_photo']['type'];
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-
-        if (!in_array($fileType, $allowedTypes)) {
-            $upload_error = "Tipo de arquivo não permitido. Use JPEG, PNG ou GIF.";
-        } elseif ($fileSize > 2 * 1024 * 1024) { 
-            $upload_error = "Arquivo muito grande. Max 2MB.";
-        } else {
-            $newFileName = 'profile_' . $user_id . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
-            $uploadDir = __DIR__ . '/uploads/';
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            }
-            $destPath = $uploadDir . $newFileName;
-            if (move_uploaded_file($fileTmpPath, $destPath)) {
-                $_SESSION['user_foto'] = 'uploads/' . $newFileName;
-                header('Location: ' . $_SERVER['PHP_SELF']);
-                exit;
-            } else {
-                $upload_error = "Erro ao salvar o arquivo.";
-            }
+    // Upload da foto (se enviada) para alterar a foto de perfil
+    if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
+        $ext = pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION);
+        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+        if (in_array(strtolower($ext), $allowed)) {
+            $novo_nome_arquivo = 'uploads/perfil_' . $user['id'] . '.' . $ext;
+            if (!is_dir('uploads')) mkdir('uploads');
+            move_uploaded_file($_FILES['nova_foto']['tmp_name'], $novo_nome_arquivo);
+            $user['foto'] = $novo_nome_arquivo;
         }
-    } else {
-        $upload_error = "Nenhum arquivo enviado ou erro no upload.";
     }
-    // Armazena erro em sessão para exibir após redirect
-    $_SESSION['upload_error'] = $upload_error;
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit;
 }
 
-// Recupera erro de upload da sessão (flash message)
-if (isset($_SESSION['upload_error'])) {
-    $upload_error = $_SESSION['upload_error'];
-    unset($_SESSION['upload_error']);
+// Redirecionamentos via GET (links clicados)
+if (isset($_GET['action'])) {
+    switch ($_GET['action']) {
+        case 'alterar_conta':
+            header('Location: login.php');
+            exit;
+        case 'remover_conta':
+            header('Location: vooce_tem_certeza.php');
+            exit;
+        case 'suporte':
+            header('Location: suporte.php');
+            exit;
+        case 'editar':
+            header('Location: cadastro.php');
+            exit;
+    }
 }
-
-$fotoUrl = htmlspecialchars($user['foto'], ENT_QUOTES, 'UTF-8');
-$conn->close();
 ?>
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Perfil - Minha SA</title>
-<style>
-  body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-  }
-  .perfil-container {
-    max-width: 360px;
-    margin: 10px auto;
-    padding: 10px;
-    background-color: #111;
-    border-radius: 15px;
-    text-align: center;
-    position: relative;
-  }
-  .foto-container {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 10px;
-  }
-  .foto-container img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #ccc;
-    object-fit: cover;
-  }
-  .foto-container .edit-foto-icon {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 50%;
-    padding: 5px;
-    cursor: pointer;
-  }
-  .edit-foto-icon svg {  /* Ajuste para SVG em vez de img */
-    width: 24px;
-    height: 24px;
-  }
-  #nome-display {
-    font-weight: bold;
-    font-size: 1.5em;
-    margin-bottom: 5px;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  #nome-display svg {
-    margin-left: 6px;
-    width: 18px;
-    height: 18px;
-    fill: #ccc;
-  }
-  #nome-input {
-    font-size: 1.5em;
-    padding: 4px;
-    border-radius: 4px;
-    border: none;
-    width: 200px;
-    display: none;
-    background: #333;
-    color: #fff;
-  }
-  .info-label {
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  .small-text {
-    font-size: 0.85em;
-    color: #bbb;
-    margin-bottom: 8px;
-  }
-  a {
-    color: #06f;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  .action-buttons {
-    margin-top: 20px;
-  }
-  .btn {
-    cursor: pointer;
-    display: block;
-    margin: 10px auto;
-    width: 80%;
-    padding: 10px;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 1.1em;
-    user-select: none;
-  }
-  .btn-alterar {
-    background: none;
-    color: #007bff;
-    border: 2px solid #007bff;
-  }
-  .btn-remover {
-    background: none;
-    color: #e00;
-    border: 2px solid #e00;
-  }
-  .btn-alterar:hover {
-    background-color: #007bff;
-    color: #fff;
-  }
-  .btn-remover:hover {
-    background-color: #e00;
-    color: #fff;
-  }
-  /* Modal */
-  .modal-bg {
-    display: none;
-    position: fixed;
-    top:0; left:0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  .modal {
-    background: #222;
-    padding: 20px;
-    border-radius: 12px;
-    width: 300px;
-    text-align: left;
-  }
-  .modal h2 {
-    margin-top: 0;
-    color: #fff;
-  }
-  .modal input[type=file] {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .modal button {
-    margin-top: 10px;
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 6px;
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .modal .close-btn {
-    background-color: #555;
-    margin-top: 5px;
-  }
-  .error-msg {
-    color: #f33;
-    margin-top: 10px;
-    display: none;  /* Inicialmente escondido, mostrado via JS/PHP */
-  }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Perfil</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #000;
+            font-family: Arial, sans-serif;
+            color: white;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            height: 100vh;
+        }
+        .perfil-container {
+            background: #111;
+            border-radius: 30px;
+            width: 350px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Imagem perfil circular com borda */
+        .foto-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+        }
+        .foto-container img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ccc;
+            background: #ccc;
+        }
+        /* Ícone caneta no canto superior direito da imagem */
+        .foto-container label {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(128, 128, 128, 0.7);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .foto-container label img {
+            width: 20px;
+            height: 20px;
+        }
+        /* input file escondido */
+        #nova_foto {
+            display: none;
+        }
+
+        /* Nome com ícone caneta para editar inline */
+        .nome-editavel {
+            font-weight: bold;
+            font-size: 24px;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .nome-editavel input {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid white;
+            color: white;
+            outline: none;
+            width: 150px;
+        }
+        .nome-editavel .icone-editar {
+            width: 18px;
+            height: 18px;
+            margin-left: 6px;
+            opacity: 0.7;
+        }
+        /* Info simples */
+        .info {
+            text-align: left;
+            margin: 10px 0;
+            font-weight: normal;
+        }
+        .info b {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+        /* Links editar conta e suporte */
+        .links-conta {
+            margin-top: 15px;
+            text-align: left;
+        }
+        .links-conta b {
+            display: block;
+            margin-bottom: 3px;
+            color: white;
+        }
+        .links-conta small {
+            margin-bottom: 5px;
+            display: block;
+            color: #ccc;
+            font-weight: normal;
+        }
+        .links-conta a {
+            color: #00cc00;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Botões ALTERAR e REMOVER CONTA */
+        .botoes-conta {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .btn-alterar {
+            color: #0057b7;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            border: none;
+            background: none;
+            font-size: 18px;
+        }
+        .btn-remover {
+            color: #e63946;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            border: none;
+            background: none;
+            font-size: 18px;
+        }
+
+        /* Hover para botões */
+        .btn-alterar:hover {
+            text-decoration: underline;
+        }
+        .btn-remover:hover {
+            text-decoration: underline;
+        }
+
+    </style>
 </head>
 <body>
-<div class="perfil-container">
 
-  <div class="foto-container" title="Clique para alterar foto de perfil">
-    <img src="<?= $fotoUrl ?>" alt="Foto de Perfil" id="foto-perfil" />
-    <div class="edit-foto-icon" id="btn-edit-foto" title="Editar foto">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="#000" viewBox="0 0 24 24" width="24" height="24">
-        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM22.71 6.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"/>
-      </svg>
+<form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
+    <div class="foto-container">
+        <img id="imagemPerfil" src="<?php echo htmlspecialchars($user['foto']); ?>" alt="Foto Perfil" />
+        <label for="nova_foto" title="Alterar foto de perfil">
+            <img src="pen-icon.png" alt="Editar Foto" />
+        </label>
+        <input type="file" name="nova_foto" id="nova_foto" accept="image/*" onchange="previewImagem(this)" />
     </div>
-  </div>
 
-  <div>
-    <span id="nome-display" title="Clique para editar nome">
-      <span id="nome-text"><?= htmlspecialchars($user['nome'], ENT_QUOTES, 'UTF-8') ?></span>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="#ccc" viewBox="0 0 24 24">
-        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM22.71 6.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003 1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"/>
-      </svg>
-    </span>
-    <input type="text" id="nome-input" maxlength="120" />
-  </div>
+    <div class="nome-editavel" id="nomeDisplay" onclick="editarNome()" title="Clique para editar nome">
+        <span id="nomeTexto"><?php echo htmlspecialchars($user['nome']); ?></span>
+        <img src="pen-icon.png" alt="Editar Nome" class="icone-editar" />
+    </div>
 
-  <div class="info-label">ID</div>
-  <div class="small-text">#<?= intval($user['id']) ?></div>
+    <div class="info">
+        <b>ID</b>
+        #<?php echo $user['id']; ?>
+    </div>
 
-  <div class="info-label">CARGO</div>
-  <div class="small-text"><?= htmlspecialchars($user['cargo'], ENT_QUOTES, 'UTF-8') ?></div>
+    <div class="info">
+        <b>CARGO</b>
+        <?php echo htmlspecialchars($user['cargo']); ?>
+    </div>
 
-  <div class="info-label">PERMISSÕES</div>
-  <div class="small-text"><?= htmlspecialchars($user['permissoes'], ENT_QUOTES, 'UTF-8') ?></div>
+    <div class="info">
+        <b>PERMISSÕES</b>
+        <?php echo htmlspecialchars($user['permissoes']); ?>
+    </div>
 
-  <div class="info-label">EDITAR CONTA</div>
-  <div class="small-text">
-    Clique <a href="cadastro1.php">aqui</a> para ser redirecionado para tela de cadastro
-  </div>
+    <div class="links-conta">
+        <b>EDITAR CONTA</b>
+        <small> Clique <a href="?action=editar">aqui</a> para ser redirecionado para tela de cadastro </small>
+        <b>SUPORTE</b>
+        <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
+    </div>
 
-  <div class="info-label">SUPORTE</div>
-  <div class="small-text">
-    Clique <a href="suporte_alerta.php">aqui</a> para ser redirecionado para tela de suporte
-  </div>
+    <div class="botoes-conta">
+        <button type="button" class="btn-alterar" onclick="window.location.href='?action=alterar_conta'">ALTERAR CONTA</button>
+        <button type="button" class="btn-remover" onclick="window.location.href='?action=remover_conta'">REMOVER CONTA</button>
+    </div>
 
-  <div class="action-buttons">
-    <button class="btn btn-alterar" onclick="alert('Função ALTERAR CONTA ainda será implementada')">ALTERAR CONTA</button>
-    <button class="
+    <!-- input oculto para o nome editado -->
+    <input type="hidden" name="novo_nome" id="inputNome" value="<?php echo htmlspecialchars($user['nome']); ?>" />
+</form>
+
+<script>
+    // Preview da imagem selecionada
+    function previewImagem(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('imagemPerfil').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+            // Envia o form automaticamente após escolher a foto se quiser, senão comente essa linha
+            // document.getElementById('perfilForm').submit();
+        }
+    }
+
+    // Permite editar o nome inline
+    const nomeDisplay = document.getElementById('nomeDisplay');
+    const nomeTexto = document.getElementById('nomeTexto');
+    const inputNome = document.getElementById('inputNome');
+
+    function editarNome() {
+        if (nomeDisplay.querySelector('input')) return; // Não permite abrir outro input repetido
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = nomeTexto.textContent;
+        input.maxLength = 50;
+        input.autofocus = true;
+        input.addEventListener('blur', () => salvarNome(input.value));
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                input.blur();
+            }
+            if (e.key === 'Escape') {
+                cancelarEdicao();
+            }
+        });
+
+        nomeDisplay.innerHTML = '';
+        nomeDisplay.appendChild(input);
+        input.focus();
+    }
+
+    function salvarNome(valor) {
+        if (valor.trim() === '') valor = 'Nome'; // valor padrão
+        nomeTexto.textContent = valor;
+        inputNome.value = valor;
+        nomeDisplay.innerHTML = '';
+        nomeDisplay.appendChild(nomeTexto);
+        // Ícone caneta
+        const icone = document.createElement('img');
+        icone.src = 'pen-icon.png';
+        icone.alt = 'Editar Nome';
+        icone.className = 'icone-editar';
+        nomeDisplay.appendChild(icone);
+
+        // Enviar o formulário para salvar a alteração no backend
+        document.getElementById('perfilForm').submit();
+    }
+
+    function cancelarEdicao() {
+        nomeDisplay.innerHTML = '';
+        nomeDisplay.appendChild(nomeTexto);
+        const icone = document.createElement('img');
+        icone.src = 'pen-icon.png';
+        icone.alt = 'Editar Nome';
+        icone.className = 'icone-editar';
+        nomeDisplay.appendChild(icone);
+    }
+</script>
+
+</body>
+</html>
