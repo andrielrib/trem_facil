@@ -175,7 +175,7 @@ if ($tipo) {
         </div>
 
         <div class="alinhar_entrada">
-            <a href="public/entrada.php?tipo=1" class="caixa_azul_entrada">
+            <a href="public/trens.php?tipo=1" class="caixa_azul_entrada">
                 <h2>Cliente</h2>
             </a>
 
