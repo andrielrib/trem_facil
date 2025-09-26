@@ -5,16 +5,6 @@ include "db.php";
 
 session_start();
 
-
-
-
-if (isset($_GET['logout'])) {
-  session_destroy();
-  header("Location: login.php");
-  exit;
-}
-
-
 $msg = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $login = $_POST["login"] ?? "";
@@ -33,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION["user_id"] = $usuario["id_usuario"];
     $_SESSION["username"] = $usuario["nome_completo"];
     $_SESSION["tipo_usuario"] = $usuario["tipo_usuarios"];
-    header("Location: login.php");
+    header("Location:pagina_inicial.php");
     exit;
   } else {
     $msg = "Email/Telefone ou senha incorretos!";
