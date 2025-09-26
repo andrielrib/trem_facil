@@ -55,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
 function validateCPF($cpf)
 {
     
@@ -164,6 +163,7 @@ function validateCPF($cpf)
             </div>
         </form>
     </div>
+
 
     <div class="flex_circulo">
         <div class="circulo_esquerda_cadastro2"></div>
