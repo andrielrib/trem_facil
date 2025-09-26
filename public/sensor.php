@@ -17,7 +17,7 @@
     body {
     background-color: black;
     color: white;
-    margin: 0px;
+    margin: auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
@@ -92,7 +92,7 @@
 </style>
 
 <strong><h1>Sensores Inteligentes:</h1></strong>
-<img src="../assets/img/sensor.PNG" alt="Sensores" width="350" height="350">
+<img src="../assets/img/sensor.PNG" alt="Sensores" width="360" height="300">
 <hr style="border: 2px solid #0549b1;" width="424">
 
 <div class="flex_sensor">
@@ -125,9 +125,6 @@
 
 <hr style="border: 2px solid #0549b1;" width="424">
 
-<br><br><br><br><br><br>
-
-
 <div class="flex_perfil">
         <button class="button_icones" onclick="telaRotas()"><img src="../assets/icons/tela_inicial_icon.png" alt="icone da tela inicial" width="60" height="65"></button>
         <button class="button_icones" onclick="telaSensor()"><img src="../assets/icons/tela_sensor_icon.png" alt="icone da tela de sensores" width="62" height="65"></button>
@@ -135,7 +132,6 @@
         <button class="button_icones" onclick="telaSuporteAlerta()"><img src="../assets/icons/tela_suporte_alerta_icon.png" alt="icone da tela de suport e alerta" width="62" height="65"></button>
         <button class="button_icones" onclick="telaPerfil()"><img src="../assets/icons/tela_perfil_icon.png" alt="icone da tela de perfil" width="62" height="65"></button>
 </div>
-
 
 </body>
 </html>
