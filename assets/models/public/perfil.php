@@ -1,22 +1,7 @@
 <?php
 session_start();
 
-// Credenciais do banco (SUBSTITUA PELAS SUAS REAIS!)
-$host = 'localhost';
-$username = 'root';  // Usuário MySQL
-$password = '';      // Senha MySQL (vazia para local)
-$dbname = 'trem_facil';
 
-// Conexão com o banco
-$conn = new mysqli($host, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Erro de conexão com o banco: " . $conn->connect_error);
-}
-$conn->set_charset("utf8mb4");  // Suporte a UTF-8 para nomes com acentos
-
-$user_id = intval($_SESSION['user_id']);
-
-// Carrega dados do usuário do BD
 $stmt = $conn->prepare("SELECT nome_completo, tipo_usuarios FROM usuarios WHERE id_usuario = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -25,24 +10,24 @@ if ($row = $result->fetch_assoc()) {
     $user = [
         'id' => $user_id,
         'nome' => $row['nome_completo'] ?? $_SESSION['user_nome'] ?? 'Nome do Usuário',
-        'cargo' => $row['tipo_usuarios'] == 1 ? 'Administrador' : 'Usuário',  // Adaptado ao schema
-        'permissoes' => 'Geral',  // Hardcoded, pois não está no schema
+        'cargo' => $row['tipo_usuarios'] == 1 ? 'Administrador' : 'Usuário',  
+        'permissoes' => 'Geral',  
         'foto' => $_SESSION['user_foto'] ?? 'default_profile.png' 
     ];
-    // Sincroniza sessão com BD
+ 
     $_SESSION['user_nome'] = $user['nome'];
 } else {
-    // Usuário não encontrado no BD
+
     session_destroy();
     header('Location: login.php');
     exit;
 }
 $stmt->close();
 
-// Handler para atualizar nome (POST AJAX) - Adaptado ao BD
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_name'])) {
     $novoNome = trim($_POST['nome']);
-    if (!empty($novoNome) && mb_strlen($novoNome) <= 120) {  // Limite do BD: VARCHAR(120)
+    if (!empty($novoNome) && mb_strlen($novoNome) <= 120) { 
         $stmt = $conn->prepare("UPDATE usuarios SET nome_completo = ? WHERE id_usuario = ?");
         $stmt->bind_param("si", $novoNome, $user_id);
         if ($stmt->execute()) {
@@ -63,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_name'])) {
     exit;
 }
 
-// Handler para upload de foto (POST)
+
 $upload_error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_photo'])) {
     if (isset($_FILES['profile_photo']) && $_FILES['profile_photo']['error'] === UPLOAD_ERR_OK) {
@@ -95,13 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_photo'])) {
     } else {
         $upload_error = "Nenhum arquivo enviado ou erro no upload.";
     }
-    // Armazena erro em sessão para exibir após redirect
+    
     $_SESSION['upload_error'] = $upload_error;
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit;
 }
 
-// Recupera erro de upload da sessão (flash message)
 if (isset($_SESSION['upload_error'])) {
     $upload_error = $_SESSION['upload_error'];
     unset($_SESSION['upload_error']);
@@ -153,7 +137,7 @@ $conn->close();
     padding: 5px;
     cursor: pointer;
   }
-  .edit-foto-icon svg {  /* Ajuste para SVG em vez de img */
+  .edit-foto-icon svg {  
     width: 24px;
     height: 24px;
   }
@@ -227,7 +211,7 @@ $conn->close();
     background-color: #e00;
     color: #fff;
   }
-  /* Modal */
+ 
   .modal-bg {
     display: none;
     position: fixed;
@@ -270,7 +254,7 @@ $conn->close();
   .error-msg {
     color: #f33;
     margin-top: 10px;
-    display: none;  /* Inicialmente escondido, mostrado via JS/PHP */
+    display: none;  
   }
 </style>
 </head>
