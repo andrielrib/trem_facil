@@ -7,11 +7,10 @@
 </head>
 <body>
     <body>
-    <div class="img_entrada">
+    <div class="img_entradaa">
         <img src="../assets/icons/trem_bala_icon.png" alt="icone trem bala" width="300" height="250">
     </div>
 
-    <br><br><br>
 
     <div class="text_entrada">
         <h1>Jà possui conta?</h1>
@@ -28,7 +27,7 @@
         <a href="cadastro1.php"><button id="btn_cadastrar" class="caixa_azul_entrada"><h2>Cadastrar</h2></button></a>
 
     </div>
-<script src="../script/entrada.js"></script>
+
 </div>
 </body>
 </html>

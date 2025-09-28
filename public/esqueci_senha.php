@@ -24,7 +24,7 @@
             <input id="codigo" type="text" maxlength="6" class="centralizar_esqueci" placeholder="----"
                    style="border: none; background: transparent; text-align: center; font-weight: bold; font-size: inherit; width: 100%;">
         </div>
-        <br><br><br>
+        <br><br>
         <div class="caixa_reeviar">
             <button onclick="reenviarCodigo()" class="centralizar_reenviar" 
         style="background: none; border: none; color: inherit; font: inherit; cursor: pointer;">
@@ -33,6 +33,6 @@
         </div>
     </div>
 
-    <script src="../scripts/esqueci_senha.js"></script>
+  
 </body>
 </html>
