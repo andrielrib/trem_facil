@@ -1,15 +1,16 @@
 <?php
-session_start();
+ session_start();
 
-if (!isset($_SESSION['cadastro1'])) {
+ if (!isset($_SESSION['cadastro1'])) {
     header("Location: cadastro1.php");
     exit();
-}
+  }
 
-$telefone = $senha = $confirmar_senha = "";
-$errors = [];
+ $telefone = $senha = $confirmar_senha = "";
+ $errors = [];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $telefone = trim($_POST['telefone']);
     $senha = trim($_POST['senha']);
     $confirmar_senha = trim($_POST['confirmar_senha']);
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $servername = "localhost";
         $username = "root"; 
-        $password = "";    
+        $password = "root";    
         $dbname = "trem_facil";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -63,8 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             unset($_SESSION['cadastro1']);
-            echo " Cadastro concluído com sucesso!";
-            header("Location: login.php");
+            header("Location: pagina_inicial.php");
             exit();
         } else {
             $errors[] = "Erro ao cadastrar: " . $stmt->error;
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
         $conn->close();
     }
-}
+  }
 ?>
 
 <html lang="en">
@@ -93,20 +93,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <br>
 <br>
 <div>
-    <form id="formulario_cadas_2">
+    <form id="formulario_cadas_2" method="post" action="cadastro2.php">
 
         <strong><p class="margin_cadastro2">Telefone:</p></strong>
-        <input type="text" class="caixa_login" id="telefone">
+        <input type="text" class="caixa_login" id="telefone" name="telefone">
 
         <strong><p class="margin_cadastro2">Senha:</p></strong>
-        <input type="password" class="caixa_login" id="senha">
+        <input type="password" class="caixa_login" id="senha" name="senha">
 
         <strong><p class="margin_cadastro2">Confirmar senha:</p></strong>
-        <input type="password" class="caixa_login" id="confirmar_senha">
+        <input type="password" class="caixa_login" id="confirmar_senha" name="confirmar_senha">
 
         <br><br>
         <div class="final_cadastro2">
-            <a href="login.php"><button type="submit" class="caixa_verde_cadastro2"><p class="centralizar_cadastro2">REGISTRAR</p></button></a>
+            <button type="submit" class="caixa_verde_cadastro2"><p class="centralizar_cadastro2">REGISTRAR</p></button>
         </div>
     </form>
 </div>
