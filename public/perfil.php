@@ -10,6 +10,7 @@ $user = [
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Processa a atualização do nome
     if (isset($_POST['novo_nome'])) {
         $user['nome'] = trim($_POST['novo_nome']);
     }
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user['foto'] = $novo_nome_arquivo;
         }
     }
+
     if (isset($_POST['redirect_page'])) {
         $page = $_POST['redirect_page'];
         switch ($page) {
@@ -40,10 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: perfil.php');
                 exit();
             default:
-                header('Location: index.php');
-                exit();
+                header('Location: index.php');  
         }
     }
+
 }
 
 if (isset($_GET['action'])) {
