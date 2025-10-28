@@ -74,272 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Perfil</title>
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background: #000;
-            font-family: Arial, sans-serif;
-            color: white;
-            margin: 40px;
-            height: 700px;
-            justify-content: center;
-            align-items:center;
-        }
-        .perfil-container {
-            background: #111;
-            border-radius: 30px 30px 0 0 ;
-            width: 350px;
-            padding: 20px 20px 0 20px;
-            text-align: center;
-            position: relative;
-        }
-
-
-        .foto-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 15px;
-        }
-        .foto-container img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #ccc;
-            background: #ccc;
-        }
-    
-        .foto-container label {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(128, 128, 128, 0.7);
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            cursor: pointer;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .foto-container label img {
-            width: 20px;
-            height: 20px;
-        }
-     
-        #nova_foto {
-            display: none;
-        }
-
-        .nome-editavel {
-            font-weight: bold;
-            font-size: 24px;
-            display: inline-flex;
-            align-items: center;
-            margin-bottom: 10px;
-            cursor: pointer;
-            user-select: none;
-        }
-        .nome-editavel input {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid white;
-            color: white;
-            outline: none;
-            width: 150px;
-        }
-        .nome-editavel .icone-editar {
-            width: 18px;
-            height: 18px;
-            margin-left: 6px;
-            opacity: 0.7;
-        }
-   
-        .info {
-            text-align: left;
-            margin: 10px 0;
-            font-weight: normal;
-        }
-        .info b {
-            display: block;
-            font-weight: 800;
-            margin-bottom: 3px;
-        }
-        
-        .links-conta {
-            margin-top: 15px;
-            text-align: left;
-        }
-        .links-conta b {
-            display: block;
-            margin-bottom: 3px;
-            color: white;
-        }
-        .links-conta small {
-            margin-bottom: 5px;
-            display: block;
-            color: #ccc;
-            font-weight: normal;
-        }
-        .links-conta a {
-            color: #00cc00;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-  
-        .botoes-conta {
-            margin-top: 25px;
-            display: flex;
-            justify-content: space-around;
-        }
-        .btn-alterar {
-            color: #0057b7;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            border: none;
-            background: none;
-            font-size: 18px;
-            padding: 0 0 20px 0 ;
-        }
-        .btn-remover {
-            color: #e63946;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            border: none;
-            background: none;
-            font-size: 18px;
-            padding: 0 0 20px 0 ;
-        }
-
-        .btn-alterar:hover {
-            text-decoration: underline;
-        }
-        .btn-remover:hover {
-            text-decoration: underline;
-        }
-
-              .photo-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.photo-circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 3px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.edit-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.name-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #f0f0f0;
-}
-
-.section {
-  margin-top: 16px;
-}
-
-.button-blue {
-  color: #0055ff;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.button-red {
-  color: #ff3333;
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 24px;
-}      .photo-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.photo-circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 3px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.edit-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.name-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #f0f0f0;
-}
-
-.section {
-  margin-top: 16px;
-}
-
-.button-blue {
-  color: #0055ff;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.button-red {
-  color: #ff3333;
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 24px;
-}
-
-footer{
-    background-color: #000;
-    border-radius:  0 0 30px 30px;
-    width: 350px;
-    border-color: #808080; 
-}
-
-    </style>
+    <link rel="stylesheet" href="../style/style2.css">
 </head>
 <body>
 
@@ -392,31 +127,31 @@ footer{
 
 </form>
 
-<footer>
-  <form action="" method="post" style="display: inline;">
-    <input type="hidden" name="redirect_page" value="sensores">
-    <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
+<footer role="contentinfo" aria-label="Menu principal">
+    <form action="" method="post" style="display: inline;">
+        <input type="hidden" name="redirect_page" value="sensores">
+        <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
         <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
-    </button>
-</form>
-<form action="" method="post" style="display: inline; margin-left: 10px;">
-    <input type="hidden" name="redirect_page" value="trens">
-    <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
+        </button>
+    </form>
+    <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <input type="hidden" name="redirect_page" value="trens">
+        <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
         <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
-    </button>
-</form>
-<form action="" method="post" style="display: inline; margin-left: 10px;">
-    <input type="hidden" name="redirect_page" value="estacoes">
-    <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
+        </button>
+    </form>
+    <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <input type="hidden" name="redirect_page" value="estacoes">
+        <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
         <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
-    </button>
-</form>
-<form action="" method="post" style="display: inline; margin-left: 10px;">
-    <input type="hidden" name="redirect_page" value="perfil">
-    <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
+        </button>
+    </form>
+    <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <input type="hidden" name="redirect_page" value="perfil">
+        <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
         <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
-    </button>
-</form>
+        </button>
+    </form>
 </footer>
 
 <script>
