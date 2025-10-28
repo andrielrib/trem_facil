@@ -14,47 +14,49 @@ body {
     box-sizing: border-box;
 }
 
-    .tela_carregamento {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      width: 100%;
-      height: 100%;
-      padding: 1rem;
-      text-align: center;
+.tela_carregamento {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
 
-    }
+}
 
+.logo_carregamento img {
+    max-width: 70%;
+    height: auto;
+}
+
+.bolinhas_carregamento img {
+    max-width: 80%;
+    height: auto;
+}
+
+
+@media (min-width: 768px) {
     .logo_carregamento img {
-      max-width: 70%;
-      height: auto;
+        max-width: 50%;
     }
 
     .bolinhas_carregamento img {
-      max-width: 80%;
-      height: auto;
-    }
-
-    
-    @media (min-width: 768px) {
-      .logo_carregamento img {
-        max-width: 50%;
-      }
-      .bolinhas_carregamento img {
         max-width: 40%;
-      }
+    }
+}
+
+@media (min-width: 1024px) {
+    .logo_carregamento img {
+        max-width: 35%;
     }
 
-    @media (min-width: 1024px) {
-      .logo_carregamento img {
-        max-width: 35%;
-      }
-      .bolinhas_carregamento img {
+    .bolinhas_carregamento img {
         max-width: 25%;
-      }
     }
+}
 
 
 
@@ -263,7 +265,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
     text-align: center;
-        border: none;
+    border: none;
 
 }
 
@@ -393,245 +395,11 @@ body {
 
 /* Cadastro 2 */
 
-/* Sensores */
-
-.caixa_selecione{
-    color: white;
-    font-size: 20px;
-}
-
-.flex_sensor {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 30px;
-    margin-right: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.quadradoZ{
-    border-radius: 50px;
-    background-color: #0549b1;
-    color: white;
-    width: 100px;
-    height: 30px;
-    text-align: center;
-    margin: 10px;
-}
-
-.sensor {
-    margin: 10px;
-}
-
-.img {
-    margin: 10px;
-}
-
-.titulo1 {
-    font-size: 30;
-    margin: 5px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.titulo2 {
-    font-size: 20;
-    margin: 5px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: 30px;
-}
-
-.subt1 {
-    margin: 5px;
-    font-size: large;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.subt2 {
-    margin: 5px;
-    font-size: large;
-    color: #00bf63;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: 30px;
-}
-
-.textinho {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: 30px;
-}
-
-.btn_seta {
-    background-color: black;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-}
-
-.btn_seta img {
-    display: block;
-}
-
-/* Sensores */
-
-/* Perfil */
-.foto_perfil {
-    text-align: center;
-    width: 430px;
-}
-
-.flex_nome {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
-
-.flex_outros {
-    display: flex;
-    justify-content: space-between;
-    margin: 1px;
-    margin-right: 30px;
-    margin-left: 20px;
-}
-
-.font_and_size {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    margin: 5px;
-    color: white;
-    background-color: black;
-    border: none;
-}
-
-.font_and_size_sub {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: medium;
-    margin: 1px;
-}
-
-.theme-checkbox {
-  --toggle-size: 16px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 6.25em;
-  height: 3.125em;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
-  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
-  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
-  background-size: 205%;
-  background-position: 0;
-  -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 99em;
-  position: relative;
-  cursor: pointer;
-  font-size: var(--toggle-size);
-}
-
-.theme-checkbox::before {
-  content: "";
-  width: 2.25em;
-  height: 2.25em;
-  position: absolute;
-  top: 0.438em;
-  left: 0.438em;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
-  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
-  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
-  background-size: 205%;
-  background-position: 100%;
-  border-radius: 50%;
-  -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.theme-checkbox:checked::before {
-  left: calc(100% - 2.25em - 0.438em);
-  background-position: 0;
-}
-
-.theme-checkbox:checked {
-  background-position: 100%;
-}
-
-.tit {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    margin: 1px;
-    margin-left: 20px;
-}
-
-.sub_tit {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: medium;
-    margin: 1px;
-    margin-left: 20px;
-}
-
-.flex_linha {
-    display: flex;
-    margin-left: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.ma {
-    margin: 5px;
-}
-
-.mma {
-    margin: 5px;
-    color: #00bf63;
-    background-color: black;
-    border: none;
-    text-decoration: underline;
-}
-
-.m {
-    margin: 5px;
-    margin-left: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.tit_baixo1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    margin: 1px;
-    color: #0867d5;
-    background-color: black;
-    border: none;
-}
-
-.tit_baixo2 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    margin: 1px;
-    color: #ff5757;
-    background-color: black;
-    border: none;
-}
-
-.centralizar_perfil{
-    text-align: center;
-}
-
-.flex_perfil{
-    display: flex;
-    justify-content: space-between;
-}
-
-.button_icones{
-    border: none;
-    background-color: black;
-}
-
-/* Perfil */
-
 /* entrada */
 
 .img_entradaa {
     text-align: center;
-padding-bottom: 50px;
+    padding-bottom: 50px;
 }
 
 .text_entrada {
@@ -658,8 +426,8 @@ padding-bottom: 50px;
     height: 50px;
     width: 200px;
 
-    
-    
+
+
 }
 
 /* pesquisa */
@@ -765,125 +533,6 @@ padding-bottom: 50px;
 
 /* entrada */
 
-/* rotas fixadas */
-
-.seta{
-    background-color: black;
-    border: none;
-}
-
-#botao_notifica{
-    justify-content: center
-}
-
-.caixa_azul_rf {
-    cursor: pointer;
-    color: white;
-    background-color: #3254ea;
-    border-radius: 20px;
-    border: none;
-    width: 200px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 50px;
-    padding: 10px;
-}
-
-.centro_rota {
-    text-align: center;
-    color: white;
-    background-color: black;
-}
-
-.manio {
-    margin: 10px;
-}
-
-.flex_emcima {
-    display: flex;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.texto_emcima {
-    padding-left: 100px;
-}
-
-.flex_textos1 {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-left: 30px;
-    padding-right: 20px;
-}
-
-.flex_textos2 {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-left: 60px;
-    padding-right: 60px;
-}
-
-
-.flex_caixa {
-    text-align: center;
-    justify-content: space-between;
-    display: flex;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: large;
-}
-
-.caixa_azul_específico1 {
-    background-color: #0549b1;
-    border-radius: 20px;
-    height: 60px;
-    width: 150px;
-    padding-top: 15px;
-}
-
-.caixa_azul_específico2 {
-    background-color: #0549b1;
-    border-radius: 20px;
-    height: 60px;
-    width: 150px;
-    padding-top: 5px;
-}
-
-.pontos {
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    width: 430px;
-}
-
-.caixa_azul_específico3 {
-    background-color: #0549b1;
-    border-radius: 20px;
-    height: 60px;
-    width: 170px;
-    padding-top: 10px;
-    font-size: large;
-}
-
-.center {
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 0px;
-    height: 40px;
-}
-
-.notificar {
-    background-color: #0549b1;
-    border-radius: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 40px;
-    padding-top: 5px;
-    text-align: center;
-}
-
-
-/* rotas fixadas */
-
 /* Suporte e Alertas */
 
 .suporEalert {
@@ -917,8 +566,8 @@ padding-bottom: 50px;
 .coisas {
     margin-left: 50px;
     margin-top: 90px;
-    margin: 
-    35px;
+    margin:
+        35px;
 }
 
 .caixa_verde_supEale {
@@ -932,620 +581,221 @@ padding-bottom: 50px;
     margin: 70px;
 }
 
-
-/* Estações */
-
-.flex_estacao {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            gap: 10px;
-        }
-        .btn_seta {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-        .btn_seta:hover {
-            background-color: #2847c1;
-            border-radius: 50%;
-        }
-        .btn_seta img {
-            width: 20px;
-            height: 20px;
-        }
-        .title {
-            background-color: #3254ea;
-            border-radius: 20px;
-            color: white;
-            font-weight: 700;
-            font-size: 1.2rem;
-            width: 200px;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            user-select: none;
-        }
-        hr.divisor {
-            border: none;
-            border-top: 2px solid #3254ea;
-            margin: 0 15px 10px;
-        }
-        .search_container {
-            position: relative;
-            width: calc(100% - 60px);
-            max-width: 320px;
-            margin: 0 30px 20px;
-        }
-        .input_search {
-            width: 100%;
-            padding: 10px 40px;
-            font-size: 1rem;
-            border: none;
-            border-bottom: 2px solid #3254ea;
-            background-color: transparent;
-            color: #ccc;
-            outline: none;
-        }
-        .input_search::placeholder {
-            color: #777;
-        }
-        .icon_search {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            filter: invert(100%);
-            width: 18px;
-            height: 18px;
-        }
-        .estacao_section {
-            margin: 0 15px 15px;
-            border-bottom: 1px solid #3254ea;
-        }
-        .estacao_header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            padding: 5px 0;
-            user-select: none;
-        }
-        .estacao_header h3 {
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-            font-weight: 700;
-            gap: 10px;
-            margin: 0;
-        }
-        .estacao_header img.icon_estacao {
-            width: 30px;
-            height: 30px;
-        }
-        .estacao_header img.icon_arrow {
-            width: 24px;
-            height: 24px;
-            filter: invert(54%) sepia(83%) saturate(4908%) hue-rotate(211deg) brightness(100%) contrast(101%);
-            transition: transform 0.3s ease;
-        }
-
-        .estacao_header.collapsed img.icon_arrow {
-            transform: rotate(0deg);
-        }
-
-        .estacao_header.expanded img.icon_arrow {
-            transform: rotate(180deg);
-        }
-
-        .estacao_list {
-            display: none;
-            padding-left: 40px;
-            padding-bottom: 10px;
-            color: #ddd;
-        }
-        .estacao_list.expanded {
-            display: block;
-        }
-        .estacao_list ul {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            padding: 0;
-            margin: 5px 0 0 0;
-            font-size: 0.85rem;
-            gap: 10px 20px;
-        }
-        .estacao_list ul li {
-            min-width: 120px;
-        }
-
-        .footer_nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 360px;
-            background-color: #000;
-            border-top: 2px solid #3254ea;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-        }
-        .footer_nav img {
-            width: 30px;
-            height: 30px;
-            filter: invert(54%) sepia(83%) saturate(4908%) hue-rotate(211deg) brightness(100%) contrast(101%);
-            cursor: pointer;
-        }
-
-/* Estações */
-
+/* Suporte e Alertas */
 
 /* index.php */
 
-        body {
-            background-color: #000000; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            font-weight: bold; 
-            margin: 0;
-            padding: 100;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            align-items: center;
+body {
+    background-color: #000000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    align-items: center;
 
-        }
+}
 
-        .img_entrada {
-            margin-bottom: 20px;
-        }
+.img_entrada {
+    margin-bottom: 20px;
+}
 
-        .img_entrada img {
-            max-width: 100%; 
-            height: auto;
-        }
+.img_entrada img {
+    max-width: 100%;
+    height: auto;
+}
 
-        .text_entrada h1 {
-            font-size: 2.5em; 
-            margin: 0;
-        }
+.text_entrada h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
 
-        .alinhar_entrada {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px; 
-            width: 100%;
-            max-width: 300px; 
-        }
+.alinhar_entrada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+}
 
-        .caixa_azul_entrada {
-            background-color: #007BFF; 
-            color: #ffffff;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            font-family: 'Segoe UI', sans-serif;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%; 
-            max-width: 250px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease;
-        }
+.caixa_azul_entrada {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 250px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
 
-        .caixa_azul_entrada:hover {
-            background-color: #0056b3; 
-        }
+.caixa_azul_entrada:hover {
+    background-color: #0056b3;
+}
 
-        .caixa_azul_entrada h2 {
-            margin: 0;
-            font-size: 1.1em;
-        }
+.caixa_azul_entrada h2 {
+    margin: 0;
+    font-size: 1.1em;
+}
 
-        .resultado {
-            margin-top: 20px;
-            font-size: 1.2em;
-        }
+.resultado {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
 
-        .resultado h2 {
-            margin: 0;
-        }
+.resultado h2 {
+    margin: 0;
+}
 
-        .resultado span {
-            font-weight: bold;
-        }
+.resultado span {
+    font-weight: bold;
+}
 
-       
-        @media (max-width: 768px) { 
 
-            .text_entrada h1 {
-                font-size: 2em;
-            }
+@media (max-width: 768px) {
 
-            .alinhar_entrada {
-                gap: 15px;
-                max-width: 100%;
-            }
+    .text_entrada h1 {
+        font-size: 2em;
+    }
 
-            .caixa_azul_entrada {
-                padding: 12px 20px;
-                font-size: 1em;
-            }
+    .alinhar_entrada {
+        gap: 15px;
+        max-width: 100%;
+    }
 
-            .img_entrada img {
-                width: 400px; 
-                height: auto;
-              
-            }
-        }
+    .caixa_azul_entrada {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
 
-        @media (max-width: 480px) {
-            .text_entrada h1 {
-                font-size: 1.5em;
-            }
+    .img_entrada img {
+        width: 400px;
+        height: auto;
 
-            .caixa_azul_entrada {
-                padding: 10px 15px;
-                font-size: 0.9em;
-            }
+    }
+}
 
-            .resultado {
-                font-size: 1em;
-                padding: 0 10px;
-            }
-        }
+@media (max-width: 480px) {
+    .text_entrada h1 {
+        font-size: 1.5em;
+    }
 
-       
-        @media (min-width: 1024px) {
-            .alinhar_entrada {
-                flex-direction: row; 
-                justify-content: center;
-                max-width: 600px;
-            }
+    .caixa_azul_entrada {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
 
-            .caixa_azul_entrada {
-                width: auto;
-                margin: 0 10px;
-            }
-        }
+    .resultado {
+        font-size: 1em;
+        padding: 0 10px;
+    }
+}
 
-        /*trens.php*/
 
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            background-color: #000;
-            color: #ccc;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-        }
+@media (min-width: 1024px) {
+    .alinhar_entrada {
+        flex-direction: row;
+        justify-content: center;
+        max-width: 600px;
+    }
 
-        #app {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            max-width: 414px;
-            width: 100%;
-            margin: 0 auto;
-            background: #000;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            border-radius: 20px;
-            padding-bottom: 80px;
-        }
+    .caixa_azul_entrada {
+        width: auto;
+        margin: 0 10px;
+    }
+}
 
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color:rgb(0, 0, 0);
-            padding: 8px 20px;
-            color: #fff;
-            font-weight: 700;
-            font-size: 18px;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .btn-back {
-            background: #004ecb;
-            border: none;
-            border-radius: 24px;
-            color: white;
-            font-weight: 700;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .btn-back svg {
-            margin-right: 6px;
-            stroke: white;
-            stroke-width: 3;
-        }
-        .title {
-            flex: 1;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            user-select: none;
-            font-size: 20px;
-        }
-        .btn-trens {
-            background-color: #0e4caf;
-            border-radius: 22px;
-            padding: 6px 16px;
-            font-weight: 700;
-            font-size: 20px;
-            user-select: none;
-            cursor: default;
-            color: white;
-        }
+/* index.php */
 
-        .search-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            max-width: 400px;
-            margin: 20px auto;
-            border-radius: 50px;
-            overflow: hidden;
-            background: white;
-            background-color:rgb(0, 0, 0);
-            color: white;
-        }
+/*sensor.php*/
+    .caixa_selecione{
+    color: black;
+    font-size: 20px;
+}
 
-        .search-input {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            background: transparent;
-        }
+    body {
+    background-color: black;
+    color: white;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
 
-        .search-input::placeholder {
-            color: #999;
-        }
+    .flex_sensor {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-        .search-button {
-            padding: 12px;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color:rgb(0, 0, 0);
-        }
+.sensor {
+    margin: 10px;
+}
 
-        .search-button svg {
-            stroke: white;
-        }
+.img {
+    margin: 10px;
+}
 
-        .trem {
-            border: none;
-            background-color: #02145e;
-            color: white;
-            margin: 12px;
-            border-radius: 12px;
-            padding: 14px;
-            box-shadow: 0 0 10px #0039d1;
-        }
-        .header-trem {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 2px solid #0e4caf;
-            padding-bottom: 10px;
-            margin-bottom: 14px;
-        }
-        .info-trem {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .icon-train {
-            width: 26px;
-            height: 26px;
-            stroke: white;
-            stroke-width: 2;
-        }
-        .titulo-trem {
-            font-weight: 700;
-            font-size: 18px;
-            color: white;
-        }
-        .id-status {
-            margin-left: 12px;
-            font-weight: 700;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .status {
-            font-weight: 700;
-            font-size: 14px;
-        }
-        .btn-notify {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 50%;
-            transition: background-color 0.3s ease;
-        }
-        .btn-notify:hover {
-            background-color: #004ecb;
-        }
-        .icon-bell {
-            width: 24px;
-            height: 24px;
-            stroke: white;
-            stroke-width: 2;
-            fill: none;
-        }
-        .status.Ativo {
-            color: #00c853;
-            border-bottom: 3px solid #00c853;
-            padding-bottom: 4px;
-        }
-        .status.Inativo {
-            color: #d50000;
-            border-bottom: 3px solid #d50000;
-            padding-bottom: 4px;
-        }
+.titulo1 {
+    font-size: 30;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        .paradas {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 12px;
-            margin-top: 10px;
-            color: white;
-        }
-        .paradas-list {
-            margin-left: 12px;
-            margin-bottom: 14px;
-        }
-        .parada-item {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            font-size: 14px;
-            padding: 3px 0;
-            color: #ccc;
-        }
-        .parada-item .tempo {
-            font-weight: 700;
-            color: #00c853;
-        }
-        .parada-item.nao-agora .tempo {
-            color: #00c853;
-        }
-        .parada-item.agora .tempo {
-            color: #00c853;
-        }
+.titulo2 {
+    font-size: 20;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
 
-        .horarios-container {
-            margin-top: 10px;
-            padding-top: 8px;
-            border-top: 2px solid #0e4caf;
-            font-weight: 700;
-            color: white;
-        }
-        .toggle-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-            font-weight: 700;
-            font-size: 16px;
-            user-select: none;
-        }
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 44px;
-            height: 24px;
-        }
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            border-radius: 30px;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #444;
-            transition: 0.4s;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            border-radius: 50%;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: 0.4s;
-        }
-        input:checked + .slider {
-            background-color: #0e4caf;
-        }
-        input:checked + .slider:before {
-            transform: translateX(20px);
-        }
+.subt1 {
+    margin: 5px;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        .horarios {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            font-weight: 600;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .horarios-column {
-            flex: 1;
-            min-width: 120px;
-        }
-        .horarios-column strong {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 14px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 4px;
-            color: #ddd;
-        }
-        .horarios-list {
-            display: grid;
-            gap: 6px;
-            grid-template-columns: auto auto;
-        }
+.subt2 {
+    margin: 5px;
+    font-size: large;
+    color: #00bf63;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
 
-        footer {
-            background: #000;
-            padding: 5px;
-            display: flex;
-            justify-content: space-around;
-            border-top: 1px solid #0a5fff;
-            position: fixed; 
-            bottom: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        footer button {
-            background: transparent;
-            border: none;
-            font-size: 26px;
-            color: #108000;
-            cursor: pointer;
-        }
-        footer button:hover {
-            color: #1aff1a;
-        }
-        
-        /*trens.php*/
+.textinho {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 30px;
+}
+
+.btn_seta {
+    background-color: black;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.btn_seta img {
+    display: block;
+}
+}
+
+.button_icones{
+    border: none;
+    background-color: black;
+}
+
+/*sensor.php*/
