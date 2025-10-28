@@ -14,47 +14,49 @@ body {
     box-sizing: border-box;
 }
 
-    .tela_carregamento {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      width: 100%;
-      height: 100%;
-      padding: 1rem;
-      text-align: center;
+.tela_carregamento {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
 
-    }
+}
 
+.logo_carregamento img {
+    max-width: 70%;
+    height: auto;
+}
+
+.bolinhas_carregamento img {
+    max-width: 80%;
+    height: auto;
+}
+
+
+@media (min-width: 768px) {
     .logo_carregamento img {
-      max-width: 70%;
-      height: auto;
+        max-width: 50%;
     }
 
     .bolinhas_carregamento img {
-      max-width: 80%;
-      height: auto;
-    }
-
-    
-    @media (min-width: 768px) {
-      .logo_carregamento img {
-        max-width: 50%;
-      }
-      .bolinhas_carregamento img {
         max-width: 40%;
-      }
+    }
+}
+
+@media (min-width: 1024px) {
+    .logo_carregamento img {
+        max-width: 35%;
     }
 
-    @media (min-width: 1024px) {
-      .logo_carregamento img {
-        max-width: 35%;
-      }
-      .bolinhas_carregamento img {
+    .bolinhas_carregamento img {
         max-width: 25%;
-      }
     }
+}
 
 
 
@@ -263,7 +265,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
     text-align: center;
-        border: none;
+    border: none;
 
 }
 
@@ -393,30 +395,246 @@ body {
 
 /* Cadastro 2 */
 
-/* Sensores */
+/* entrada */
 
-.caixa_selecione{
+.img_entradaa {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.text_entrada {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
+}
+
+.alinhar_entrada {
+    padding-left: 115px;
+    padding-right: 115px;
+}
+
+.caixa_azul_entrada {
+    cursor: pointer;
+    transition: all 0, 3s ease;
     color: white;
+    background-color: #3254ea;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 50px;
+    width: 200px;
+}
+
+/* entrada */
+
+/* Suporte e Alertas */
+
+.suporEalert {
+    border-radius: 0px 50px 50px 0px;
+    background-color: #0549b1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 40px;
+    text-align: center;
+    width: 300px;
+    padding-top: 2px;
+    font-size: x-large;
+}
+
+.texto_sobre {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.caixa_selecione {
+    background-color: #0549b1;
+    border-radius: 50px;
+    width: 330;
+    height: 40PX;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5PX;
+}
+
+.coisas {
+    margin-left: 50px;
+    margin-top: 90px;
+    margin:
+        35px;
+}
+
+.caixa_verde_supEale {
+    border-radius: 50px;
+    width: 300px;
+    background-color: #00bf63;
+    text-align: center;
+    justify-content: center;
+    height: 70px;
+    color: white;
+    margin: 70px;
+}
+
+/* Suporte e Alertas */
+
+/* index.php */
+
+body {
+    background-color: #000000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    align-items: center;
+
+}
+
+.img_entrada {
+    margin-bottom: 20px;
+}
+
+.img_entrada img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text_entrada h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.alinhar_entrada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.caixa_azul_entrada {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 250px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.caixa_azul_entrada:hover {
+    background-color: #0056b3;
+}
+
+.caixa_azul_entrada h2 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.resultado {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+.resultado h2 {
+    margin: 0;
+}
+
+.resultado span {
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+
+    .text_entrada h1 {
+        font-size: 2em;
+    }
+
+    .alinhar_entrada {
+        gap: 15px;
+        max-width: 100%;
+    }
+
+    .caixa_azul_entrada {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    .img_entrada img {
+        width: 400px;
+        height: auto;
+
+    }
+}
+
+@media (max-width: 480px) {
+    .text_entrada h1 {
+        font-size: 1.5em;
+    }
+
+    .caixa_azul_entrada {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .resultado {
+        font-size: 1em;
+        padding: 0 10px;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .alinhar_entrada {
+        flex-direction: row;
+        justify-content: center;
+        max-width: 600px;
+    }
+
+    .caixa_azul_entrada {
+        width: auto;
+        margin: 0 10px;
+    }
+}
+
+/* index.php */
+
+/*sensor.php*/
+    .caixa_selecione{
+    color: black;
     font-size: 20px;
 }
 
-.flex_sensor {
+    body {
+    background-color: black;
+    color: white;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+    .flex_sensor {
     display: flex;
     justify-content: space-between;
     margin-left: 30px;
     margin-right: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.quadradoZ{
-    border-radius: 50px;
-    background-color: #0549b1;
-    color: white;
-    width: 100px;
-    height: 30px;
-    text-align: center;
-    margin: 10px;
-}
 
 .sensor {
     margin: 10px;
@@ -469,155 +687,6 @@ body {
 .btn_seta img {
     display: block;
 }
-
-/* Sensores */
-
-/* Perfil */
-.foto_perfil {
-    text-align: center;
-    width: 430px;
-}
-
-.flex_nome {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
-
-.flex_outros {
-    display: flex;
-    justify-content: space-between;
-    margin: 1px;
-    margin-right: 30px;
-    margin-left: 20px;
-}
-
-.font_and_size {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    margin: 5px;
-    color: white;
-    background-color: black;
-    border: none;
-}
-
-.font_and_size_sub {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: medium;
-    margin: 1px;
-}
-
-.theme-checkbox {
-  --toggle-size: 16px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 6.25em;
-  height: 3.125em;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
-  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
-  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
-  background-size: 205%;
-  background-position: 0;
-  -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 99em;
-  position: relative;
-  cursor: pointer;
-  font-size: var(--toggle-size);
-}
-
-.theme-checkbox::before {
-  content: "";
-  width: 2.25em;
-  height: 2.25em;
-  position: absolute;
-  top: 0.438em;
-  left: 0.438em;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
-  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
-  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
-  background-size: 205%;
-  background-position: 100%;
-  border-radius: 50%;
-  -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.theme-checkbox:checked::before {
-  left: calc(100% - 2.25em - 0.438em);
-  background-position: 0;
-}
-
-.theme-checkbox:checked {
-  background-position: 100%;
-}
-
-.tit {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    margin: 1px;
-    margin-left: 20px;
-}
-
-.sub_tit {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: medium;
-    margin: 1px;
-    margin-left: 20px;
-}
-
-.flex_linha {
-    display: flex;
-    margin-left: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.ma {
-    margin: 5px;
-}
-
-.mma {
-    margin: 5px;
-    color: #00bf63;
-    background-color: black;
-    border: none;
-    text-decoration: underline;
-}
-
-.m {
-    margin: 5px;
-    margin-left: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.tit_baixo1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    margin: 1px;
-    color: #0867d5;
-    background-color: black;
-    border: none;
-}
-
-.tit_baixo2 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    margin: 1px;
-    color: #ff5757;
-    background-color: black;
-    border: none;
-}
-
-.centralizar_perfil{
-    text-align: center;
-}
-
-.flex_perfil{
-    display: flex;
-    justify-content: space-between;
 }
 
 .button_icones{
@@ -625,598 +694,4 @@ body {
     background-color: black;
 }
 
-/* Perfil */
-
-/* entrada */
-
-.img_entradaa {
-    text-align: center;
-padding-bottom: 50px;
-}
-
-.text_entrada {
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: larger;
-}
-
-.alinhar_entrada {
-    padding-left: 115px;
-    padding-right: 115px;
-}
-
-.caixa_azul_entrada {
-    cursor: pointer;
-    transition: all 0, 3s ease;
-    color: white;
-    background-color: #3254ea;
-    border-radius: 20px;
-    border: none;
-    width: 200px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 50px;
-    width: 200px;
-
-    
-    
-}
-
-/* pesquisa */
-#phone {
-    border: none;
-    color: white;
-    background-color: black;
-}
-
-.blue {
-    color: #66a0cf;
-}
-
-.red {
-    color: rgb(235, 75, 75);
-}
-
-.Green {
-    color: #00bf63;
-}
-
-.Ciano {
-    color: aquamarine;
-}
-
-.paragrafo_pesquisa {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    font-size: x-large;
-    margin-top: 180px;
-    padding: -200;
-}
-
-.barra_de_pesquisa {
-    border: 3px solid white;
-    border-radius: 50px;
-    width: 330px;
-    height: 40px;
-    margin: 40px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: space-between;
-}
-
-.pesquisar {
-    margin: 0px;
-}
-
-
-/* pesquisa */
-
-.blue {
-    color: #66a0cf;
-}
-
-.red {
-    color: rgb(235, 75, 75);
-}
-
-.Green {
-    color: #00bf63;
-}
-
-.Ciano {
-    color: aquamarine;
-}
-
-.paragrafo_pesquisa {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    font-size: x-large;
-    margin-top: 180px;
-    width: 430px;
-}
-
-.barra_de_pesquisa {
-    border: 3px solid white;
-    border-radius: 50px;
-    width: 260px;
-    height: 40px;
-    margin: 40px;
-    margin-left: 75px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: space-between;
-}
-
-.pesquisar {
-    margin: 0px;
-    font-size: larger;
-    width: 74px;
-    height: 34px;
-    padding-left: 10px;
-    padding-top: 4px;
-}
-
-.trem_2 {
-    text-align: center;
-    padding-left: 65px;
-    padding-right: 65px;
-    width: 430px;
-}
-
-/* entrada */
-
-/* rotas fixadas */
-
-.seta{
-    background-color: black;
-    border: none;
-}
-
-#botao_notifica{
-    justify-content: center
-}
-
-.caixa_azul_rf {
-    cursor: pointer;
-    color: white;
-    background-color: #3254ea;
-    border-radius: 20px;
-    border: none;
-    width: 200px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 50px;
-    padding: 10px;
-}
-
-.centro_rota {
-    text-align: center;
-    color: white;
-    background-color: black;
-}
-
-.manio {
-    margin: 10px;
-}
-
-.flex_emcima {
-    display: flex;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.texto_emcima {
-    padding-left: 100px;
-}
-
-.flex_textos1 {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-left: 30px;
-    padding-right: 20px;
-}
-
-.flex_textos2 {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding-left: 60px;
-    padding-right: 60px;
-}
-
-
-.flex_caixa {
-    text-align: center;
-    justify-content: space-between;
-    display: flex;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: large;
-}
-
-.caixa_azul_específico1 {
-    background-color: #0549b1;
-    border-radius: 20px;
-    height: 60px;
-    width: 150px;
-    padding-top: 15px;
-}
-
-.caixa_azul_específico2 {
-    background-color: #0549b1;
-    border-radius: 20px;
-    height: 60px;
-    width: 150px;
-    padding-top: 5px;
-}
-
-.pontos {
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    width: 430px;
-}
-
-.caixa_azul_específico3 {
-    background-color: #0549b1;
-    border-radius: 20px;
-    height: 60px;
-    width: 170px;
-    padding-top: 10px;
-    font-size: large;
-}
-
-.center {
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 0px;
-    height: 40px;
-}
-
-.notificar {
-    background-color: #0549b1;
-    border-radius: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 40px;
-    padding-top: 5px;
-    text-align: center;
-}
-
-
-/* rotas fixadas */
-
-/* Suporte e Alertas */
-
-.suporEalert {
-    border-radius: 0px 50px 50px 0px;
-    background-color: #0549b1;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 40px;
-    text-align: center;
-    width: 300px;
-    padding-top: 2px;
-    font-size: x-large;
-}
-
-.texto_sobre {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.caixa_selecione {
-    background-color: #0549b1;
-    border-radius: 50px;
-    width: 330;
-    height: 40PX;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5PX;
-}
-
-.coisas {
-    margin-left: 50px;
-    margin-top: 90px;
-    margin: 
-    35px;
-}
-
-.caixa_verde_supEale {
-    border-radius: 50px;
-    width: 300px;
-    background-color: #00bf63;
-    text-align: center;
-    justify-content: center;
-    height: 70px;
-    color: white;
-    margin: 70px;
-}
-
-
-/* Estações */
-
-.flex_estacao {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            gap: 10px;
-        }
-        .btn_seta {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-        .btn_seta:hover {
-            background-color: #2847c1;
-            border-radius: 50%;
-        }
-        .btn_seta img {
-            width: 20px;
-            height: 20px;
-        }
-        .title {
-            background-color: #3254ea;
-            border-radius: 20px;
-            color: white;
-            font-weight: 700;
-            font-size: 1.2rem;
-            width: 200px;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            user-select: none;
-        }
-        hr.divisor {
-            border: none;
-            border-top: 2px solid #3254ea;
-            margin: 0 15px 10px;
-        }
-        .search_container {
-            position: relative;
-            width: calc(100% - 60px);
-            max-width: 320px;
-            margin: 0 30px 20px;
-        }
-        .input_search {
-            width: 100%;
-            padding: 10px 40px;
-            font-size: 1rem;
-            border: none;
-            border-bottom: 2px solid #3254ea;
-            background-color: transparent;
-            color: #ccc;
-            outline: none;
-        }
-        .input_search::placeholder {
-            color: #777;
-        }
-        .icon_search {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            filter: invert(100%);
-            width: 18px;
-            height: 18px;
-        }
-        .estacao_section {
-            margin: 0 15px 15px;
-            border-bottom: 1px solid #3254ea;
-        }
-        .estacao_header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            padding: 5px 0;
-            user-select: none;
-        }
-        .estacao_header h3 {
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-            font-weight: 700;
-            gap: 10px;
-            margin: 0;
-        }
-        .estacao_header img.icon_estacao {
-            width: 30px;
-            height: 30px;
-        }
-        .estacao_header img.icon_arrow {
-            width: 24px;
-            height: 24px;
-            filter: invert(54%) sepia(83%) saturate(4908%) hue-rotate(211deg) brightness(100%) contrast(101%);
-            transition: transform 0.3s ease;
-        }
-
-        .estacao_header.collapsed img.icon_arrow {
-            transform: rotate(0deg);
-        }
-
-        .estacao_header.expanded img.icon_arrow {
-            transform: rotate(180deg);
-        }
-
-        .estacao_list {
-            display: none;
-            padding-left: 40px;
-            padding-bottom: 10px;
-            color: #ddd;
-        }
-        .estacao_list.expanded {
-            display: block;
-        }
-        .estacao_list ul {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            padding: 0;
-            margin: 5px 0 0 0;
-            font-size: 0.85rem;
-            gap: 10px 20px;
-        }
-        .estacao_list ul li {
-            min-width: 120px;
-        }
-
-        .footer_nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 360px;
-            background-color: #000;
-            border-top: 2px solid #3254ea;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-        }
-        .footer_nav img {
-            width: 30px;
-            height: 30px;
-            filter: invert(54%) sepia(83%) saturate(4908%) hue-rotate(211deg) brightness(100%) contrast(101%);
-            cursor: pointer;
-        }
-
-/* Estações */
-
-
-/* index.php */
-
-        body {
-            background-color: #000000; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            font-weight: bold; 
-            margin: 0;
-            padding: 100;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            align-items: center;
-
-        }
-
-        .img_entrada {
-            margin-bottom: 20px;
-        }
-
-        .img_entrada img {
-            max-width: 100%; 
-            height: auto;
-        }
-
-        .text_entrada h1 {
-            font-size: 2.5em; 
-            margin: 0;
-        }
-
-        .alinhar_entrada {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px; 
-            width: 100%;
-            max-width: 300px; 
-        }
-
-        .caixa_azul_entrada {
-            background-color: #007BFF; 
-            color: #ffffff;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            font-family: 'Segoe UI', sans-serif;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%; 
-            max-width: 250px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease;
-        }
-
-        .caixa_azul_entrada:hover {
-            background-color: #0056b3; 
-        }
-
-        .caixa_azul_entrada h2 {
-            margin: 0;
-            font-size: 1.1em;
-        }
-
-        .resultado {
-            margin-top: 20px;
-            font-size: 1.2em;
-        }
-
-        .resultado h2 {
-            margin: 0;
-        }
-
-        .resultado span {
-            font-weight: bold;
-        }
-
-       
-        @media (max-width: 768px) { 
-
-            .text_entrada h1 {
-                font-size: 2em;
-            }
-
-            .alinhar_entrada {
-                gap: 15px;
-                max-width: 100%;
-            }
-
-            .caixa_azul_entrada {
-                padding: 12px 20px;
-                font-size: 1em;
-            }
-
-            .img_entrada img {
-                width: 400px; 
-                height: auto;
-              
-            }
-        }
-
-        @media (max-width: 480px) {
-            .text_entrada h1 {
-                font-size: 1.5em;
-            }
-
-            .caixa_azul_entrada {
-                padding: 10px 15px;
-                font-size: 0.9em;
-            }
-
-            .resultado {
-                font-size: 1em;
-                padding: 0 10px;
-            }
-        }
-
-       
-        @media (min-width: 1024px) {
-            .alinhar_entrada {
-                flex-direction: row; 
-                justify-content: center;
-                max-width: 600px;
-            }
-
-            .caixa_azul_entrada {
-                width: auto;
-                margin: 0 10px;
-            }
-        }
+/*sensor.php*/
