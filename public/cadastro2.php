@@ -26,7 +26,7 @@
     } elseif ($senha !== $confirmar_senha) {
         $errors[] = "As senhas não coincidem.";
     } elseif (strlen($senha) < 6) {
-        $errors[] = "A senha deve ter pelo menos 6 caracteres.";
+        echo  "A senha deve ter pelo menos 6 caracteres.";
     }
 
     if (empty($errors)) {
@@ -93,10 +93,19 @@
 <br>
 <br>
 <div>
+    <?php if (!empty($errors)): ?>
+        <div style="color: #ff5757; text-align: center; margin: 10px 0;">
+            <ul style="list-style: none; padding: 0;">
+                <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
     <form id="formulario_cadas_2" method="post" action="cadastro2.php">
 
         <strong><p class="margin_cadastro2">Telefone:</p></strong>
-        <input type="text" class="caixa_login" id="telefone" name="telefone">
+        <input type="text" class="caixa_login" id="telefone" name="telefone" required>
 
         <strong><p class="margin_cadastro2">Senha:</p></strong>
         <input type="password" class="caixa_login" id="senha" name="senha">
