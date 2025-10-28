@@ -18,15 +18,15 @@
     if (empty($telefone)) {
         $errors[] = "Telefone é obrigatório.";
     } elseif (!preg_match('/^[0-9]{11}$/', $telefone)) {
-        $errors[] = "Telefone deve conter 11 dígitos (DDD + número).";
+        $errors[] = "Telefone completo ";
     }
 
     if (empty($senha) || empty($confirmar_senha)) {
-        $errors[] = "Senha e confirmação são obrigatórias.";
+        $errors[] = "e Senha sao obrigarotios.";
     } elseif ($senha !== $confirmar_senha) {
         $errors[] = "As senhas não coincidem.";
     } elseif (strlen($senha) < 6) {
-        echo  "A senha deve ter pelo menos 6 caracteres.";
+         $errors[] = "A senha deve ter pelo menos 6 caracteres.";
     }
 
     if (empty($errors)) {
