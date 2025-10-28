@@ -10,12 +10,11 @@ $user = [
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Processa a atualização do nome
+  
     if (isset($_POST['novo_nome'])) {
         $user['nome'] = trim($_POST['novo_nome']);
     }
 
-    // Processa a atualização da foto
     if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
         $ext = pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION);
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Processa redirecionamentos apenas se 'redirect_page' estiver definido
     if (isset($_POST['redirect_page'])) {
         $page = $_POST['redirect_page'];
         switch ($page) {
@@ -44,11 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: perfil.php');
                 exit();
             default:
-                header('Location: index.php');  // Redireciona para index apenas se necessário
-                exit();
+                header('Location: index.php');  
         }
     }
-    // Se não for um redirecionamento, continua renderizando a página atual
+
 }
 
 if (isset($_GET['action'])) {
@@ -76,7 +73,6 @@ if (isset($_GET['action'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Perfil</title>
     <style>
-        /* Estilos gerais */
         * {
             box-sizing: border-box;
             margin: 0;
