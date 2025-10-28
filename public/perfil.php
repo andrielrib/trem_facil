@@ -10,7 +10,7 @@ $user = [
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  
+    // Processa a atualização do nome
     if (isset($_POST['novo_nome'])) {
         $user['nome'] = trim($_POST['novo_nome']);
     }
@@ -335,33 +335,39 @@ if (isset($_GET['action'])) {
         </form>
     </div>
 
-    <footer>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="sensores">
-            <button type="submit" title="Sensores">
-                <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="trens">
-            <button type="submit" title="Trens">
-                <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="estacoes">
-            <button type="submit" title="Estacoes">
-                <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="perfil">
-            <button type="submit" title="Perfil">
-                <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
-            </button>
-        </form>
-    </footer>
+    <footer role="contentinfo" aria-label="Menu principal">
+    <form action="" method="post" style="display: inline;">
+        <input type="hidden" name="redirect_page" value="sensores">
+        <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
+        <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
+        </button>
+    </form>
+    <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <input type="hidden" name="redirect_page" value="trens">
+        <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
+        <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
+        </button>
+    </form>
+    <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <input type="hidden" name="redirect_page" value="estacoes">
+        <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
+        <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
+        </button>
+    </form>
+    <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <input type="hidden" name="redirect_page" value="perfil">
+        <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
+        <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
+        </button>
+    </form>
+</footer>
 
+<script>
+    function previewImagem(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('imagemPerfil').src = e.target.result;
     <script>
         function previewImagem(input) {
             if (input.files && input.files[0]) {
