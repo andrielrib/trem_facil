@@ -22,7 +22,7 @@
     }
 
     if (empty($senha) || empty($confirmar_senha)) {
-        $errors[] = "e Senha sao obrigarotios.";
+        $errors[] = "e Senha sao obrigatorios.";
     } elseif ($senha !== $confirmar_senha) {
         $errors[] = "As senhas não coincidem.";
     } elseif (strlen($senha) < 6) {
