@@ -816,3 +816,84 @@ footer button:hover {
 }
 
 /*estacoes.php*/
+
+/*voce tem certeza */
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 400px;
+            background: #111;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .wrapper:hover {
+            transform: scale(1.02);
+        }
+
+        .confirmacao-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .confirmacao-container p {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .botoes-confirmacao {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .btn-sim, .btn-nao {
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn-sim {
+            background: #e63946;
+        }
+
+        .btn-sim:hover {
+            background: #b2222e;
+        }
+
+        .btn-nao {
+            background: #0057b7;
+        }
+
+        .btn-nao:hover {
+            background: #003d82;
+        }
+          /*  voce tem certeza */
