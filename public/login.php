@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php else: ?>
       <div>
 
-        <h3 class="text_volta">Login</h3>
+        <h3 class="text_volta">Bem vindo de volta!</h3>
 
         <br><br>
 
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                   <h2 class="margin">Esqueceu sua senha?</h2>
                 </strong>
                 <div class="flex_login">
-                  <a href="redefinir_senha.php"><input type="button" class="caixa_verde_login" value="Clique aqui" onclick="trocar_senha()"></a>
+                  <a href="redefinir_senha.php" class="button_link">Clique aqui! </a>
                 </div>
               </div>
             </div>
