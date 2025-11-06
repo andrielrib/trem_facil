@@ -1,29 +1,40 @@
 <?php
 session_start();
 
-$user = [
+$default_user = [
     'id' => 329,
     'nome' => 'Nome',
     'cargo' => 'Administrador',
     'permissoes' => 'Geral',
-    'foto' => 'default-profile.png' 
+    'foto' => 'default-profile.png'
 ];
+if (!isset($_SESSION['user'])) {
+    $_SESSION['user'] = $default_user;
+}
+$user = $_SESSION['user'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Processa a atualização do nome
     if (isset($_POST['novo_nome'])) {
-        $user['nome'] = trim($_POST['novo_nome']);
+        $user['nome'] = trim($_POST['novo_nome']) !== '' ? trim($_POST['novo_nome']) : 'Nome';
     }
 
     if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION);
+        $ext = strtolower(pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION));
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-        if (in_array(strtolower($ext), $allowed)) {
+        if (in_array($ext, $allowed)) {
+            $dir = __DIR__ . '/../uploads';
+            if (!is_dir($dir)) mkdir($dir, 0777, true);
             $novo_nome_arquivo = 'uploads/perfil_' . $user['id'] . '.' . $ext;
-            if (!is_dir('uploads')) mkdir('uploads');
-            move_uploaded_file($_FILES['nova_foto']['tmp_name'], $novo_nome_arquivo);
+            move_uploaded_file($_FILES['nova_foto']['tmp_name'], __DIR__ . '/../' . $novo_nome_arquivo);
             $user['foto'] = $novo_nome_arquivo;
         }
+    }
+
+    $_SESSION['user'] = $user;
+
+    if (!isset($_POST['redirect_page'])) {
+        header('Location: perfil.php');
+        exit();
     }
 
     if (isset($_POST['redirect_page'])) {
@@ -42,10 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: perfil.php');
                 exit();
             default:
-                header('Location: index.php');  
+                header('Location: index.php');
         }
     }
-
 }
 
 if (isset($_GET['action'])) {
@@ -154,66 +164,60 @@ if (isset($_GET['action'])) {
             let reader = new FileReader();
             reader.onload = function(e) {
                 document.getElementById('imagemPerfil').src = e.target.result;
-    <script>
-        function previewImagem(input) {
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('imagemPerfil').src = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
             }
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 
-        const nomeDisplay = document.getElementById('nomeDisplay');
-        const nomeTexto = document.getElementById('nomeTexto');
-        const inputNome = document.getElementById('inputNome');
+    const nomeDisplay = document.getElementById('nomeDisplay');
+    const nomeTexto = document.getElementById('nomeTexto');
+    const inputNome = document.getElementById('inputNome');
 
-        function editarNome() {
-            if (nomeDisplay.querySelector('input')) return;
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.value = nomeTexto.textContent;
-            input.maxLength = 50;
-            input.autofocus = true;
-            input.addEventListener('blur', () => salvarNome(input.value));
-            input.addEventListener('keydown', e => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    input.blur();
-                }
-                if (e.key === 'Escape') {
-                    cancelarEdicao();
-                }
-            });
-            nomeDisplay.innerHTML = '';
-            nomeDisplay.appendChild(input);
-            input.focus();
-        }
+    function editarNome() {
+        if (nomeDisplay.querySelector('input')) return;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = nomeTexto.textContent;
+        input.maxLength = 50;
+        input.autofocus = true;
+        input.addEventListener('blur', () => salvarNome(input.value));
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                input.blur();
+            }
+            if (e.key === 'Escape') {
+                cancelarEdicao();
+            }
+        });
+        nomeDisplay.innerHTML = '';
+        nomeDisplay.appendChild(input);
+        input.focus();
+    }
 
-        function salvarNome(valor) {
-            if (valor.trim() === '') valor = 'Nome';
-            nomeTexto.textContent = valor;
-            inputNome.value = valor;
-            nomeDisplay.innerHTML = '';
-            nomeDisplay.appendChild(nomeTexto);
-            const icone = document.createElement('img');
-            icone.src = '../assets/icons/caneta.png';
-            icone.alt = 'Editar Nome';
-            icone.className = 'icone-editar';
-            nomeDisplay.appendChild(icone);
-            document.getElementById('perfilForm').submit();
-        }
+    function salvarNome(valor) {
+        if (valor.trim() === '') valor = 'Nome';
+        nomeTexto.textContent = valor;
+        inputNome.value = valor;
+        nomeDisplay.innerHTML = '';
+        nomeDisplay.appendChild(nomeTexto);
+        const icone = document.createElement('img');
+        icone.src = '../assets/icons/caneta.png';
+        icone.alt = 'Editar Nome';
+        icone.className = 'icone-editar';
+        nomeDisplay.appendChild(icone);
+        document.getElementById('perfilForm').submit();
+    }
 
-        function cancelarEdicao() {
-            nomeDisplay.innerHTML = '';
-            nomeDisplay.appendChild(nomeTexto);
-            const icone = document.createElement('img');
-            icone.src = '../assets/icons/caneta.png';
-            icone.alt = 'Editar Nome';
-            icone.className = 'icone-editar';
-            nomeDisplay.appendChild(icone);
-        }
-    </script>
+    function cancelarEdicao() {
+        nomeDisplay.innerHTML = '';
+        nomeDisplay.appendChild(nomeTexto);
+        const icone = document.createElement('img');
+        icone.src = '../assets/icons/caneta.png';
+        icone.alt = 'Editar Nome';
+        icone.className = 'icone-editar';
+        nomeDisplay.appendChild(icone);
+    }
+</script>
 </body>
 </html>

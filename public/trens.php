@@ -166,6 +166,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <?php if (!empty($linha['horarios'])): ?>
                     <div class="horarios-container">
+                        <label class="toggle-label" for="toggle-<?=htmlspecialchars($linha['id'])?>">
+                            <span>Mostrar Horários</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="toggle-<?=htmlspecialchars($linha['id'])?>">
+                                <span class="slider"></span>
+                            </div>
+                        </label>
                         <div class="horarios" aria-label="Horários dos dias úteis para <?=htmlspecialchars($linha['nome'])?>">
                             <?php foreach ($linha['horarios'] as $estacao => $horarios): ?>
                                 <div class="horarios-column">
@@ -212,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </footer>
 
     <script>
-        const searchInput = document.getElementById('search-input');
+        const searchInput = document.getElementById('searchInput');
         const linhas = document.querySelectorAll('.trem');
 
         searchInput.addEventListener('input', () => {
@@ -242,6 +249,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </body>
 </html>
-
-
-
