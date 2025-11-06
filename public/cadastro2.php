@@ -18,7 +18,7 @@
     if (empty($telefone)) {
         $errors[] = "Telefone é obrigatório.";
     } elseif (!preg_match('/^[0-9]{11}$/', $telefone)) {
-        $errors[] = "Telefone completo ";
+        $errors[] = "Telefone não reconhecido ";
     }
 
     if (empty($senha) || empty($confirmar_senha)) {

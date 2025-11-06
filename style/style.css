@@ -695,3 +695,10 @@ body {
 }
 
 /*sensor.php*/
+
+
+.button_link{
+    border: none;
+    background-color: black;
+    color: white;
+}
