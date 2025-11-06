@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Inicializa dados do usuário na sessão se não existir
 $default_user = [
     'id' => 329,
     'nome' => 'Nome',
@@ -15,12 +14,10 @@ if (!isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Atualiza nome
     if (isset($_POST['novo_nome'])) {
         $user['nome'] = trim($_POST['novo_nome']) !== '' ? trim($_POST['novo_nome']) : 'Nome';
     }
 
-    // Atualiza foto de perfil
     if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
         $ext = strtolower(pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION));
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
@@ -31,18 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             move_uploaded_file($_FILES['nova_foto']['tmp_name'], __DIR__ . '/../' . $novo_nome_arquivo);
             $user['foto'] = $novo_nome_arquivo;
         }
+    } else {
+        if (empty($user['foto'])) {
+            $user['foto'] = 'default-profile.png';
+        }
     }
 
-    // Salva alterações na sessão
     $_SESSION['user'] = $user;
 
-    // Redireciona para evitar reenvio de formulário
     if (!isset($_POST['redirect_page'])) {
         header('Location: perfil.php');
         exit();
     }
 
-    // Redirecionamento do menu inferior
     if (isset($_POST['redirect_page'])) {
         $page = $_POST['redirect_page'];
         switch ($page) {
