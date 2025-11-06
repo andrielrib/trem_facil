@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $login = $_POST["login"] ?? "";
   $senha = $_POST["senha"] ?? "";
 
-
   $stmt = $conn->prepare("SELECT id_usuario, nome_completo, senha, tipo_usuarios FROM usuarios WHERE email=? OR telefone=?");
   $stmt->bind_param("ss", $login, $login);
   $stmt->execute();
@@ -26,17 +25,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $usuario = $result->fetch_assoc();
   $stmt->close();
 
+  $isApi = (isset($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false);
 
   if ($usuario && password_verify($senha, $usuario['senha'])) {
     $_SESSION["user_id"] = $usuario["id_usuario"];
     $_SESSION["username"] = $usuario["nome_completo"];
     $_SESSION["tipo_usuario"] = $usuario["tipo_usuarios"];
-    header("Location:pagina_inicial.php");
-
-    
-    exit;
+    if ($isApi) {
+      header('Content-Type: application/json');
+      echo json_encode([
+        'success' => true,
+        'user_id' => $usuario["id_usuario"],
+        'username' => $usuario["nome_completo"],
+        'tipo_usuario' => $usuario["tipo_usuarios"]
+      ]);
+      exit;
+    } else {
+      header("Location:pagina_inicial.php");
+      exit;
+    }
   } else {
-    $errors[] ="Email/Telefone ou senha incorretos!";
+    if ($isApi) {
+      header('Content-Type: application/json');
+      http_response_code(401);
+      echo json_encode([
+        'success' => false,
+        'error' => 'Email/Telefone ou senha incorretos!'
+      ]);
+      exit;
+    } else {
+      $errors[] ="Email/Telefone ou senha incorretos!";
+    }
   }
 }
 ?>
