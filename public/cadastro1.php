@@ -121,7 +121,7 @@ function validateCPF($cpf)
             <strong>
                 <p class="margin_cadastro1">Nome completo:</p>
             </strong>
-            <input type="text"
+            <input type="caixa_login"
                 class="caixa_cadastro1"
                 name="nome_completo"
                 value="<?php echo htmlspecialchars($nome_completo); ?>"
@@ -130,7 +130,7 @@ function validateCPF($cpf)
             <strong>
                 <p class="margin_cadastro1">CPF:</p>
             </strong>
-            <input type="text"
+            <input type="caixa_login"
                 class="caixa_cadastro1"
                 name="cpf"
                 value="<?php echo htmlspecialchars($cpf); ?>"
@@ -140,7 +140,7 @@ function validateCPF($cpf)
             <strong>
                 <p class="margin_cadastro1">CEP:</p>
             </strong>
-            <input type="text"
+            <input type="caixa_login"
                 class="caixa_cadastro1"
                 name="cep"
                 value="<?php echo htmlspecialchars($cep); ?>"
