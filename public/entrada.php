@@ -13,7 +13,7 @@
 
 
     <div class="text_entrada">
-        <h1>Jà possui conta?</h1>
+        <h1>Já possui conta?</h1>
     </div>
     
     <br><br>
