@@ -28,10 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             move_uploaded_file($_FILES['nova_foto']['tmp_name'], __DIR__ . '/../' . $novo_nome_arquivo);
             $user['foto'] = $novo_nome_arquivo;
         }
-    } else {
-        if (empty($user['foto'])) {
-            $user['foto'] = 'default-profile.png';
-        }
     }
 
     $_SESSION['user'] = $user;
