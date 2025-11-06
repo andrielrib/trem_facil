@@ -1,5 +1,5 @@
 <?php
-include 'public/db.php'; 
+include '../public/db.php'; 
 
 session_start();
 
@@ -82,6 +82,10 @@ if ($tipo) {
 <body>
     <div class="container">
         <div class="login_icon">
+            <br>
+            <br>
+            <br>
+            
             <img src="../assets/icons/trem_bala_icon.png" alt="Ícone trem bala">
             <h2><span>Bem vindo!</span></h2>
         </div>
