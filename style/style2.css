@@ -1,5 +1,4 @@
 /*trens.php*/
-
 * {
     box-sizing: border-box;
 }
@@ -19,8 +18,8 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    max-width: 414px;
     width: 100%;
+    max-width: 414px;
     margin: 0 auto;
     background: #000;
     overflow-y: auto;
@@ -201,164 +200,7 @@ header {
     padding-bottom: 4px;
 }
 
-.status.Inativo {
-    color: #d50000;
-    border-bottom: 3px solid #d50000;
-    padding-bottom: 4px;
-}
-
-.paradas {
-    font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 12px;
-    margin-top: 10px;
-    color: white;
-}
-
-.paradas-list {
-    margin-left: 12px;
-    margin-bottom: 14px;
-}
-
-.parada-item {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 600;
-    font-size: 14px;
-    padding: 3px 0;
-    color: #ccc;
-}
-
-.parada-item .tempo {
-    font-weight: 700;
-    color: #00c853;
-}
-
-.parada-item.nao-agora .tempo {
-    color: #00c853;
-}
-
-.parada-item.agora .tempo {
-    color: #00c853;
-}
-
-.horarios-container {
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 2px solid #0e4caf;
-    font-weight: 700;
-    color: white;
-}
-
-.toggle-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 16px;
-    user-select: none;
-}
-
-.toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 44px;
-    height: 24px;
-}
-
-.toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    border-radius: 30px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #444;
-    transition: 0.4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    border-radius: 50%;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-}
-
-input:checked+.slider {
-    background-color: #0e4caf;
-}
-
-input:checked+.slider:before {
-    transform: translateX(20px);
-}
-
-.horarios {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    font-weight: 600;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.horarios-column {
-    flex: 1;
-    min-width: 120px;
-}
-
-.horarios-column strong {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 14px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 4px;
-    color: #ddd;
-}
-
-.horarios-list {
-    display: grid;
-    gap: 6px;
-    grid-template-columns: auto auto;
-}
-
-footer {
-    background: #000;
-    padding: 5px;
-    display: flex;
-    justify-content: space-around;
-    border-top: 1px solid #0a5fff;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-footer button {
-    background: transparent;
-    border: none;
-    font-size: 26px;
-    color: #108000;
-    cursor: pointer;
-}
-
-footer button:hover {
-    color: #1aff1a;
-}
-
-/*trens.php*/
+/*trens.php*
 
 /*perfil.php*/
 
