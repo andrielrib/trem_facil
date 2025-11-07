@@ -43,35 +43,58 @@
             die("Erro de conexão: " . $conn->connect_error);
         }
 
-        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO usuarios (nome_completo, email, telefone, CEP, CPF, senha, tipo_usuarios) 
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-        $stmt = $conn->prepare($sql);
-
-        $tipo_usuarios = 1;
-        $stmt->bind_param(
-            "ssssssi",
-            $dados1['nome_completo'],
-            $dados1['email'],
-            $telefone,
-            $dados1['cep'],
-            $dados1['cpf'],
-            $senhaHash,
-            $tipo_usuarios
-        );
-
-        if ($stmt->execute()) {
-            unset($_SESSION['cadastro1']);
-            header("Location: pagina_inicial.php");
-            exit();
-        } else {
-            $errors[] = "Erro ao cadastrar: " . $stmt->error;
+        $checkSql = "SELECT email, telefone, CPF FROM usuarios WHERE email = ? OR telefone = ? OR CPF = ?";
+        $checkStmt = $conn->prepare($checkSql);
+        $checkStmt->bind_param("sss", $dados1['email'], $telefone, $dados1['cpf']);
+        $checkStmt->execute();
+        $checkStmt->store_result();
+        if ($checkStmt->num_rows > 0) {
+            $checkStmt->bind_result($emailExistente, $telefoneExistente, $cpfExistente);
+            while ($checkStmt->fetch()) {
+                if ($emailExistente === $dados1['email']) {
+                    $errors[] = "Email já em uso.";
+                }
+                if ($telefoneExistente === $telefone) {
+                    $errors[] = "Telefone já em uso.";
+                }
+                if ($cpfExistente === $dados1['cpf']) {
+                    $errors[] = "CPF já em uso.";
+                }
+            }
         }
+        $checkStmt->close();
 
-        $stmt->close();
-        $conn->close();
+        if (empty($errors)) {
+            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO usuarios (nome_completo, email, telefone, CEP, CPF, senha, tipo_usuarios) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            $stmt = $conn->prepare($sql);
+
+            $tipo_usuarios = 1;
+            $stmt->bind_param(
+                "ssssssi",
+                $dados1['nome_completo'],
+                $dados1['email'],
+                $telefone,
+                $dados1['cep'],
+                $dados1['cpf'],
+                $senhaHash,
+                $tipo_usuarios
+            );
+
+            if ($stmt->execute()) {
+                unset($_SESSION['cadastro1']);
+                header("Location: pagina_inicial.php");
+                exit();
+            } else {
+                $errors[] = "Erro ao cadastrar: " . $stmt->error;
+            }
+
+            $stmt->close();
+            $conn->close();
+        }
     }
   }
 ?>

@@ -7,6 +7,8 @@
 </head>
 <body>
     
+<a href="login.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
+
 <div class="img_carinha_redefinir">
     <img src="../assets/icons/cara_confuso.png" alt="icone carinha" width="200" height="300">
 </div>

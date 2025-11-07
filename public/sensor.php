@@ -1,41 +1,20 @@
+
+
 <?php
 session_start();
 
-if (!isset($_SESSION['sensores'])) {
-    $_SESSION['sensores'] = [
-        [
-            'id' => 1,
-            'nome' => 'SENSOR X',
-            'status' => 'ATIVO',
-            'status_color' => 'green',
-            'localizacao' => 'X',
-            'ultima_atualizacao_texto' => '5 MIN',
-            'ultima_atualizacao_valor' => '120',
-            'ultima_atualizacao_unidade' => 'KM/H'
-        ],
-        [
-            'id' => 2,
-            'nome' => 'SENSOR Y',
-            'status' => 'INATIVO',
-            'status_color' => 'red',
-            'localizacao' => 'Y',
-            'ultima_atualizacao_texto' => '1 H',
-            'ultima_atualizacao_valor' => '80',
-            'ultima_atualizacao_unidade' => 'KM/H'
-        ],
-        [
-            'id' => 3,
-            'nome' => 'SENSOR Z',
-            'status' => 'ATIVO',
-            'status_color' => 'green',
-            'localizacao' => 'Z',
-            'ultima_atualizacao_texto' => '1 MIN',
-            'ultima_atualizacao_valor' => '150',
-            'ultima_atualizacao_unidade' => 'KM/H'
-        ],
-    ];
+// Conexão com o banco (ajuste credenciais se necessário)
+$servername = "localhost";
+$username = "root";  
+$password = "root";  // Ajuste se sua senha for diferente
+$dbname = "trem_facil";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
 }
 
+// Redirecionamentos (mantido do original)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
     $page = $_POST['redirect_page'];
     switch ($page) {
@@ -57,34 +36,79 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
     }
 }
 
-
+// Adicionar sensor (inserir no banco) - Melhorado com validação e tratamento de duplicatas
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_sensor'])) {
-    $novoSensor = [
-        'id' => count($_SESSION['sensores']) + 1,
-        'nome' => $_POST['nome'] ?? 'SENSOR NOVO',
-        'status' => 'ATIVO', 
-        'status_color' => 'green',
-        'localizacao' => $_POST['localizacao'] ?? 'DESCONHECIDA',
-        'ultima_atualizacao_texto' => 'AGORA',
-        'ultima_atualizacao_valor' => '0',
-        'ultima_atualizacao_unidade' => 'KM/H'
-    ];
-    $_SESSION['sensores'][] = $novoSensor;
-    header('Location: ' . $_SERVER['PHP_SELF']); 
-    exit();
+    $nome = trim($_POST['nome'] ?? '');
+    $localizacao = trim($_POST['localizacao'] ?? '');
+    
+    if (empty($nome) || empty($localizacao)) {
+        echo "<script>alert('Nome e localização são obrigatórios!');</script>";
+    } else {
+        // Verificar se o nome já existe (para evitar duplicatas, já que é UNIQUE)
+        $stmt_check = $conn->prepare("SELECT id_sensores FROM sensores WHERE nome_sensor = ?");
+        $stmt_check->bind_param("s", $nome);
+        $stmt_check->execute();
+        $stmt_check->store_result();
+        if ($stmt_check->num_rows > 0) {
+            echo "<script>alert('Sensor com este nome já existe!');</script>";
+        } else {
+            // Inserir
+            $stmt = $conn->prepare("INSERT INTO sensores (nome_sensor, status, localizacao, ultima_atualizacao_texto, ultima_atualizacao_valor, ultima_atualizacao_unidade) VALUES (?, 'ATIVO', ?, 'AGORA', '0', 'KM/H')");
+            $stmt->bind_param("ss", $nome, $localizacao);
+            if ($stmt->execute()) {
+                header('Location: ' . $_SERVER['PHP_SELF']);
+                exit();
+            } else {
+                echo "<script>alert('Erro ao adicionar sensor: " . $stmt->error . "');</script>";
+            }
+            $stmt->close();
+        }
+        $stmt_check->close();
+    }
 }
 
-
+// Remover sensor (deletar do banco) - Melhorado com confirmação e tratamento de erro
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_sensor'])) {
     $id = (int)$_POST['sensor_id'];
-    $_SESSION['sensores'] = array_filter($_SESSION['sensores'], function($sensor) use ($id) {
-        return $sensor['id'] !== $id;
-    });
-    header('Location: ' . $_SERVER['PHP_SELF']); 
-    exit();
+    
+    $stmt = $conn->prepare("DELETE FROM sensores WHERE id_sensores = ?");
+    $stmt->bind_param("i", $id);
+    if ($stmt->execute()) {
+        if ($stmt->affected_rows > 0) {
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit();
+        } else {
+            echo "<script>alert('Sensor não encontrado ou já removido!');</script>";
+        }
+    } else {
+        echo "<script>alert('Erro ao remover sensor: " . $stmt->error . "');</script>";
+    }
+    $stmt->close();
 }
 
-$sensores = $_SESSION['sensores'];
+// Buscar sensores do banco - Mantido, mas com verificação de erro
+$sensores = [];
+$result = $conn->query("SELECT * FROM sensores ORDER BY id_sensores ASC");
+if ($result) {
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $sensores[] = [
+                'id' => $row['id_sensores'],
+                'nome' => $row['nome_sensor'],
+                'status' => $row['status'],
+                'status_color' => ($row['status'] === 'ATIVO') ? 'green' : 'red',
+                'localizacao' => $row['localizacao'],
+                'ultima_atualizacao_texto' => $row['ultima_atualizacao_texto'],
+                'ultima_atualizacao_valor' => $row['ultima_atualizacao_valor'],
+                'ultima_atualizacao_unidade' => $row['ultima_atualizacao_unidade']
+            ];
+        }
+    }
+} else {
+    echo "<script>alert('Erro ao buscar sensores: " . $conn->error . "');</script>";
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +118,7 @@ $sensores = $_SESSION['sensores'];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sensores - Trem Fácil</title>
     <style>
-        
+        /* CSS mantido e otimizado para melhor responsividade */
         * {
             margin: 0;
             padding: 0;
@@ -106,7 +130,7 @@ $sensores = $_SESSION['sensores'];
             font-family: Arial, sans-serif;
             color: white;
             padding: 15px;
-            padding-bottom: 80px; 
+            padding-bottom: 80px;
         }
 
         .header {
@@ -346,7 +370,6 @@ $sensores = $_SESSION['sensores'];
     </style>
 </head>
 <body>
-
     <header class="header">
         <button class="btn-voltar" title="Voltar"></button>
         <div class="titulo-principal">SENSORES</div>
@@ -363,38 +386,42 @@ $sensores = $_SESSION['sensores'];
         </button>
     </div>
 
-    <?php foreach($sensores as $sensor): ?>
-        <div class="sensor-item">
-            <div class="sensor-header">
-                <div class="sensor-name"><?= htmlspecialchars($sensor['nome']) ?></div>
-                <form action="" method="post" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja remover este sensor?');">
-                    <input type="hidden" name="sensor_id" value="<?= $sensor['id'] ?>">
-                    <button class="btn-trash" type="submit" name="remove_sensor" title="Excluir Sensor">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="white" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm3 14a2 2 0 1 1 4 0H6zm7 0a2 2 0 1 1 4 0h-4zm2-10v8H9v-8H5V8h14v2h-6z"/></svg>
-                    </button>
-                </form>
-            </div>
-
-            <div class="sensor-details">
-                <div class="status-label">
-                    STATUS: 
-                    <?php if($sensor['status'] === 'ATIVO'): ?>
-                        <span class="status-ativo"><?= htmlspecialchars($sensor['status']) ?></span>
-                    <?php else: ?>
-                        <span class="status-inativo"><?= htmlspecialchars($sensor['status']) ?></span>
-                    <?php endif; ?>
+    <?php if (empty($sensores)): ?>
+        <p style="text-align: center; color: #777;">Nenhum sensor encontrado. Adicione um novo sensor!</p>
+    <?php else: ?>
+        <?php foreach($sensores as $sensor): ?>
+            <div class="sensor-item">
+                <div class="sensor-header">
+                    <div class="sensor-name"><?= htmlspecialchars($sensor['nome']) ?></div>
+                    <form action="" method="post" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja remover este sensor?');">
+                        <input type="hidden" name="sensor_id" value="<?= $sensor['id'] ?>">
+                        <button class="btn-trash" type="submit" name="remove_sensor" title="Excluir Sensor">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="white" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm3 14a2 2 0 1 1 4 0H6zm7 0a2 2 0 1 1 4 0h-4zm2-10v8H9v-8H5V8h14v2h-6z"/></svg>
+                        </button>
+                    </form>
                 </div>
-                <div class="localizacao">
-                    LOCALIZAÇÃO: <?= htmlspecialchars($sensor['localizacao']) ?>
+
+                <div class="sensor-details">
+                    <div class="status-label">
+                        STATUS: 
+                        <?php if($sensor['status'] === 'ATIVO'): ?>
+                            <span class="status-ativo"><?= htmlspecialchars($sensor['status']) ?></span>
+                        <?php else: ?>
+                            <span class="status-inativo"><?= htmlspecialchars($sensor['status']) ?></span>
+                        <?php endif; ?>
+                    </div>
+                    <div class="localizacao">
+                        LOCALIZAÇÃO: <?= htmlspecialchars($sensor['localizacao']) ?>
+                    </div>
+                </div>
+
+                <div class="ult-atualizacao">
+                    ÚLTIMA ATUALIZAÇÃO(<?= htmlspecialchars($sensor['ultima_atualizacao_texto']) ?>): 
+                    <span class="kmh"><?= htmlspecialchars($sensor['ultima_atualizacao_valor']) ?> <?= htmlspecialchars($sensor['ultima_atualizacao_unidade']) ?></span>
                 </div>
             </div>
-
-            <div class="ult-atualizacao">
-                ÚLTIMA ATUALIZAÇÃO(<?= htmlspecialchars($sensor['ultima_atualizacao_texto']) ?>): 
-                <span class="kmh"><?= htmlspecialchars($sensor['ultima_atualizacao_valor']) ?> <?= htmlspecialchars($sensor['ultima_atualizacao_unidade']) ?></span>
-            </div>
-        </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
 
     <div id="addSensorModal" class="modal">
         <div class="modal-content">
@@ -451,5 +478,59 @@ $sensores = $_SESSION['sensores'];
         }
     </script>
 
+<script>
+
+function filterSensores() {
+    const query = searchInput.value.trim().toLowerCase();
+    const sensores = document.querySelectorAll('.sensor-item');
+    let totalVisiveis = 0;
+
+    sensores.forEach(sensor => {
+
+        const nome = sensor.querySelector('.sensor-name').textContent.toLowerCase();
+        const statusSpan = sensor.querySelector('.status-label span');
+        let status = statusSpan ? statusSpan.textContent.toLowerCase() : '';
+
+
+        let statusValido = statusFilters.has(status);
+
+
+        let pesquisaValida = nome.includes(query);
+
+
+        if (statusValido && pesquisaValida) {
+            sensor.style.display = '';
+            totalVisiveis++;
+        } else {
+            sensor.style.display = 'none';
+        }
+    });
+
+
+    let mensagemNenhum = document.getElementById('mensagem-nenhum');
+    if(!mensagemNenhum){
+        mensagemNenhum = document.createElement('p');
+        mensagemNenhum.id = 'mensagem-nenhum';
+        mensagemNenhum.style.cssText = 'text-align:center; color:#777;';
+        mensagemNenhum.textContent = 'Nenhum sensor encontrado.';
+        document.querySelector('body').appendChild(mensagemNenhum);
+    }
+    mensagemNenhum.style.display = (totalVisiveis === 0) ? 'block' : 'none';
+}
+
+searchInput.addEventListener('input', filterSensores);
+
+function toggleStatusFilter(status) {
+    if (statusFilters.has(status)) {
+        statusFilters.delete(status);
+    } else {
+        statusFilters.add(status);
+    }
+    filterSensores();
+}
+
+
+filterSensores();
+</script>
 </body>
 </html>
