@@ -43,6 +43,20 @@
             die("Erro de conexão: " . $conn->connect_error);
         }
 
+        // Verifica se já existe usuário com email, telefone ou CPF
+        $checkSql = "SELECT id_usuario FROM usuarios WHERE email = ? OR telefone = ? OR CPF = ?";
+        $checkStmt = $conn->prepare($checkSql);
+        $checkStmt->bind_param("sss", $dados1['email'], $telefone, $dados1['cpf']);
+        $checkStmt->execute();
+        $checkStmt->store_result();
+        if ($checkStmt->num_rows > 0) {
+            // Usuário já cadastrado, redireciona
+            unset($_SESSION['cadastro1']);
+            header("Location: pagina_inicial.php");
+            exit();
+        }
+        $checkStmt->close();
+
         $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO usuarios (nome_completo, email, telefone, CEP, CPF, senha, tipo_usuarios) 
