@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const arrow = station.querySelector('.toggle-arrow');
             
             lines.classList.remove('visible'); 
-            arrow.classList.add('rotate'); 
+            arrow.classList.add('rotate');
         });
     });
 

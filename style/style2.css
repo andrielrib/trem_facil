@@ -760,11 +760,22 @@ h1 {
     padding: 0 2px;
 }
 
-.station-header img.icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    filter: invert(100%);
+.station-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 2px;
+    position: relative;
+    z-index: 2;
+    background-color: #000;
+}
+
+.lines-list {
+    display: none;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .station-header h2 {
@@ -783,11 +794,6 @@ h1 {
 
 .toggle-arrow.rotate {
     transform: rotate(180deg);
-}
-
-.lines-list {
-    display: none;
-    margin-top: 10px;
 }
 
 .lines-list.visible {
