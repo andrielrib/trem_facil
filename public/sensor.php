@@ -477,5 +477,60 @@ $conn->close();
             }
         }
     </script>
+
+<script>
+
+function filterSensores() {
+    const query = searchInput.value.trim().toLowerCase();
+    const sensores = document.querySelectorAll('.sensor-item');
+    let totalVisiveis = 0;
+
+    sensores.forEach(sensor => {
+
+        const nome = sensor.querySelector('.sensor-name').textContent.toLowerCase();
+        const statusSpan = sensor.querySelector('.status-label span');
+        let status = statusSpan ? statusSpan.textContent.toLowerCase() : '';
+
+
+        let statusValido = statusFilters.has(status);
+
+
+        let pesquisaValida = nome.includes(query);
+
+
+        if (statusValido && pesquisaValida) {
+            sensor.style.display = '';
+            totalVisiveis++;
+        } else {
+            sensor.style.display = 'none';
+        }
+    });
+
+
+    let mensagemNenhum = document.getElementById('mensagem-nenhum');
+    if(!mensagemNenhum){
+        mensagemNenhum = document.createElement('p');
+        mensagemNenhum.id = 'mensagem-nenhum';
+        mensagemNenhum.style.cssText = 'text-align:center; color:#777;';
+        mensagemNenhum.textContent = 'Nenhum sensor encontrado.';
+        document.querySelector('body').appendChild(mensagemNenhum);
+    }
+    mensagemNenhum.style.display = (totalVisiveis === 0) ? 'block' : 'none';
+}
+
+searchInput.addEventListener('input', filterSensores);
+
+function toggleStatusFilter(status) {
+    if (statusFilters.has(status)) {
+        statusFilters.delete(status);
+    } else {
+        statusFilters.add(status);
+    }
+    filterSensores();
+}
+
+
+filterSensores();
+</script>
 </body>
 </html>
