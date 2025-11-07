@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user['nome'] = trim($_POST['novo_nome']) !== '' ? trim($_POST['novo_nome']) : 'Nome';
     }
 
+    // Só altera a foto se houver upload novo
     if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
         $ext = strtolower(pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION));
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
@@ -27,6 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $novo_nome_arquivo = 'uploads/perfil_' . $user['id'] . '.' . $ext;
             move_uploaded_file($_FILES['nova_foto']['tmp_name'], __DIR__ . '/../' . $novo_nome_arquivo);
             $user['foto'] = $novo_nome_arquivo;
+        }
+    } else {
+        // Se não houve upload, mantém a foto já salva em $user['foto']
+        if (!isset($user['foto']) || empty($user['foto'])) {
+            $user['foto'] = $default_user['foto'];
         }
     }
 
@@ -39,21 +45,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['redirect_page'])) {
         $page = $_POST['redirect_page'];
-        switch ($page) {
-            case 'sensores':
-                header('Location: sensor.php');
-                exit();
-            case 'trens':
-                header('Location: trens.php');
-                exit();
-            case 'estacoes':
-                header('Location: estacoes.php');
-                exit();
-            case 'perfil':
-                header('Location: perfil.php');
-                exit();
-            default:
-                header('Location: index.php');
+        if ($page === 'sensores') {
+            header('Location: sensor.php');
+            exit();
+        } elseif ($page === 'trens') {
+            header('Location: trens.php');
+            exit();
+        } elseif ($page === 'estacoes') {
+            header('Location: estacoes.php');
+            exit();
+        } elseif ($page === 'perfil') {
+            header('Location: perfil.php');
+            exit();
+        } else {
+            header('Location: index.php');
+            exit();
         }
     }
 }
@@ -88,7 +94,7 @@ if (isset($_GET['action'])) {
     <div class="wrapper">
         <form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
             <div class="foto-container">
-                <img id="imagemPerfil" src="<?php echo htmlspecialchars($user['foto']); ?>" alt="Foto Perfil" />
+                <img id="imagemPerfil" src="<?php echo (strpos($user['foto'], 'uploads/') === 0 ? '../' : '../assets/') . htmlspecialchars($user['foto']); ?>" alt="Foto Perfil" />
                 <label for="nova_foto" title="Alterar foto de perfil">
                     <img src="../assets/icons/caneta.png" alt="Editar Foto" />
                 </label>
