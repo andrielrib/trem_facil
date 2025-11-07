@@ -41,3 +41,19 @@ CREATE TABLE estacoes (
     FKid_trens INT NOT NULL, 
     FOREIGN KEY (FKid_trens) REFERENCES trens(id_trens)
 );
+
+
+USE trem_facil;
+
+-- Adicionar colunas à tabela sensores (não Apaguem Galera)
+ALTER TABLE sensores ADD COLUMN status VARCHAR(20) DEFAULT 'ATIVO';
+ALTER TABLE sensores ADD COLUMN localizacao VARCHAR(120) DEFAULT 'DESCONHECIDA';
+ALTER TABLE sensores ADD COLUMN ultima_atualizacao_texto VARCHAR(50) DEFAULT 'AGORA';
+ALTER TABLE sensores ADD COLUMN ultima_atualizacao_valor VARCHAR(20) DEFAULT '0';
+ALTER TABLE sensores ADD COLUMN ultima_atualizacao_unidade VARCHAR(10) DEFAULT 'KM/H';
+
+
+INSERT INTO sensores (nome_sensor, status, localizacao, ultima_atualizacao_texto, ultima_atualizacao_valor, ultima_atualizacao_unidade) VALUES
+('SENSOR 1', 'ATIVO', 'X', '5 MIN', '120', 'KM/H'),
+('SENSOR 2', 'INATIVO', 'Y', '1 H', '80', 'KM/H'),
+('SENSOR 3', 'ATIVO', 'Z', '1 MIN', '150', 'KM/H');
