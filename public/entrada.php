@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-    <body>
-    <div class="img_entradaa">
-        <img src="../assets/icons/trem_bala_icon.png" alt="icone trem bala" width="300" height="250">
+    <a href="index.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
+    <div class="i">
+        <img src="../assets/icons/trem_bala_icon.png" alt="Ícone Trem" width="260" height="210" class="">
     </div>
+
+   
 
 
     <div class="text_entrada">
