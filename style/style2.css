@@ -665,17 +665,25 @@ footer button:hover {
     box-sizing: border-box;
 }
 
+html {
+    height: 100%; 
+}
+
 body {
     margin: 0;
     background-color: #000;
     font-family: Arial, sans-serif;
     color: #fff;
+    min-height: 100vh;
+    overflow-y: scroll;
 }
 
 .container {
     max-width: 430px;
+    width: 100%;
     margin: 20px auto;
     padding: 0 10px;
+    padding-bottom: 120px; 
 }
 
 header {
@@ -683,6 +691,10 @@ header {
     align-items: center;
     padding: 5px 0;
     gap: 10px;
+    position: sticky; 
+    top: 0;
+    background-color: #000;
+    z-index: 10000; 
 }
 
 .btn-back {
@@ -748,11 +760,22 @@ h1 {
     padding: 0 2px;
 }
 
-.station-header img.icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    filter: invert(100%);
+.station-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 2px;
+    position: relative;
+    z-index: 2;
+    background-color: #000;
+}
+
+.lines-list {
+    display: none;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .station-header h2 {
@@ -771,11 +794,6 @@ h1 {
 
 .toggle-arrow.rotate {
     transform: rotate(180deg);
-}
-
-.lines-list {
-    display: none;
-    margin-top: 10px;
 }
 
 .lines-list.visible {
@@ -800,7 +818,11 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 100; 
+    left: 0;
+    right: 0;
+    max-width: 430px;
+    margin: 0 auto;
 }
 
 footer button {
@@ -820,80 +842,82 @@ footer button:hover {
 /*voce tem certeza */
 
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            background: #000;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+body {
+    background: #000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
 
-        .wrapper {
-            width: 100%;
-            max-width: 400px;
-            background: #111;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-            padding: 20px;
-            text-align: center;
-        }
+.wrapper {
+    width: 100%;
+    max-width: 400px;
+    background: #111;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    padding: 20px;
+    text-align: center;
+}
 
-        .wrapper:hover {
-            transform: scale(1.02);
-        }
+.wrapper:hover {
+    transform: scale(1.02);
+}
 
-        .confirmacao-container h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
+.confirmacao-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
 
-        .confirmacao-container p {
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
+.confirmacao-container p {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
 
-        .botoes-confirmacao {
-            display: flex;
-            justify-content: space-around;
-        }
+.botoes-confirmacao {
+    display: flex;
+    justify-content: space-around;
+}
 
-        .btn-sim, .btn-nao {
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-size: 18px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
+.btn-sim,
+.btn-nao {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
 
-        .btn-sim {
-            background: #e63946;
-        }
+.btn-sim {
+    background: #e63946;
+}
 
-        .btn-sim:hover {
-            background: #b2222e;
-        }
+.btn-sim:hover {
+    background: #b2222e;
+}
 
-        .btn-nao {
-            background: #0057b7;
-        }
+.btn-nao {
+    background: #0057b7;
+}
 
-        .btn-nao:hover {
-            background: #003d82;
-        }
-          /*  voce tem certeza */
+.btn-nao:hover {
+    background: #003d82;
+}
+
+/*  voce tem certeza */
