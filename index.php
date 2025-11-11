@@ -173,12 +173,35 @@ if ($tipo) {
         
 
         <div class="alinhar_entrada">
-    
-
             <a href="public/login.php" class="caixa_azul_entrada">
                 <h2>entrar</h2>
             </a>
+
+            <button onclick="getRandomFox()" class="caixa_azul_entrada">
+                <h2>raposa aleatória</h2>
+            </button>
         </div>
+
+        <div id="fox-result" style="margin-top: 20px; color: #ffffff;"></div>
+
+        <script>
+            async function getRandomFox() {
+                try {
+                    const response = await fetch('public/apis.php/apis.php?fox');
+                    const data = await response.json();
+                    if (data.image) {
+                        document.getElementById('fox-result').innerHTML = `
+                            <img src="${data.image}" alt="Raposa Aleatória" style="max-width: 300px; height: auto; border-radius: 10px;">
+                            <p><a href="${data.link}" target="_blank" style="color: #007BFF;">Ver mais</a></p>
+                        `;
+                    } else if (data.error) {
+                        document.getElementById('fox-result').innerHTML = `<p>Erro: ${data.error}</p>`;
+                    }
+                } catch (error) {
+                    document.getElementById('fox-result').innerHTML = `<p>Erro ao carregar raposa: ${error.message}</p>`;
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
