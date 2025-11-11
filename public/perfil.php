@@ -85,8 +85,17 @@ if (isset($_GET['action'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Perfil</title>
     <link rel="stylesheet" href="../style/style2.css">
+    <style>
+        body {
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
-<body>
+<body onload="loadRandomFoxBackground()">
     <div class="wrapper">
         <form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
             <div class="foto-container">
@@ -165,6 +174,18 @@ if (isset($_GET['action'])) {
                     document.getElementById('imagemPerfil').src = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        async function loadRandomFoxBackground() {
+            try {
+                const response = await fetch('../public/apis.php/apis.php?fox');
+                const data = await response.json();
+                if (data.image) {
+                    document.body.style.backgroundImage = `url('${data.image}')`;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar fundo de raposa:', error);
             }
         }
     </script>

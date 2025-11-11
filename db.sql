@@ -56,6 +56,7 @@ CREATE TABLE linha (
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+<<<<<<< HEAD
 CREATE TABLE estacao_linha (
     id_estacao_linha INT AUTO_INCREMENT PRIMARY KEY,
     id_estacao INT NOT NULL,
@@ -64,3 +65,13 @@ CREATE TABLE estacao_linha (
     FOREIGN KEY (id_linha) REFERENCES linha(id_linha),
     UNIQUE(id_estacao, id_linha)
 );
+=======
+
+-- NÃO APAGA A PORRA DA SENHA CARALHO
+
+INSERT INTO usuario (nome_completo, email, telefone, cep, cpf, senha, tipo_usuario) VALUES
+('Rafael Almeida', 'rafael_almeida@gmail.com', '11987654321', '01234567', '12345678901', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1),
+('Andriel', 'andriel@gmail.com', '11987654322', '01234568', '12345678902', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2),
+('Arthur', 'arthur@gmail.com', '11987654323', '01234569', '12345678903', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2),
+('Caio', 'caio@gmail.com', '11987654324', '01234570', '12345678904', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2);
+>>>>>>> e1fc773e1316d6dba963440a6d273d37546af77d

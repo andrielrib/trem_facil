@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 
@@ -45,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_sensor'])) {
         echo "<script>alert('Nome e localização são obrigatórios!');</script>";
     } else {
         // Verificar se o nome já existe (para evitar duplicatas, já que é UNIQUE)
-        $stmt_check = $conn->prepare("SELECT id_sensores FROM sensores WHERE nome_sensor = ?");
+        $stmt_check = $conn->prepare("SELECT id_sensor FROM sensor WHERE nome = ?");
         $stmt_check->bind_param("s", $nome);
         $stmt_check->execute();
         $stmt_check->store_result();
@@ -53,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_sensor'])) {
             echo "<script>alert('Sensor com este nome já existe!');</script>";
         } else {
             // Inserir
-            $stmt = $conn->prepare("INSERT INTO sensores (nome_sensor, status, localizacao, ultima_atualizacao_texto, ultima_atualizacao_valor, ultima_atualizacao_unidade) VALUES (?, 'ATIVO', ?, 'AGORA', '0', 'KM/H')");
+            $stmt = $conn->prepare("INSERT INTO sensor (nome, status, localizacao, ultima_atualizacao_texto, ultima_atualizacao_valor, ultima_atualizacao_unidade) VALUES (?, 'ATIVO', ?, 'AGORA', '0', 'KM/H')");
             $stmt->bind_param("ss", $nome, $localizacao);
             if ($stmt->execute()) {
                 header('Location: ' . $_SERVER['PHP_SELF']);
@@ -71,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_sensor'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_sensor'])) {
     $id = (int)$_POST['sensor_id'];
     
-    $stmt = $conn->prepare("DELETE FROM sensores WHERE id_sensores = ?");
+    $stmt = $conn->prepare("DELETE FROM sensor WHERE id_sensor = ?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
@@ -88,13 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_sensor'])) {
 
 // Buscar sensores do banco - Mantido, mas com verificação de erro
 $sensores = [];
-$result = $conn->query("SELECT * FROM sensores ORDER BY id_sensores ASC");
+$result = $conn->query("SELECT * FROM sensor ORDER BY id_sensor ASC");
 if ($result) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $sensores[] = [
-                'id' => $row['id_sensores'],
-                'nome' => $row['nome_sensor'],
+                'id' => $row['id_sensor'],
+                'nome' => $row['nome'],
                 'status' => $row['status'],
                 'status_color' => ($row['status'] === 'ATIVO') ? 'green' : 'red',
                 'localizacao' => $row['localizacao'],
@@ -377,7 +375,7 @@ $conn->close();
 
     <div class="linha-azul"></div>
 
-    <input type="text" class="input-search" placeholder="Pesquisar Sensor" aria-label="Pesquisar Sensor" />
+    <input id="searchInput" type="text" class="input-search" placeholder="Pesquisar Sensor" aria-label="Pesquisar Sensor" autocomplete="off" />
 
     <div class="btn-group">
         <button class="btn-primary" type="button" onclick="openModal()">ADICIONAR SENSOR</button>
@@ -386,6 +384,7 @@ $conn->close();
         </button>
     </div>
 
+    <div id="sensores-container">
     <?php if (empty($sensores)): ?>
         <p style="text-align: center; color: #777;">Nenhum sensor encontrado. Adicione um novo sensor!</p>
     <?php else: ?>
@@ -422,6 +421,7 @@ $conn->close();
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
+    </div>
 
     <div id="addSensorModal" class="modal">
         <div class="modal-content">
@@ -478,59 +478,59 @@ $conn->close();
         }
     </script>
 
-<script>
+    <script>
+    // Correções: garantir que os elementos e filtros existam antes do uso
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        // Por enquanto consideramos todos os status válidos; se houver UI de filtro, atualize este Set
+        const statusFilters = new Set(['ativo', 'inativo']);
+        const container = document.getElementById('sensores-container');
 
-function filterSensores() {
-    const query = searchInput.value.trim().toLowerCase();
-    const sensores = document.querySelectorAll('.sensor-item');
-    let totalVisiveis = 0;
+        function filterSensores() {
+            const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+            const sensores = container ? container.querySelectorAll('.sensor-item') : [];
+            let totalVisiveis = 0;
 
-    sensores.forEach(sensor => {
+            sensores.forEach(sensor => {
+                const nome = (sensor.querySelector('.sensor-name')?.textContent || '').toLowerCase();
+                const statusSpan = sensor.querySelector('.status-label span');
+                const status = (statusSpan ? statusSpan.textContent : '').toLowerCase();
 
-        const nome = sensor.querySelector('.sensor-name').textContent.toLowerCase();
-        const statusSpan = sensor.querySelector('.status-label span');
-        let status = statusSpan ? statusSpan.textContent.toLowerCase() : '';
+                const statusValido = status ? statusFilters.has(status) : true;
+                const pesquisaValida = nome.includes(query);
 
+                if (statusValido && pesquisaValida) {
+                    sensor.style.display = '';
+                    totalVisiveis++;
+                } else {
+                    sensor.style.display = 'none';
+                }
+            });
 
-        let statusValido = statusFilters.has(status);
-
-
-        let pesquisaValida = nome.includes(query);
-
-
-        if (statusValido && pesquisaValida) {
-            sensor.style.display = '';
-            totalVisiveis++;
-        } else {
-            sensor.style.display = 'none';
+            let mensagemNenhum = document.getElementById('mensagem-nenhum');
+            if (!mensagemNenhum) {
+                mensagemNenhum = document.createElement('p');
+                mensagemNenhum.id = 'mensagem-nenhum';
+                mensagemNenhum.style.cssText = 'text-align:center; color:#777;';
+                mensagemNenhum.textContent = 'Nenhum sensor encontrado.';
+                // inserir logo após o container para manter a ordem visual
+                if (container && container.parentNode) {
+                    container.parentNode.insertBefore(mensagemNenhum, container.nextSibling);
+                } else {
+                    document.body.appendChild(mensagemNenhum);
+                }
+            }
+            mensagemNenhum.style.display = (totalVisiveis === 0) ? 'block' : 'none';
         }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', filterSensores);
+        }
+
+        // rodar uma vez ao carregar para ajustar visibilidade inicial
+        filterSensores();
     });
-
-
-    let mensagemNenhum = document.getElementById('mensagem-nenhum');
-    if(!mensagemNenhum){
-        mensagemNenhum = document.createElement('p');
-        mensagemNenhum.id = 'mensagem-nenhum';
-        mensagemNenhum.style.cssText = 'text-align:center; color:#777;';
-        mensagemNenhum.textContent = 'Nenhum sensor encontrado.';
-        document.querySelector('body').appendChild(mensagemNenhum);
-    }
-    mensagemNenhum.style.display = (totalVisiveis === 0) ? 'block' : 'none';
-}
-
-searchInput.addEventListener('input', filterSensores);
-
-function toggleStatusFilter(status) {
-    if (statusFilters.has(status)) {
-        statusFilters.delete(status);
-    } else {
-        statusFilters.add(status);
-    }
-    filterSensores();
-}
-
-
-filterSensores();
-</script>
+    </script>
 </body>
 </html>
+

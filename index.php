@@ -173,8 +173,6 @@ if ($tipo) {
         
 
         <div class="alinhar_entrada">
-    
-
             <a href="public/login.php" class="caixa_azul_entrada">
                 <h2>entrar</h2>
             </a>
