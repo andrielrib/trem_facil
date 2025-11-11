@@ -19,14 +19,182 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    max-width: 414px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
     background: #000;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 20px;
+    padding: 15px;
     padding-bottom: 80px;
+}
+
+/* Esconder barra de rolagem */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    #app {
+        max-width: 100%;
+        padding: 20px;
+        padding-bottom: 100px;
+    }
+
+    header {
+        padding: 12px 30px;
+        font-size: 22px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .btn-trens {
+        font-size: 22px;
+        padding: 8px 20px;
+    }
+
+    .search-container {
+        max-width: 100%;
+        margin: 30px 0;
+    }
+
+    .search-input {
+        padding: 16px;
+        font-size: 18px;
+    }
+
+    .search-button {
+        padding: 16px;
+    }
+
+    .trem {
+        margin: 16px 0;
+        padding: 20px;
+    }
+
+    .titulo-trem {
+        font-size: 20px;
+    }
+
+    .id-status {
+        font-size: 16px;
+    }
+
+    .paradas {
+        font-size: 18px;
+    }
+
+    .parada-item {
+        font-size: 16px;
+    }
+
+    .horarios {
+        font-size: 15px;
+        gap: 20px;
+    }
+
+    .horarios-column {
+        min-width: 150px;
+    }
+
+    .horarios-column strong {
+        font-size: 16px;
+    }
+
+    footer {
+        padding: 10px 0 30px;
+    }
+
+    footer button {
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        padding: 30px;
+    }
+
+    #app {
+        max-width: 100%;
+        padding: 30px;
+        padding-bottom: 120px;
+    }
+
+    header {
+        padding: 16px 40px;
+        font-size: 26px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .btn-trens {
+        font-size: 26px;
+        padding: 10px 24px;
+    }
+
+    .search-container {
+        max-width: 100%;
+        margin: 40px 0;
+    }
+
+    .search-input {
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .search-button {
+        padding: 20px;
+    }
+
+    .trem {
+        margin: 20px 0;
+        padding: 24px;
+    }
+
+    .titulo-trem {
+        font-size: 22px;
+    }
+
+    .id-status {
+        font-size: 18px;
+    }
+
+    .paradas {
+        font-size: 20px;
+    }
+
+    .parada-item {
+        font-size: 18px;
+    }
+
+    .horarios {
+        font-size: 17px;
+        gap: 30px;
+    }
+
+    .horarios-column {
+        min-width: 200px;
+    }
+
+    .horarios-column strong {
+        font-size: 18px;
+    }
+
+    footer {
+        padding: 15px 0 35px;
+    }
+
+    footer button {
+        font-size: 34px;
+    }
 }
 
 header {
