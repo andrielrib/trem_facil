@@ -356,6 +356,130 @@ footer button:hover {
     color: #1aff1a;
 }
 
+/* Responsividade para trens.php */
+
+/* Responsividade para tablets */
+@media (min-width: 768px) {
+    #app {
+        padding: 20px;
+    }
+
+    .search-container {
+        max-width: 500px;
+    }
+
+    .trem {
+        margin: 16px;
+        padding: 18px;
+    }
+
+    .titulo-trem {
+        font-size: 20px;
+    }
+
+    .id-status {
+        font-size: 16px;
+    }
+
+    .paradas {
+        font-size: 18px;
+    }
+
+    .parada-item {
+        font-size: 16px;
+    }
+
+    .horarios {
+        font-size: 15px;
+    }
+
+    footer button {
+        font-size: 28px;
+    }
+}
+
+/* Responsividade para desktops */
+@media (min-width: 1024px) {
+    body {
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    #app {
+        max-width: 800px;
+        height: auto;
+        min-height: 600px;
+        border-radius: 40px;
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+        margin: 0 auto;
+    }
+
+    header {
+        padding: 12px 30px;
+        font-size: 22px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .btn-trens {
+        padding: 8px 20px;
+        font-size: 22px;
+    }
+
+    .search-container {
+        max-width: 600px;
+        margin: 30px auto;
+    }
+
+    .search-input {
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    .search-button {
+        padding: 15px;
+    }
+
+    .trem {
+        margin: 20px;
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .titulo-trem {
+        font-size: 22px;
+    }
+
+    .id-status {
+        font-size: 18px;
+    }
+
+    .paradas {
+        font-size: 20px;
+    }
+
+    .parada-item {
+        font-size: 18px;
+    }
+
+    .horarios {
+        font-size: 17px;
+    }
+
+    footer {
+        padding: 20px 0 30px;
+    }
+
+    footer button {
+        font-size: 30px;
+    }
+}
+
 /*trens.php*/
 
 /*perfil.php*/
