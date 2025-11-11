@@ -78,7 +78,7 @@ if (!empty($_SESSION["user_id"])) {
 
 <body>
 
-<a href="entrada.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
+<a href="../index.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
     
 
   <div class="login_icon">
@@ -86,7 +86,7 @@ if (!empty($_SESSION["user_id"])) {
   </div>
 
     <div>
-      <h3 class="text_volta">Bem vindo de volta!</h3>
+      <h3 class="text_volta">Bem vindo </h3>
       <br><br>
       <div class="final_página">
         <form method="post">
@@ -112,11 +112,7 @@ if (!empty($_SESSION["user_id"])) {
             <input type="submit" value="ENTRAR" class="caixa_verde_login">
             <div>
               <div><br><br></div>
-              <strong>
-                <h2 class="margin">Esqueceu sua senha?</h2>
-              </strong>
-                <a href="redefinir_senha.php" class="button_link">Clique aqui! </a>
-              </div>
+             
             </div>
           </div>
         </form>
