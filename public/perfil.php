@@ -115,52 +115,58 @@ if (isset($_GET['action'])) {
                     <?php echo htmlspecialchars($user['permissoes']); ?>
                 </div>
             </div>
+
+            <div class="suporte-section">
                 <b>SUPORTE</b>
                 <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
             </div>
-<br>
-<br>
-    
+            <br>
+            <br>
         </form>
+
+        <!-- Botão de Logout -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="login.php?logout=1" onclick="return confirm('Tem certeza que deseja sair?')" style="background-color: #f44336; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Logout</a>
+        </div>
     </div>
 
     <footer role="contentinfo" aria-label="Menu principal">
-    <form action="" method="post" style="display: inline;">
-        <input type="hidden" name="redirect_page" value="sensores">
-        <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
-        <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
-        </button>
-    </form>
-    <form action="" method="post" style="display: inline; margin-left: 10px;">
-        <input type="hidden" name="redirect_page" value="trens">
-        <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
-        <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
-        </button>
-    </form>
-    <form action="" method="post" style="display: inline; margin-left: 10px;">
-        <input type="hidden" name="redirect_page" value="estacoes">
-        <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
-        <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
-        </button>
-    </form>
-    <form action="" method="post" style="display: inline; margin-left: 10px;">
-        <input type="hidden" name="redirect_page" value="perfil">
-        <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
-        <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
-        </button>
-    </form>
-</footer>
+        <form action="" method="post" style="display: inline;">
+            <input type="hidden" name="redirect_page" value="sensores">
+            <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
+                <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
+            </button>
+        </form>
+        <form action="" method="post" style="display: inline; margin-left: 10px;">
+            <input type="hidden" name="redirect_page" value="trens">
+            <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
+                <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
+            </button>
+        </form>
+        <form action="" method="post" style="display: inline; margin-left: 10px;">
+            <input type="hidden" name="redirect_page" value="estacoes">
+            <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
+                <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
+            </button>
+        </form>
+        <form action="" method="post" style="display: inline; margin-left: 10px;">
+            <input type="hidden" name="redirect_page" value="perfil">
+            <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
+                <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
+            </button>
+        </form>
+    </footer>
 
-<script>
-    function previewImagem(input) {
-        if (input.files && input.files[0]) {
-            let reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('imagemPerfil').src = e.target.result;
+    <script>
+        function previewImagem(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagemPerfil').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
-</script>
+    </script>
 </body>
 </html>
