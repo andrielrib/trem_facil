@@ -1,0 +1,195 @@
+/*estacoes.php*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    flex: 1; 
+    overflow-y: auto;
+    padding: 15px;
+    padding-bottom: 100px;
+    width: 100%;
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+header .btn-back {
+    position: absolute;
+    left: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #389BFF;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+header .header-title {
+    background-color: #389BFF;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 8px 25px;
+    border-radius: 20px;
+}
+
+
+.search-container {
+    position: relative;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #389BFF;
+}
+
+.search-container .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 1.2rem;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 15px 0 15px 40px;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+}
+
+#searchInput:focus {
+    outline: none;
+}
+
+#searchInput::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+#stationsContainer {
+    width: 100%;
+}
+
+.station {
+    margin-bottom: 0;
+}
+
+.station-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+}
+
+.station-header .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    filter: brightness(0) invert(1); 
+}
+
+.station-header h2 {
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: bold;
+    flex: 1;
+}
+
+.toggle-arrow {
+    font-size: 1.5rem;
+    color: #389BFF;
+    font-weight: bold;
+}
+
+
+.lines-list {
+    background-color: transparent;
+    padding: 15px 10px;
+    border-bottom: 1px solid #333;
+
+    display: none;
+
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.lines-list.visible {
+    display: grid;
+}
+
+.lines-list span {
+    font-size: 0.8rem;
+    color: #f0f0f0;
+    padding: 2px;
+}
+
+.lines-list p {
+    color: #888;
+    font-style: italic;
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #000000;
+    border-top: 1px solid #333;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+footer form {
+    display: inline;
+}
+
+footer button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+footer button img {
+    width: 30px;
+    height: 30px;
+}
+
+footer form.active-page button img {
+    opacity: 1;
+}
+
+/*estacoes.php*/

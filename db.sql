@@ -50,15 +50,17 @@ ALTER TABLE sensor ADD COLUMN ultima_atualizacao_texto VARCHAR(50) DEFAULT 'AGOR
 ALTER TABLE sensor ADD COLUMN ultima_atualizacao_valor VARCHAR(20) DEFAULT '0';
 ALTER TABLE sensor ADD COLUMN ultima_atualizacao_unidade VARCHAR(10) DEFAULT 'KM/H';
 
-INSERT INTO sensor (nome, status, localizacao, ultima_atualizacao_texto, ultima_atualizacao_valor, ultima_atualizacao_unidade) VALUES
-('SENSOR 1', 'ATIVO', 'X', '5 MIN', '120', 'KM/H'),
-('SENSOR 2', 'INATIVO', 'Y', '1 H', '80', 'KM/H'),
-('SENSOR 3', 'ATIVO', 'Z', '1 MIN', '150', 'KM/H');
+CREATE TABLE linha (
+    id_linha INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) UNIQUE NOT NULL,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-INSERT INTO usuario (nome_completo, email, telefone, cep, cpf, senha, tipo_usuario) VALUES
-('Rafael Almeida', 'rafael_almeida@gmail.com', '11987654321', '01234567', '12345678901', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1);
-
-INSERT INTO usuario (nome_completo, email, telefone, cep, cpf, senha, tipo_usuario) VALUES
-('Andriel', 'andriel@gmail.com', '11987654322', '01234568', '12345678902', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2),
-('Arthur', 'arthur@gmail.com', '11987654323', '01234569', '12345678903', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2),
-('Caio', 'caio@gmail.com', '11987654324', '01234570', '12345678904', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2);
+CREATE TABLE estacao_linha (
+    id_estacao_linha INT AUTO_INCREMENT PRIMARY KEY,
+    id_estacao INT NOT NULL,
+    id_linha INT NOT NULL,
+    FOREIGN KEY (id_estacao) REFERENCES estacao(id_estacao),
+    FOREIGN KEY (id_linha) REFERENCES linha(id_linha),
+    UNIQUE(id_estacao, id_linha)
+);
