@@ -99,6 +99,7 @@ header {
     outline: none;
     font-size: 16px;
     background: transparent;
+    color: white;
 }
 
 .search-input::placeholder {
