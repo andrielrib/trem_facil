@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user['foto'] = $novo_nome_arquivo;
         }
     } else {
-        // Se não houve upload, mantém a foto já salva em $user['foto']
+
         if (!isset($user['foto']) || empty($user['foto'])) {
             $user['foto'] = $default_user['foto'];
         }

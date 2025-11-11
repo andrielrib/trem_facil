@@ -12,20 +12,17 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
 }
 
 #app {
     flex: 1;
     display: flex;
     flex-direction: column;
-    max-width: 414px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
     background: #000;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 20px;
+    padding: 15px;
     padding-bottom: 80px;
 }
 
@@ -102,6 +99,7 @@ header {
     outline: none;
     font-size: 16px;
     background: transparent;
+    color: white;
 }
 
 .search-input::placeholder {
@@ -358,6 +356,130 @@ footer button:hover {
     color: #1aff1a;
 }
 
+/* Responsividade para trens.php */
+
+/* Responsividade para tablets */
+@media (min-width: 768px) {
+    #app {
+        padding: 20px;
+    }
+
+    .search-container {
+        max-width: 500px;
+    }
+
+    .trem {
+        margin: 16px;
+        padding: 18px;
+    }
+
+    .titulo-trem {
+        font-size: 20px;
+    }
+
+    .id-status {
+        font-size: 16px;
+    }
+
+    .paradas {
+        font-size: 18px;
+    }
+
+    .parada-item {
+        font-size: 16px;
+    }
+
+    .horarios {
+        font-size: 15px;
+    }
+
+    footer button {
+        font-size: 28px;
+    }
+}
+
+/* Responsividade para desktops */
+@media (min-width: 1024px) {
+    body {
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    #app {
+        max-width: 800px;
+        height: auto;
+        min-height: 600px;
+        border-radius: 40px;
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+        margin: 0 auto;
+    }
+
+    header {
+        padding: 12px 30px;
+        font-size: 22px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .btn-trens {
+        padding: 8px 20px;
+        font-size: 22px;
+    }
+
+    .search-container {
+        max-width: 600px;
+        margin: 30px auto;
+    }
+
+    .search-input {
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    .search-button {
+        padding: 15px;
+    }
+
+    .trem {
+        margin: 20px;
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .titulo-trem {
+        font-size: 22px;
+    }
+
+    .id-status {
+        font-size: 18px;
+    }
+
+    .paradas {
+        font-size: 20px;
+    }
+
+    .parada-item {
+        font-size: 18px;
+    }
+
+    .horarios {
+        font-size: 17px;
+    }
+
+    footer {
+        padding: 20px 0 30px;
+    }
+
+    footer button {
+        font-size: 30px;
+    }
+}
+
 /*trens.php*/
 
 /*perfil.php*/
@@ -385,6 +507,101 @@ body {
     padding: 20px 20px 0 20px;
     text-align: center;
     position: relative;
+}
+
+/* Responsividade para tablets */
+@media (min-width: 768px) {
+    body {
+        margin: 20px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .perfil-container {
+        width: 500px;
+        border-radius: 40px 40px 0 0;
+        padding: 30px 30px 0 30px;
+    }
+
+    .foto-container img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .nome-editavel {
+        font-size: 28px;
+    }
+
+    .nome-editavel input {
+        font-size: 28px;
+        width: 200px;
+    }
+
+    .info {
+        font-size: 18px;
+    }
+
+    .suporte-section {
+        font-size: 18px;
+    }
+}
+
+/* Responsividade para desktops */
+@media (min-width: 1024px) {
+    body {
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .wrapper {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .perfil-container {
+        width: 100%;
+        max-width: 600px;
+        border-radius: 50px 50px 0 0;
+        padding: 40px 40px 0 40px;
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+    }
+
+    .foto-container img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .nome-editavel {
+        font-size: 32px;
+    }
+
+    .nome-editavel input {
+        font-size: 32px;
+        width: 250px;
+    }
+
+    .info {
+        font-size: 20px;
+    }
+
+    .suporte-section {
+        font-size: 20px;
+    }
+
+    footer {
+        padding: 20px 0 30px;
+    }
+
+    footer button img {
+        width: 70px;
+        height: 70px;
+    }
 }
 
 
@@ -529,109 +746,7 @@ body {
     text-decoration: underline;
 }
 
-.photo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
 
-.photo-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid #ccc;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.edit-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.name-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 24px;
-    font-weight: 600;
-    color: #f0f0f0;
-}
-
-.section {
-    margin-top: 16px;
-}
-
-.button-blue {
-    color: #0055ff;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.button-red {
-    color: #ff3333;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 24px;
-}
-
-.photo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.photo-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid #ccc;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.edit-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.name-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 24px;
-    font-weight: 600;
-    color: #f0f0f0;
-}
-
-.section {
-    margin-top: 16px;
-}
-
-.button-blue {
-    color: #0055ff;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.button-red {
-    color: #ff3333;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 24px;
-}
 
 footer {
     background: #000;
@@ -661,7 +776,90 @@ footer button:hover {
 
 /*estacoes.php*/
 
+/* Responsividade para tablets */
+@media (min-width: 768px) {
+    .estacao {
+        margin: 16px;
+        padding: 18px;
+    }
 
+    .titulo-estacao {
+        font-size: 20px;
+    }
+
+    .info-estacao {
+        font-size: 16px;
+    }
+}
+
+/* Responsividade para desktops */
+@media (min-width: 1024px) {
+    body {
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    #app-estacoes {
+        max-width: 800px;
+        height: auto;
+        min-height: 600px;
+        border-radius: 40px;
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+    }
+
+    header {
+        padding: 12px 30px;
+        font-size: 22px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .btn-estacoes {
+        padding: 8px 20px;
+        font-size: 22px;
+    }
+
+    .search-container {
+        max-width: 600px;
+        margin: 30px auto;
+    }
+
+    .search-input {
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    .search-button {
+        padding: 15px;
+    }
+
+    .estacao {
+        margin: 20px;
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .titulo-estacao {
+        font-size: 22px;
+    }
+
+    .info-estacao {
+        font-size: 18px;
+    }
+
+    footer {
+        padding: 20px 0 30px;
+    }
+
+    footer button {
+        font-size: 30px;
+    }
+}
 
 /*estacoes.php*/
 

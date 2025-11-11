@@ -43,7 +43,7 @@
             die("Erro de conexão: " . $conn->connect_error);
         }
 
-        $checkSql = "SELECT email, telefone, CPF FROM usuarios WHERE email = ? OR telefone = ? OR CPF = ?";
+        $checkSql = "SELECT email, telefone, cpf FROM usuario WHERE email = ? OR telefone = ? OR cpf = ?";
         $checkStmt = $conn->prepare($checkSql);
         $checkStmt->bind_param("sss", $dados1['email'], $telefone, $dados1['cpf']);
         $checkStmt->execute();
@@ -67,12 +67,12 @@
         if (empty($errors)) {
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO usuarios (nome_completo, email, telefone, CEP, CPF, senha, tipo_usuarios) 
+            $sql = "INSERT INTO usuario (nome_completo, email, telefone, cep, cpf, senha, tipo_usuario)
                     VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql);
 
-            $tipo_usuarios = 1;
+            $tipo_usuario = 1;
             $stmt->bind_param(
                 "ssssssi",
                 $dados1['nome_completo'],
@@ -81,7 +81,7 @@
                 $dados1['cep'],
                 $dados1['cpf'],
                 $senhaHash,
-                $tipo_usuarios
+                $tipo_usuario
             );
 
             if ($stmt->execute()) {
