@@ -173,12 +173,67 @@ if ($tipo) {
         
 
         <div class="alinhar_entrada">
-    
-
             <a href="public/login.php" class="caixa_azul_entrada">
                 <h2>entrar</h2>
             </a>
+
+            <button onclick="getRandomFox()" class="caixa_azul_entrada">
+                <h2>raposa aleatória</h2>
+            </button>
+
+            <button onclick="getRandomDog()" class="caixa_azul_entrada">
+                <h2>dog aleatório</h2>
+            </button>
         </div>
+
+        <div id="animal-result" style="margin-top: 20px; color: #ffffff;"></div>
+
+        <script>
+            async function getRandomFox() {
+                try {
+                    const response = await fetch('public/apis.php/apis.php?fox');
+                    const data = await response.json();
+                    if (data.image) {
+                        document.getElementById('animal-result').innerHTML = `
+                            <img src="${data.image}" alt="Raposa Aleatória" style="max-width: 300px; height: auto; border-radius: 10px;">
+                            <p><a href="${data.link}" target="_blank" style="color: #007BFF;">Ver mais</a></p>
+                        `;
+                    } else if (data.error) {
+                        document.getElementById('animal-result').innerHTML = `<p>Erro: ${data.error}</p>`;
+                    }
+                } catch (error) {
+                    document.getElementById('animal-result').innerHTML = `<p>Erro ao carregar raposa: ${error.message}</p>`;
+                }
+            }
+
+            async function getRandomDog() {
+                try {
+                    const response = await fetch('public/apis.php/apis.php?dog');
+                    const data = await response.json();
+                    if (data.url) {
+                        const isVideo = data.url.endsWith('.mp4') || data.url.endsWith('.webm') || data.url.endsWith('.ogg');
+                        if (isVideo) {
+                            document.getElementById('animal-result').innerHTML = `
+                                <video controls style="max-width: 300px; height: auto; border-radius: 10px;">
+                                    <source src="${data.url}" type="video/mp4">
+                                    Seu navegador não suporta vídeo.
+                                </video>
+                                <p><a href="${data.url}" target="_blank" style="color: #007BFF;">Ver mais</a></p>
+                            `;
+                        } else {
+                            document.getElementById('animal-result').innerHTML = `
+                                <img src="${data.url}" alt="Cachorro Aleatório" style="max-width: 300px; height: auto; border-radius: 10px;">
+                                <p><a href="${data.url}" target="_blank" style="color: #007BFF;">Ver mais</a></p>
+                            `;
+                        }
+                    } else if (data.error) {
+                        document.getElementById('animal-result').innerHTML = `<p>Erro: ${data.error}</p>`;
+                    }
+                } catch (error) {
+                    document.getElementById('animal-result').innerHTML = `<p>Erro ao carregar cachorro: ${error.message}</p>`;
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
