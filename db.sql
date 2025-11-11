@@ -42,7 +42,6 @@ CREATE TABLE estacoes (
     FOREIGN KEY (FKid_trens) REFERENCES trens(id_trens)
 );
 
-
 USE trem_facil;
 
 -- Adicionar colunas à tabela sensores (não Apaguem Galera)
@@ -52,8 +51,17 @@ ALTER TABLE sensores ADD COLUMN ultima_atualizacao_texto VARCHAR(50) DEFAULT 'AG
 ALTER TABLE sensores ADD COLUMN ultima_atualizacao_valor VARCHAR(20) DEFAULT '0';
 ALTER TABLE sensores ADD COLUMN ultima_atualizacao_unidade VARCHAR(10) DEFAULT 'KM/H';
 
-
 INSERT INTO sensores (nome_sensor, status, localizacao, ultima_atualizacao_texto, ultima_atualizacao_valor, ultima_atualizacao_unidade) VALUES
 ('SENSOR 1', 'ATIVO', 'X', '5 MIN', '120', 'KM/H'),
 ('SENSOR 2', 'INATIVO', 'Y', '1 H', '80', 'KM/H'),
 ('SENSOR 3', 'ATIVO', 'Z', '1 MIN', '150', 'KM/H');
+
+
+INSERT INTO usuarios (nome_completo, email, telefone, CEP, CPF, senha, tipo_usuarios) VALUES
+('Rafael Almeida', 'rafael_almeida@gmail.com', '11987654321', '01234567', '12345678901', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1);  -- Hash para '24098000'
+
+
+INSERT INTO usuarios (nome_completo, email, telefone, CEP, CPF, senha, tipo_usuarios) VALUES
+('Andriel', 'andriel@gmail.com', '11987654322', '01234568', '12345678902', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2),  -- Hash para 'senha123'
+('Arthur', 'arthur@gmail.com', '11987654323', '01234569', '12345678903', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2),   -- Hash para 'senha123'
+('Caio', 'caio@gmail.com', '11987654324', '01234570', '12345678904', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2);     -- Hash para 'senha123'

@@ -1,6 +1,5 @@
 <?php
 
-
 include "db.php";
 
 session_start();
@@ -12,6 +11,9 @@ if (isset($_GET['logout'])) {
   session_unset();
   session_destroy();
   $msg = "Você saiu com sucesso.";
+  // Após logout, redirecionar para login.php sem parâmetros para limpar a URL
+  header("Location: login.php");
+  exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -41,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       ]);
       exit;
     } else {
-      header("Location:pagina_inicial.php");
+      header("Location: pagina_inicial.php");
       exit;
     }
   } else {
@@ -54,12 +56,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       ]);
       exit;
     } else {
-      $errors[] ="Email/Telefone ou senha incorretos!";
+      $errors[] = "Email/Telefone ou senha incorretos!";
     }
   }
 }
-?>
 
+// Verificar se o usuário já está logado e redirecionar imediatamente
+if (!empty($_SESSION["user_id"])) {
+  header("Location: pagina_inicial.php");
+  exit;
+}
+?>
 
 <html lang="en">
 <head>
@@ -71,23 +78,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-<a href="entrada.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
+<a href="../index.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
     
 
   <div class="login_icon">
     <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="200" height="150">
   </div>
 
-  <?php if (!empty($_SESSION["user_id"])): ?>
-    <div class="card">
-      <?php header("Location:pagina_inicial.php"); ?>
-      <h3>Bem-vindo, <?= $_SESSION["username"] ?>!</h3>
-      <p>Tipo de usuário: <?= $_SESSION["tipo_usuario"] == '1' ? 'Cliente' : 'Administrador' ?></p>
-      <p><a href="?logout=1">Sair</a></p>
-    </div>
-  <?php else: ?>
     <div>
-      <h3 class="text_volta">Bem vindo de volta!</h3>
+      <h3 class="text_volta">Bem vindo </h3>
       <br><br>
       <div class="final_página">
         <form method="post">
@@ -113,18 +112,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="submit" value="ENTRAR" class="caixa_verde_login">
             <div>
               <div><br><br></div>
-              <strong>
-                <h2 class="margin">Esqueceu sua senha?</h2>
-              </strong>
-              <div class="flex_login">
-                <a href="redefinir_senha.php" class="button_link">Clique aqui! </a>
-              </div>
+             
             </div>
           </div>
         </form>
       </div>
     </div>
-  <?php endif; ?>
 
 </body>
 

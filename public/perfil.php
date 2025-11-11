@@ -14,10 +14,6 @@ if (!isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['novo_nome'])) {
-        $user['nome'] = trim($_POST['novo_nome']) !== '' ? trim($_POST['novo_nome']) : 'Nome';
-    }
-
     // Só altera a foto se houver upload novo
     if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
         $ext = strtolower(pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION));
@@ -101,9 +97,8 @@ if (isset($_GET['action'])) {
                 <input type="file" name="nova_foto" id="nova_foto" accept="image/*" onchange="previewImagem(this)" />
             </div>
 
-            <div class="nome-editavel" id="nomeDisplay" onclick="editarNome()" title="Clique para editar nome">
+            <div class="nome-editavel" id="nomeDisplay">
                 <span id="nomeTexto"><?php echo htmlspecialchars($user['nome']); ?></span>
-                <img src="../assets/icons/caneta.png" alt="Editar Nome" class="icone-editar" />
             </div>
 
             <div class="info-section">
@@ -121,109 +116,57 @@ if (isset($_GET['action'])) {
                 </div>
             </div>
 
-            <div class="links-conta">
-                <b>EDITAR CONTA</b>
-                <small> Clique <a href="?action=editar">aqui</a> para ser redirecionado para tela de cadastro </small>
+            <div class="suporte-section">
                 <b>SUPORTE</b>
                 <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
             </div>
-
-            <div class="botoes-conta">
-                <button type="button" class="btn-alterar" onclick="window.location.href='?action=alterar_conta'">ALTERAR CONTA</button>
-                <button type="button" class="btn-remover" onclick="window.location.href='?action=remover_conta'">REMOVER CONTA</button>
-            </div>
-
-            <input type="hidden" name="novo_nome" id="inputNome" value="<?php echo htmlspecialchars($user['nome']); ?>" />
+            <br>
+            <br>
         </form>
+
+        <!-- Botão de Logout -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="login.php?logout=1" onclick="return confirm('Tem certeza que deseja sair?')" style="background-color: #f44336; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Logout</a>
+        </div>
     </div>
 
     <footer role="contentinfo" aria-label="Menu principal">
-    <form action="" method="post" style="display: inline;">
-        <input type="hidden" name="redirect_page" value="sensores">
-        <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
-        <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
-        </button>
-    </form>
-    <form action="" method="post" style="display: inline; margin-left: 10px;">
-        <input type="hidden" name="redirect_page" value="trens">
-        <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
-        <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
-        </button>
-    </form>
-    <form action="" method="post" style="display: inline; margin-left: 10px;">
-        <input type="hidden" name="redirect_page" value="estacoes">
-        <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
-        <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
-        </button>
-    </form>
-    <form action="" method="post" style="display: inline; margin-left: 10px;">
-        <input type="hidden" name="redirect_page" value="perfil">
-        <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
-        <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
-        </button>
-    </form>
-</footer>
+        <form action="" method="post" style="display: inline;">
+            <input type="hidden" name="redirect_page" value="sensores">
+            <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
+                <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
+            </button>
+        </form>
+        <form action="" method="post" style="display: inline; margin-left: 10px;">
+            <input type="hidden" name="redirect_page" value="trens">
+            <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
+                <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
+            </button>
+        </form>
+        <form action="" method="post" style="display: inline; margin-left: 10px;">
+            <input type="hidden" name="redirect_page" value="estacoes">
+            <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
+                <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
+            </button>
+        </form>
+        <form action="" method="post" style="display: inline; margin-left: 10px;">
+            <input type="hidden" name="redirect_page" value="perfil">
+            <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
+                <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
+            </button>
+        </form>
+    </footer>
 
-<script>
-    function previewImagem(input) {
-        if (input.files && input.files[0]) {
-            let reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('imagemPerfil').src = e.target.result;
+    <script>
+        function previewImagem(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagemPerfil').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
-
-    const nomeDisplay = document.getElementById('nomeDisplay');
-    const nomeTexto = document.getElementById('nomeTexto');
-    const inputNome = document.getElementById('inputNome');
-
-    function editarNome() {
-        if (nomeDisplay.querySelector('input')) return;
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.value = nomeTexto.textContent;
-        input.maxLength = 50;
-        input.autofocus = true;
-        input.addEventListener('blur', () => salvarNome(input.value));
-        input.addEventListener('keydown', e => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                input.blur();
-            }
-            if (e.key === 'Escape') {
-                cancelarEdicao();
-            }
-        });
-        nomeDisplay.innerHTML = '';
-        nomeDisplay.appendChild(input);
-        input.focus();
-    }
-
-    function salvarNome(valor) {
-        if (valor.trim() === '') valor = 'Nome';
-        nomeTexto.textContent = valor;
-        inputNome.value = valor;
-        nomeDisplay.innerHTML = '';
-        nomeDisplay.appendChild(nomeTexto);
-        const icone = document.createElement('img');
-        icone.src = '../assets/icons/caneta.png';
-        icone.alt = 'Editar Nome';
-        icone.className = 'icone-editar';
-        nomeDisplay.appendChild(icone);
-        document.getElementById('perfilForm').submit();
-    }
-
-    function cancelarEdicao() {
-        nomeDisplay.innerHTML = '';
-        nomeDisplay.appendChild(nomeTexto);
-        const icone = document.createElement('img');
-        icone.src = '../assets/icons/caneta.png';
-        icone.alt = 'Editar Nome';
-        icone.className = 'icone-editar';
-        nomeDisplay.appendChild(icone);
-    }
-</script>
+    </script>
 </body>
 </html>

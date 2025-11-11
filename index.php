@@ -24,7 +24,7 @@ if ($tipo) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrada - Quem é você?</title>
+    <title>Entrada</title>
     
     <style>
    
@@ -170,17 +170,13 @@ if ($tipo) {
             <img src="assets/icons/trem_bala_icon.png" alt="Ícone de Trem Bala"> 
         </div>
 
-        <div class="text_entrada">
-            <h1>Quem é você?</h1>
-        </div>
+        
 
         <div class="alinhar_entrada">
-            <a href="public/trens.php?tipo=1" class="caixa_azul_entrada">
-                <h2>Cliente</h2>
-            </a>
+    
 
-            <a href="public/entrada.php?tipo=2" class="caixa_azul_entrada">
-                <h2>Administrador</h2>
+            <a href="public/login.php" class="caixa_azul_entrada">
+                <h2>entrar</h2>
             </a>
         </div>
     </div>
