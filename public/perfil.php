@@ -14,10 +14,6 @@ if (!isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['novo_nome'])) {
-        $user['nome'] = trim($_POST['novo_nome']) !== '' ? trim($_POST['novo_nome']) : 'Nome';
-    }
-
     // Só altera a foto se houver upload novo
     if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
         $ext = strtolower(pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION));
@@ -101,9 +97,8 @@ if (isset($_GET['action'])) {
                 <input type="file" name="nova_foto" id="nova_foto" accept="image/*" onchange="previewImagem(this)" />
             </div>
 
-            <div class="nome-editavel" id="nomeDisplay" onclick="editarNome()" title="Clique para editar nome">
+            <div class="nome-editavel" id="nomeDisplay">
                 <span id="nomeTexto"><?php echo htmlspecialchars($user['nome']); ?></span>
-                <img src="../assets/icons/caneta.png" alt="Editar Nome" class="icone-editar" />
             </div>
 
             <div class="info-section">
@@ -120,20 +115,12 @@ if (isset($_GET['action'])) {
                     <?php echo htmlspecialchars($user['permissoes']); ?>
                 </div>
             </div>
-
-            <div class="links-conta">
-                <b>EDITAR CONTA</b>
-                <small> Clique <a href="?action=editar">aqui</a> para ser redirecionado para tela de cadastro </small>
                 <b>SUPORTE</b>
                 <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
             </div>
-
-            <div class="botoes-conta">
-                <button type="button" class="btn-alterar" onclick="window.location.href='?action=alterar_conta'">ALTERAR CONTA</button>
-                <button type="button" class="btn-remover" onclick="window.location.href='?action=remover_conta'">REMOVER CONTA</button>
-            </div>
-
-            <input type="hidden" name="novo_nome" id="inputNome" value="<?php echo htmlspecialchars($user['nome']); ?>" />
+<br>
+<br>
+    
         </form>
     </div>
 
@@ -173,56 +160,6 @@ if (isset($_GET['action'])) {
             }
             reader.readAsDataURL(input.files[0]);
         }
-    }
-
-    const nomeDisplay = document.getElementById('nomeDisplay');
-    const nomeTexto = document.getElementById('nomeTexto');
-    const inputNome = document.getElementById('inputNome');
-
-    function editarNome() {
-        if (nomeDisplay.querySelector('input')) return;
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.value = nomeTexto.textContent;
-        input.maxLength = 50;
-        input.autofocus = true;
-        input.addEventListener('blur', () => salvarNome(input.value));
-        input.addEventListener('keydown', e => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                input.blur();
-            }
-            if (e.key === 'Escape') {
-                cancelarEdicao();
-            }
-        });
-        nomeDisplay.innerHTML = '';
-        nomeDisplay.appendChild(input);
-        input.focus();
-    }
-
-    function salvarNome(valor) {
-        if (valor.trim() === '') valor = 'Nome';
-        nomeTexto.textContent = valor;
-        inputNome.value = valor;
-        nomeDisplay.innerHTML = '';
-        nomeDisplay.appendChild(nomeTexto);
-        const icone = document.createElement('img');
-        icone.src = '../assets/icons/caneta.png';
-        icone.alt = 'Editar Nome';
-        icone.className = 'icone-editar';
-        nomeDisplay.appendChild(icone);
-        document.getElementById('perfilForm').submit();
-    }
-
-    function cancelarEdicao() {
-        nomeDisplay.innerHTML = '';
-        nomeDisplay.appendChild(nomeTexto);
-        const icone = document.createElement('img');
-        icone.src = '../assets/icons/caneta.png';
-        icone.alt = 'Editar Nome';
-        icone.className = 'icone-editar';
-        nomeDisplay.appendChild(icone);
     }
 </script>
 </body>
