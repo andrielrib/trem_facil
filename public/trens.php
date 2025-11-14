@@ -93,34 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Trens - <?=htmlspecialchars($terminal['nome'])?></title>
-    <link rel="stylesheet" href="../style/style2.css">
-    <style>
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background-color: black;
-            border-top: 1px solid #0B57DA;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            user-select: none;
-        }
-        footer form {
-            display: inline;
-        }
-        footer button {
-            border: none;
-            background: none;
-            cursor: pointer;
-        }
-        footer img {
-            width: 60px;
-            height: 60px;
-        }
-    </style>
+    <link rel="stylesheet" href="../style/style3.css">
 </head>
 <body>
     <div id="app" role="main" aria-label="Lista de linhas de trem">

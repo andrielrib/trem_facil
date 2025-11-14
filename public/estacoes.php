@@ -1,31 +1,49 @@
 <?php
 
-require_once 'db.php';
+$db_host = 'localhost';
+$db_name = 'trem_facil';
+$db_user = 'root';
+$db_pass = 'root';
 
-function buscarEstacoesComLinhas($conn) {
+try {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro ao conectar ao banco de dados: " . $e->getMessage());
+}
+
+require_once 'db.php'; // Este arquivo fornece a variável $pdo
+
+function buscarEstacoesComLinhas($pdo) {
+    // Esta SQL busca os nomes das estações e agrupa todas as linhas
+    // que passam por ela, usando as tabelas que REALMENTE têm dados.
     $sql = "
-        SELECT e.id_estacao, e.nome AS nome_estacao, GROUP_CONCAT(l.nome SEPARATOR '|') AS linhas
-        FROM estacao e
-        LEFT JOIN estacao_linha el ON e.id_estacao = el.id_estacao
-        LEFT JOIN linha l ON el.id_linha = l.id_linha
-        GROUP BY e.id_estacao, e.nome
-        ORDER BY e.id_estacao ASC
+        SELECT 
+            eh.nome_estacao, 
+            GROUP_CONCAT(l.nome SEPARATOR '|') AS linhas
+        FROM estacao_horario eh
+        JOIN linha l ON eh.id_linha = l.id_linha
+        GROUP BY eh.nome_estacao
+        ORDER BY eh.nome_estacao ASC
     ";
-    $result = $conn->query($sql);
-    if (!$result) {
-        die("Erro na consulta: " . $conn->error);
-    }
+    
+    try {
+        $stmt = $pdo->query($sql);
+        $estacoes = [];
+        
+        while ($row = $stmt->fetch()) {
+            $linhas = $row['linhas'] ? explode('|', $row['linhas']) : [];
+            $estacoes[] = [
+                'nome_estacao' => $row['nome_estacao'],
+                'linhas' => $linhas
+            ];
+        }
+        return $estacoes;
 
-    $estacoes = [];
-    while ($row = $result->fetch_assoc()) {
-        $linhas = $row['linhas'] ? explode('|', $row['linhas']) : [];
-        $estacoes[] = [
-            'estacao_id' => $row['id_estacao'],
-            'nome_estacao' => $row['nome_estacao'],
-            'linhas' => $linhas
-        ];
+    } catch (PDOException $e) {
+        die("Erro na consulta: " . $e->getMessage());
     }
-    return $estacoes;
 }
 
 
@@ -45,6 +63,9 @@ function processarPost() {
             case 'perfil':
                 header('Location: perfil.php');
                 exit();
+            case 'estacoes': // Adicionado para evitar loop
+                header('Location: estacoes.php');
+                exit();
             default:
                 header('Location: index.php');
                 exit();
@@ -52,10 +73,10 @@ function processarPost() {
     }
 }
 
-$estacoes_finais = buscarEstacoesComLinhas($conn);
+$estacoes_finais = buscarEstacoesComLinhas($pdo); // Usando $pdo
 processarPost();
 
-$conn->close();
+// $conn->close(); // Não é necessário para PDO, a conexão fecha sozinha
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -63,33 +84,7 @@ $conn->close();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/style3.css">
-    <style>
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background-color: black;
-            border-top: 1px solid #0B57DA;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            user-select: none;
-        }
-        footer form {
-            display: inline;
-        }
-        footer button {
-            border: none;
-            background: none;
-            cursor: pointer;
-        }
-        footer img {
-            width: 60px;
-            height: 60px;
-        }
-    </style>
+
     <title>Estações</title>
 </head>
 <body>
@@ -115,14 +110,14 @@ $conn->close();
             <div class="station" data-name="<?= strtolower($nome_estacao_seguro) ?>">
                 
                 <div class="station-header" onclick="toggleLines(<?= $index ?>)">
-                    <img src="../assets/icons/estacao_icon.png" alt="" class="icon" />
+                    <img src="../assets/icons/estacao_icon.png" alt="" width="50" heigth="50"/>
                     <h2><?= $nome_estacao_seguro ?></h2>
                     
                     <span class="toggle-arrow" id="arrow-<?= $index ?>">&#9660;</span>
                 </div>
                 
                 <div class="lines-list" id="lines-<?= $index ?>"> 
-                    <?php if (count($linhas) > 0): ?>
+                    <?php if (count($linhas) > 0 && !empty($linhas[0])): // Verificação extra ?>
                         <?php foreach ($linhas as $linha): ?>
                             <span><?= htmlspecialchars($linha) ?></span>
                         <?php endforeach; ?>
@@ -134,6 +129,12 @@ $conn->close();
         <?php 
         endforeach; 
         ?>
+        
+        <?php if (empty($estacoes_finais)): ?>
+            <p style="color: white; text-align: center; padding: 20px;">
+                Nenhuma estação encontrada. Verifique seu banco de dados.
+            </p>
+        <?php endif; ?>
     </div>
 
 </div>
@@ -163,13 +164,13 @@ $conn->close();
             <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
         </button>
     </form>
+</footer>
 
 <script>
     function toggleLines(index) {
         const lines = document.getElementById('lines-' + index);
         const arrow = document.getElementById('arrow-' + index);
         
-        // Verifica se está visível
         if (lines.classList.contains('visible')) {
             lines.classList.remove('visible');
             arrow.innerHTML = '&#9660;';
