@@ -369,7 +369,7 @@ $conn->close();
 </head>
 <body>
     <header class="header">
-        <button class="btn-voltar" title="Voltar"></button>
+        <button class="btn-voltar" title="Voltar" onclick="window.location.href='pagina_inicial.php';"></button>
         <div class="titulo-principal">SENSORES</div>
     </header>
 
