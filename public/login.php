@@ -11,8 +11,8 @@ if (isset($_GET['logout'])) {
   session_unset();
   session_destroy();
   $msg = "Você saiu com sucesso.";
-  // Após logout, redirecionar para login.php sem parâmetros para limpar a URL
-  header("Location: login.php");
+  // Após logout, redirecionar para index.php para tela inicial
+  header("Location: ../index.php");
   exit;
 }
 
@@ -43,7 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       ]);
       exit;
     } else {
-      header("Location: pagina_inicial.php");
+      if ($usuario["tipo_usuario"] == 2) {
+        header("Location: ../private/pagina_inicial_adm.php");
+      } else {
+        header("Location: pagina_inicial.php");
+      }
       exit;
     }
   } else {
@@ -63,7 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 // Verificar se o usuário já está logado e redirecionar imediatamente
 if (!empty($_SESSION["user_id"])) {
-  header("Location: pagina_inicial.php");
+  if ($_SESSION["tipo_usuario"] == 2) {
+    header("Location: ../private/pagina_inicial_adm.php");
+  } else {
+    header("Location: pagina_inicial.php");
+  }
   exit;
 }
 ?>

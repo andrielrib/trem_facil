@@ -94,6 +94,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Trens - <?=htmlspecialchars($terminal['nome'])?></title>
     <link rel="stylesheet" href="../style/style2.css">
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: black;
+            border-top: 1px solid #0B57DA;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            user-select: none;
+        }
+        footer form {
+            display: inline;
+        }
+        footer button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        footer img {
+            width: 60px;
+            height: 60px;
+        }
+    </style>
 </head>
 <body>
     <div id="app" role="main" aria-label="Lista de linhas de trem">
@@ -189,33 +216,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endforeach; ?>
     </div>
 
-    <footer role="contentinfo" aria-label="Menu principal">
-        <form action="" method="post" style="display: inline;">
+    <footer>
+        <form action="" method="post">
             <input type="hidden" name="redirect_page" value="sensores">
-            <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
-            <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
+            <button type="submit" title="Sensores">
+                <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores">
             </button>
         </form>
-        <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <form action="" method="post">
             <input type="hidden" name="redirect_page" value="trens">
-            <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
-            <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
+            <button type="submit" title="Trens">
+                <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens">
             </button>
         </form>
-        <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <form action="" method="post">
             <input type="hidden" name="redirect_page" value="estacoes">
-            <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
-            <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
+            <button type="submit" title="Estações">
+                <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estações">
             </button>
         </form>
-        <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <form action="" method="post">
             <input type="hidden" name="redirect_page" value="perfil">
-            <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
-            <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
+            <button type="submit" title="Perfil">
+                <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
             </button>
         </form>
     </footer>
-
+    
     <script>
         const searchInput = document.getElementById('searchInput');
         const linhas = document.querySelectorAll('.trem');
