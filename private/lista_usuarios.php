@@ -1,55 +1,212 @@
 <?php
 include '../public/db.php';
-
 session_start();
+
+$search = $_GET['search'] ?? '';
+if ($search) {
+    $like = "%$search%";
+    $stmt = $conn->prepare("SELECT id_usuario, nome_completo, cpf, telefone, tipo_usuario FROM usuario WHERE nome_completo LIKE ? ORDER BY nome_completo ASC");
+    $stmt->bind_param("s", $like);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $result = $conn->query("SELECT id_usuario, nome_completo, cpf, telefone, tipo_usuario FROM usuario ORDER BY nome_completo ASC");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Usuários - Trem Fácil</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: black;
-            color: white;
-            text-align: center;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lista de Usuários - Trem Fácil</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+  body {
+    margin: 0; font-family: 'Montserrat', sans-serif;
+    background: #000;
+    color:     color: #0057b7;
 
-        .container {
-            padding: 20px;
-        }
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    width: 100%;
+    max-width: 380px;
+    padding: 10px 15px 100px;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  header a.back-btn {
+    text-decoration: none;
+    color:  #108000;
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  header a.back-btn:hover {
+    text-decoration: underline;
+  }
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  form.search-form input[type="search"] {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 2.5px solid  #108000;
+    color:     color: #0057b7;
 
-        h1 {
-            color: #31a06a;
-        }
+    font-size: 1.05rem;
+    padding: 8px 0;
+    margin-bottom: 18px;
+    outline: none;
+  }
+  form.search-form input::placeholder {
+    color:  #108000;
+    font-style: italic;
+  }
+  button.btn-add {
+    width: 100%;
+    background: #108000;
+    border-radius: 30px;
+    border: none;
+    padding: 14px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  button.btn-add:hover {
+    background: #108000;;
+  }
+  article.user-card {
+    background: #111;
+    border-radius: 18px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  article.user-card strong.nome {
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  article.user-card span.cargo {
+    color:  #108000;;
+    font-weight: 700;
+  }
+  article.user-card .dados {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  article.user-card .acoes {
+    display: flex;
+    gap: 12px;
+  }
+  a.acao-btn {
+    background:  #108000;;
+    padding: 4px 12px;
+    border-radius: 30px;
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s ease;
+  }
+  a.acao-btn:hover {
+    background:  #108000;
+  }
+  a.acao-btn.delete {
+    background: #cc2424;
+    color: #fff;
+  }
+  a.acao-btn.delete:hover {
+    background: #900000;
+  }
+  footer {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: #000;
+    border-top: 1px solid    color: #0057b7;
 
-        .back-button {
-            margin-top: 20px;
-        }
-
-        .back-button a {
-            color: #31a06a;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        .back-button a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    user-select: none;
+  }
+  footer form {
+    display: inline;
+  }
+  footer button {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  footer img {
+    width: 60px;
+    height: 60px;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Lista de Usuários</h1>
-        <p>Aqui será exibida a lista de usuários cadastrados.</p>
-        <!-- Placeholder for user list functionality -->
 
-        <div class="back-button">
-            <a href="pagina_inicial_adm.php">Voltar</a>
-        </div>
-    </div>
+<div class="container" role="main" aria-label="Lista de usuários">
+  <header>
+    <a href="pagina_inicial_adm.php" class="back-btn" aria-label="Voltar">&#8592;</a>
+    <h1>Lista de Usuários</h1>
+  </header>
+
+  <form class="search-form" method="get" action="">
+    <input type="search" name="search" placeholder="Pesquisar Usuários" value="<?php echo htmlspecialchars($search); ?>" aria-label="Pesquisar Usuários" />
+  </form>
+
+  <button class="btn-add" onclick="location.href='crud/cadastrar_user.php'">ADICIONAR USUÁRIO</button>
+
+  <?php
+    if ($result->num_rows === 0) {
+      echo '<p style="color:#00ac11; text-align:center;">Nenhum usuário encontrado.</p>';
+    } else {
+      while ($user = $result->fetch_assoc()) {
+        $cargo_texto = ($user['tipo_usuario'] == 1) ? 'ADMINISTRADOR' : 'USUÁRIO';
+        $cpf_formt = preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $user['cpf']);
+  ?>
+    <article class="user-card" tabindex="0" aria-label="Usuário <?php echo htmlspecialchars($user['nome_completo']); ?>">
+      <strong class="nome"><?php echo htmlspecialchars($user['nome_completo']); ?></strong>
+      <div class="dados">
+        CARGO: <span class="cargo"><?php echo $cargo_texto; ?></span><br/>
+        ID: <?php echo $user['id_usuario']; ?><br/>
+        TELEFONE: <?php echo htmlspecialchars($user['telefone']); ?><br/>
+        CPF: <?php echo $cpf_formt; ?>
+      </div>
+      <div class="acoes">
+        <a href="crud/update_usuarios.php?id=<?php echo $user['id_usuario']; ?>" class="acao-btn" title="Editar Usuário">&#9998; Editar</a>
+        <a href="crud/delete_usuarios.php?id=<?php echo $user['id_usuario']; ?>" class="acao-btn delete" title="Excluir Usuário" onclick="return confirm('Confirma exclusão?');">&#128465; Excluir</a>
+      </div>
+    </article>
+  <?php }} ?>
+
+</div>
+
+<footer role="contentinfo" aria-label="Menu principal">
+  <form action="" method="post"><input type="hidden" name="redirect_page" value="sensores"><button type="submit" title="Sensores"><img src="../assets/icons/tela_sensor_icon.png" alt="Ícone sensores"></button></form>
+  <form action="" method="post"><input type="hidden" name="redirect_page" value="trens"><button type="submit" title="Trens"><img src="../assets/icons/tela_tren_icon.png" alt="Ícone trens"></button></form>
+  <form action="" method="post"><input type="hidden" name="redirect_page" value="estacoes"><button type="submit" title="Estações"><img src="../assets/icons/tela_estacao_icon.png" alt="Ícone estações"></button></form>
+  <form action="" method="post"><input type="hidden" name="redirect_page" value="perfil"><button type="submit" title="Perfil"><img src="../assets/icons/tela_perfil_icon.png" alt="Ícone perfil"></button></form>
+</footer>
+
 </body>
 </html>

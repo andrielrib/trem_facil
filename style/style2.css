@@ -569,7 +569,7 @@ body {
         max-width: 600px;
         border-radius: 50px 50px 0 0;
         padding: 40px 40px 0 40px;
-        box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
 
     .foto-container img {
@@ -774,8 +774,6 @@ footer button:hover {
 
 /*perfil.php*/
 
-<<<<<<< HEAD
-=======
 /*estacoes.php*/
 
 /* Responsividade para tablets */
@@ -865,7 +863,6 @@ footer button:hover {
 
 /*estacoes.php*/
 
->>>>>>> e1fc773e1316d6dba963440a6d273d37546af77d
 /*voce tem certeza */
 
 
