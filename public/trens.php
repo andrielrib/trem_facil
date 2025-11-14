@@ -1,73 +1,71 @@
 <?php
+
+$db_host = 'localhost';
+$db_name = 'trem_facil';
+$db_user = 'root';
+$db_pass = 'root';
+
+try {
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro ao conectar ao banco de dados: " . $e->getMessage());
+}
+
+include "db.php";
+
 $terminal = [
     "nome" => "Terminal Norte",
-    "linhas" => [
-        [
-            "nome" => "Costa e Silva Centro",
-            "id" => 101,
-            "status" => "Ativo",
-            "status_color" => "#00c853",
-            "paradas" => [
-                ["nome" => "Estação do Príncipe - Centro", "tempo" => "Agora"],
-                ["nome" => "Estação Ruy Barbosa - Costa e Silva", "tempo" => "15 min"],
-            ],
-            "horarios" => [
-                "Estação Príncipe" => ["5:30", "6:15", "7:00", "7:45", "8:30", "11:00", "13:00", "15:30", "17:30", "19:30"],
-                "Estação Ruy Barbosa" => ["6:00", "6:45", "7:30", "8:15", "9:00", "11:30", "13:30", "16:00", "18:00", "20:00"],
-            ],
-        ],
-        [
-            "nome" => "Pirabeiraba Centro",
-            "id" => 102,
-            "status" => "Inativo",
-            "status_color" => "#d50000",
-            "paradas" => [],
-            "horarios" => [],
-        ],
-        [
-            "nome" => "Tupy / Norte via Centro",
-            "id" => 103,
-            "status" => "Ativo",
-            "status_color" => "#00c853",
-            "paradas" => [
-                ["nome" => "Dona Francisca via Morro Cortado", "tempo" => "Agora"],
-                ["nome" => "Arno W. Dohler / Norte", "tempo" => "10 min"],
-            ],
-            "horarios" => [
-                "Dona Francisca" => ["6:00", "7:30", "9:00", "10:30", "12:00", "14:00", "16:00", "18:00"],
-                "Arno W. Dohler" => ["6:15", "8:00", "10:00", "11:30", "13:15", "15:00", "17:30", "19:00"],
-            ],
-        ],
-        [
-            "nome" => "Norte / Vila Nova via Walmor Harger",
-            "id" => 104,
-            "status" => "Ativo",
-            "status_color" => "#00c853",
-            "paradas" => [
-                ["nome" => "Vila Nova via João Miers", "tempo" => "Agora"],
-                ["nome" => "Pirabeiraba", "tempo" => "20 min"],
-            ],
-            "horarios" => [
-                "Vila Nova" => ["5:45", "7:00", "8:30", "10:00", "11:45", "13:30", "15:45", "17:15"],
-                "Pirabeiraba" => ["6:30", "8:00", "9:30", "11:00", "12:45", "14:30", "16:30", "18:00"],
-            ],
-        ],
-        [
-            "nome" => "Circulares Rui Barbosa",
-            "id" => 105,
-            "status" => "Ativo",
-            "status_color" => "#00c853",
-            "paradas" => [
-                ["nome" => "Circular Parque Douat", "tempo" => "Agora"],
-                ["nome" => "Circular Rui Barbosa", "tempo" => "5 min"],
-            ],
-            "horarios" => [
-                "Parque Douat" => ["6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00"],
-                "Rui Barbosa" => ["6:30", "7:30", "8:30", "9:30", "10:30", "11:30", "12:30"],
-            ],
-        ],
-    ],
+    "linhas" => []
 ];
+
+$linhas_db = $pdo->query("
+    SELECT 
+        id_linha, 
+        id_exibicao AS id, 
+        nome, 
+        status, 
+        status_color 
+    FROM linha
+")->fetchAll();
+
+
+foreach ($linhas_db as $linha) {
+    
+    $stmt_paradas = $pdo->prepare("SELECT nome, tempo FROM parada WHERE id_linha = ?");
+    $stmt_paradas->execute([ $linha['id_linha'] ]);
+    $linha['paradas'] = $stmt_paradas->fetchAll();
+
+    $stmt_estacoes = $pdo->prepare("
+        SELECT id_estacao_horario, nome_estacao 
+        FROM estacao_horario 
+        WHERE id_linha = ?
+    ");
+    $stmt_estacoes->execute([ $linha['id_linha'] ]);
+    
+    $horarios_agrupados = [];
+    foreach ($stmt_estacoes->fetchAll() as $estacao) {
+        
+        $stmt_horas = $pdo->prepare("
+            SELECT TIME_FORMAT(hora, '%k:%i') AS hora_formatada 
+            FROM horario 
+            WHERE id_estacao_horario = ?
+        ");
+        $stmt_horas->execute([ $estacao['id_estacao_horario'] ]);
+        
+        $lista_de_horas = $stmt_horas->fetchAll(PDO::FETCH_COLUMN); 
+        
+        if (!empty($lista_de_horas)) {
+            $horarios_agrupados[ $estacao['nome_estacao'] ] = $lista_de_horas;
+        }
+    }
+    
+    $linha['horarios'] = $horarios_agrupados;
+    
+    $terminal['linhas'][] = $linha;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $page = $_POST['redirect_page'] ?? '';
     switch ($page) {
@@ -96,12 +94,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Trens - <?=htmlspecialchars($terminal['nome'])?></title>
     <link rel="stylesheet" href="../style/style2.css">
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: black;
+            border-top: 1px solid #0B57DA;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            user-select: none;
+        }
+        footer form {
+            display: inline;
+        }
+        footer button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        footer img {
+            width: 60px;
+            height: 60px;
+        }
+    </style>
 </head>
 <body>
     <div id="app" role="main" aria-label="Lista de linhas de trem">
         <header>
             <button class="btn-back" aria-label="Voltar" onclick="history.back();">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24" fill="none" aria-hidden="true" focusable="false">
                     <polyline points="15 18 9 12 15 6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 Voltar
@@ -112,8 +137,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="search-container">
             <button type="submit" class="search-button">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="../assets/icons/icone_lupa.png">
-                        <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="20" height="20" viewBox="0 0 24" fill="none" xmlns="../assets/icons/icone_lupa.png">
+                    <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
             <input type="search" id="searchInput" placeholder="Pesquisar Trem" class="search-input">
@@ -123,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <article class="trem" data-nome="<?=htmlspecialchars(strtolower($linha['nome']))?>">
                 <div class="header-trem">
                     <div class="info-trem">
-                        <svg class="icon-train" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <svg class="icon-train" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24" 24" aria-hidden="true" focusable="false">
                             <rect x="3" y="3" width="18" height="14" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <circle cx="8.5" cy="20.5" r="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <circle cx="15.5" cy="20.5" r="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -191,33 +216,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endforeach; ?>
     </div>
 
-    <footer role="contentinfo" aria-label="Menu principal">
-        <form action="" method="post" style="display: inline;">
+    <footer>
+        <form action="" method="post">
             <input type="hidden" name="redirect_page" value="sensores">
-            <button type="submit" title="Sensores" style="border: none; background: none; cursor: pointer;">
-            <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores" width="60" height="60">
+            <button type="submit" title="Sensores">
+                <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores">
             </button>
         </form>
-        <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <form action="" method="post">
             <input type="hidden" name="redirect_page" value="trens">
-            <button type="submit" title="Trens" style="border: none; background: none; cursor: pointer;">
-            <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens" width="60" height="60">
+            <button type="submit" title="Trens">
+                <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens">
             </button>
         </form>
-        <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <form action="" method="post">
             <input type="hidden" name="redirect_page" value="estacoes">
-            <button type="submit" title="Estacoes" style="border: none; background: none; cursor: pointer;">
-            <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estacoes" width="60" height="60">
+            <button type="submit" title="Estações">
+                <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estações">
             </button>
         </form>
-        <form action="" method="post" style="display: inline; margin-left: 10px;">
+        <form action="" method="post">
             <input type="hidden" name="redirect_page" value="perfil">
-            <button type="submit" title="Perfil" style="border: none; background: none; cursor: pointer;">
-            <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil" width="60" height="60">
+            <button type="submit" title="Perfil">
+                <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
             </button>
         </form>
     </footer>
-
+    
     <script>
         const searchInput = document.getElementById('searchInput');
         const linhas = document.querySelectorAll('.trem');

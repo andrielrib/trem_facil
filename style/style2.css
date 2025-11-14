@@ -51,12 +51,15 @@ header {
     font-size: 20px;
     display: flex;
     align-items: center;
+    width: 114px;
 }
 
 .btn-back svg {
     margin-right: 6px;
     stroke: white;
     stroke-width: 3;
+    width: 24px;
+    height: 24px;
 }
 
 .title {
