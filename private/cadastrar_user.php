@@ -83,59 +83,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
   body {
-    margin: 0; background: #000; color: #5df8ff; font-family: 'Montserrat', sans-serif;
-    display: flex; justify-content: center;
+    margin: 0; background: #000; color: white; font-family: 'Montserrat', sans-serif;
+    display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;
+    padding: 20px 10px; box-sizing: border-box;
   }
   .container {
-    max-width: 360px; width: 95%;
-    background: #0a0a0a; text-align: center;
+    max-width: 360px; width: 100%;
+    background: #111; text-align: center;
     border-radius: 25px; padding: 30px 25px 60px;
     margin-top: 20px;
-    box-shadow: 0 0 20px #00d30f9c;
+    box-shadow: 0 2px 9px rgba(11, 87, 218, 0.3);
   }
   h1 {
     font-size: 2.4rem;
     font-weight: 700;
     margin-bottom: 20px;
-    color: #5df8ff;
+    color: white;
   }
   .icon-user {
     font-size: 5rem;
-    color: #5df8ff;
+    color: #006400; /* Verde escuro */
     margin-bottom: 20px;
   }
   form input[type=text], form input[type=email], form input[type=tel], form input[type=password] {
     width: 100%;
     border-radius: 28px;
-    border: none;
+    border: 1px solid #0B57DA;
     padding: 15px 20px;
     margin: 12px 0;
     font-size: 1.15rem;
     text-align: center;
     font-weight: 500;
-    color: #000;
-    background-color: #00bfff;
+    color: white;
+    background-color: #222;
     outline: none;
+    box-sizing: border-box;
+  }
+  form input::placeholder {
+    color: #777;
   }
   button {
     width: 100%;
     padding: 15px;
-    background: #00d30f;
+    background: #0B57DA;
     border: none;
     border-radius: 28px;
-    color: black;
+    color: white;
     font-size: 1.35rem;
     font-weight: 800;
     margin-top: 18px;
     cursor: pointer;
     user-select: none;
     transition: background-color 0.3s ease;
+    box-sizing: border-box;
   }
   button:hover {
-    background: #048505;
+    background: #0943b0;
   }
   .errors {
-    background: #b91111; border-radius: 15px; color: white;
+    background: #e74c3c; border-radius: 15px; color: white;
     padding: 12px 15px; margin-bottom: 15px;
     font-weight: 600; text-align: left;
   }
@@ -147,10 +153,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     width: 14px; height: 14px;
     margin: 0 8px;
     border-radius: 50%;
-    background-color: #0c0c0c;
+    background-color: #333;
   }
   .page-indicator span.active {
-    background-color: #00d30f;
+    background-color: #0B57DA;
   }
   footer {
     position: fixed;
@@ -173,6 +179,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   footer img {
     width: 60px;
     height: 60px;
+  }
+
+  /* Responsividade adicional */
+  @media (max-width: 480px) {
+    .container {
+      padding: 20px 15px 40px;
+      margin-top: 10px;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+    .icon-user {
+      font-size: 4rem;
+    }
+    form input[type=text], form input[type=email], form input[type=tel], form input[type=password] {
+      padding: 12px 15px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 12px;
+      font-size: 1.2rem;
+    }
   }
 </style>
 </head>
@@ -205,6 +233,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <button type="submit">REGISTRAR</button>
     <?php endif; ?>
   </form>
+
+  <div class="page-indicator">
+    <span class="<?php echo $step === 1 ? 'active' : ''; ?>"></span>
+    <span class="<?php echo $step === 2 ? 'active' : ''; ?>"></span>
+  </div>
 
 </div>
 

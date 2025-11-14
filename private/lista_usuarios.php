@@ -25,8 +25,7 @@ if ($search) {
   body {
     margin: 0; font-family: 'Montserrat', sans-serif;
     background: #000;
-    color:     color: #0057b7;
-
+    color: white;
     display: flex;
     justify-content: center;
   }
@@ -43,7 +42,7 @@ if ($search) {
   }
   header a.back-btn {
     text-decoration: none;
-    color:  #108000;
+    color: #0B57DA;
     font-weight: 700;
     font-size: 1.3rem;
   }
@@ -58,34 +57,33 @@ if ($search) {
     width: 100%;
     background: none;
     border: none;
-    border-bottom: 2.5px solid  #108000;
-    color:     color: #0057b7;
-
+    border-bottom: 2.5px solid #0B57DA;
+    color: white;
     font-size: 1.05rem;
     padding: 8px 0;
     margin-bottom: 18px;
     outline: none;
   }
   form.search-form input::placeholder {
-    color:  #108000;
+    color: #777;
     font-style: italic;
   }
   button.btn-add {
     width: 100%;
-    background: #108000;
+    background: #0B57DA;
     border-radius: 30px;
     border: none;
     padding: 14px;
     font-size: 1.3rem;
     font-weight: 700;
-    color: black;
+    color: white;
     margin-bottom: 12px;
     cursor: pointer;
     user-select: none;
     transition: background-color 0.3s ease;
   }
   button.btn-add:hover {
-    background: #108000;;
+    background: #0943b0;
   }
   article.user-card {
     background: #111;
@@ -101,7 +99,7 @@ if ($search) {
     display: block;
   }
   article.user-card span.cargo {
-    color:  #108000;;
+    color: #0B57DA;
     font-weight: 700;
   }
   article.user-card .dados {
@@ -113,10 +111,10 @@ if ($search) {
     gap: 12px;
   }
   a.acao-btn {
-    background:  #108000;;
+    background: #0B57DA;
     padding: 4px 12px;
     border-radius: 30px;
-    color: black;
+    color: white;
     font-weight: 600;
     text-decoration: none;
     font-size: 1rem;
@@ -127,22 +125,21 @@ if ($search) {
     transition: background-color 0.3s ease;
   }
   a.acao-btn:hover {
-    background:  #108000;
+    background: #0943b0;
   }
   a.acao-btn.delete {
-    background: #cc2424;
+    background: #e74c3c;
     color: #fff;
   }
   a.acao-btn.delete:hover {
-    background: #900000;
+    background: #c0392b;
   }
   footer {
     position: fixed;
     bottom: 0; left: 0; right: 0;
     height: 80px;
     background: #000;
-    border-top: 1px solid    color: #0057b7;
-
+    border-top: 1px solid #0B57DA;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -174,11 +171,11 @@ if ($search) {
     <input type="search" name="search" placeholder="Pesquisar Usuários" value="<?php echo htmlspecialchars($search); ?>" aria-label="Pesquisar Usuários" />
   </form>
 
-  <button class="btn-add" onclick="location.href='crud/cadastrar_user.php'">ADICIONAR USUÁRIO</button>
+  <button class="btn-add" onclick="location.href='cadastrar_user.php'">ADICIONAR USUÁRIO</button>
 
   <?php
     if ($result->num_rows === 0) {
-      echo '<p style="color:#00ac11; text-align:center;">Nenhum usuário encontrado.</p>';
+      echo '<p style="color:#777; text-align:center;">Nenhum usuário encontrado.</p>';
     } else {
       while ($user = $result->fetch_assoc()) {
         $cargo_texto = ($user['tipo_usuario'] == 1) ? 'ADMINISTRADOR' : 'USUÁRIO';
