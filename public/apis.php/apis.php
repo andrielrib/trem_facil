@@ -92,6 +92,51 @@ if (isset($_GET['dog'])) {
     exit;
 }
 
+// API ViaCEP: consulta endereço por CEP
+if (isset($_GET['cep'])) {
+    $cep = preg_replace('/\D/', '', $_GET['cep']);
+    if (strlen($cep) !== 8) {
+        echo json_encode(['error' => 'CEP inválido']);
+        exit;
+    }
+    $api_url = "https://viacep.com.br/ws/{$cep}/json/";
+    $ch = curl_init();
+    curl_setopt_array($ch, [
+        CURLOPT_URL => $api_url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_TIMEOUT => 10,
+        CURLOPT_HTTPHEADER => [
+            'Accept: application/json',
+            'User-Agent: PHP cURL'
+        ],
+    ]);
+    $response = curl_exec($ch);
+    $curl_errno = curl_errno($ch);
+    $curl_error = curl_error($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if ($curl_errno) {
+        echo json_encode(['error' => 'Erro na requisição cURL: ' . $curl_error]);
+        exit;
+    }
+    if ($http_code < 200 || $http_code >= 300) {
+        echo json_encode(['error' => 'Erro HTTP: ' . $http_code, 'response' => $response]);
+        exit;
+    }
+    $data = json_decode($response, true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        echo json_encode(['error' => 'Erro ao decodificar JSON: ' . json_last_error_msg()]);
+        exit;
+    }
+    if (isset($data['erro']) && $data['erro']) {
+        echo json_encode(['error' => 'CEP não encontrado']);
+        exit;
+    }
+    echo json_encode($data);
+    exit;
+}
+
 // Recebe o UF via query string, ex: ?uf=SP — padrão SP
 $uf = isset($_GET['uf']) ? strtoupper(substr($_GET['uf'], 0, 2)) : 'SP';
 
