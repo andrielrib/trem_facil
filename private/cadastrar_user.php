@@ -1,4 +1,5 @@
 <?php
+
 include '../public/db.php';
 session_start();
 
@@ -39,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data['senha'] = $_POST['senha'] ?? '';
     $data['confirmar_senha'] = $_POST['confirmar_senha'] ?? '';
     $data['nome_usuario'] = trim($_POST['nome_usuario'] ?? '');
-    $data['tipo_usuario'] = isset($_POST['tipo_usuario']) && in_array($_POST['tipo_usuario'], ['1', '2']) ? (int)$_POST['tipo_usuario'] : 2;
 
     if (!$data['telefone'] || !preg_match('/^\d{10,11}$/', $data['telefone'])) $errors[] = "Telefone deve conter 10 ou 11 números.";
     if (!$data['nome_usuario']) $errors[] = "Nome de usuário é obrigatório.";
@@ -81,9 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cadastrar Usuário - Trem Fácil</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   body {
-    margin: 0; background: #000; color: white; font-family: 'Montserrat', sans-serif;
+    margin: 0; background: #000; color: white; font-family: Arial, sans-serif;
     display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;
     padding: 20px 10px; box-sizing: border-box;
   }
@@ -102,10 +101,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   .icon-user {
     font-size: 5rem;
-    color: #006400;
+    color: #006400; /* Verde escuro */
     margin-bottom: 20px;
   }
-  form input[type=text], form input[type=email], form input[type=tel], form input[type=password], form select {
+  form input[type=text], form input[type=email], form input[type=tel], form input[type=password] {
     width: 100%;
     border-radius: 28px;
     border: 1px solid #0B57DA;
@@ -118,9 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     background-color: #222;
     outline: none;
     box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
   }
   form input::placeholder {
     color: #777;
@@ -142,14 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   button:hover {
     background: #0943b0;
-  }
-  .btn-back {
-    margin-top: 12px;
-    background: #006400;
-    font-weight: 700;
-  }
-  .btn-back:hover {
-    background: #004d00;
   }
   .errors {
     background: #e74c3c; border-radius: 15px; color: white;
@@ -191,6 +179,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     width: 60px;
     height: 60px;
   }
+
+  /* Responsividade adicional */
   @media (max-width: 480px) {
     .container {
       padding: 20px 15px 40px;
@@ -202,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .icon-user {
       font-size: 4rem;
     }
-    form input[type=text], form input[type=email], form input[type=tel], form input[type=password], form select {
+    form input[type=text], form input[type=email], form input[type=tel], form input[type=password] {
       padding: 12px 15px;
       font-size: 1rem;
     }
@@ -231,7 +221,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($step === 1): ?>
       <input type="text" name="nome_completo" placeholder="Nome completo" required autofocus value="<?php echo htmlspecialchars($data['nome_completo']); ?>" />
       <input type="text" name="cpf" placeholder="CPF (apenas números)" maxlength="11" pattern="\d{11}" value="<?php echo htmlspecialchars($data['cpf']); ?>" required />
-      <input type="text" name="cep" placeholder="CEP (apenas números)" maxlength="8" pattern="\d{8}" value="<?php echo htmlspecialchars($data['cep']); ?>" required />
+      <input type="text" name="cep" id="cep" placeholder="CEP (apenas números)" maxlength="8" pattern="\d{8}" value="<?php echo htmlspecialchars($data['cep']); ?>" required />
+      <div id="cep-result" style="background:#111;border-radius:12px;padding:12px 18px;margin:8px 0 0;display:none;color:white;text-align:left;font-size:0.98rem"></div>
       <input type="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($data['email']); ?>" required />
       <button type="submit">PRÓXIMO</button>
     <?php else: ?>
@@ -239,19 +230,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input type="password" name="senha" placeholder="Senha (min 6 caracteres)" minlength="6" required />
       <input type="password" name="confirmar_senha" placeholder="Confirmar senha" minlength="6" required />
       <input type="text" name="nome_usuario" placeholder="Nome de Usuário" value="<?php echo htmlspecialchars($data['nome_usuario']); ?>" required />
-      
-      <select name="tipo_usuario" required>
-        <option value="2" <?php echo ($data['tipo_usuario'] == 2) ? 'selected' : ''; ?>>USUÁRIO</option>
-        <option value="1" <?php echo ($data['tipo_usuario'] == 1) ? 'selected' : ''; ?>>ADMINISTRADOR</option>
-      </select>
-
       <button type="submit">REGISTRAR</button>
     <?php endif; ?>
   </form>
 
-  <button class="btn-back" onclick="location.href='lista_usuarios.php'" aria-label="Voltar para lista de usuários">VOLTAR PARA LISTA</button>
-
-  <div class="page-indicator" aria-label="Indicador da página">
+  <div class="page-indicator">
     <span class="<?php echo $step === 1 ? 'active' : ''; ?>"></span>
     <span class="<?php echo $step === 2 ? 'active' : ''; ?>"></span>
   </div>
@@ -264,6 +247,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <form action="" method="post"><input type="hidden" name="redirect_page" value="estacoes"><button type="submit" title="Estações"><img src="../assets/icons/tela_estacao_icon.png" alt="Ícone estações"></button></form>
   <form action="" method="post"><input type="hidden" name="redirect_page" value="perfil"><button type="submit" title="Perfil"><img src="../assets/icons/tela_perfil_icon.png" alt="Ícone perfil"></button></form>
 </footer>
+
+<script>
+// Consulta ViaCEP ao sair do campo CEP
+const cepInput = document.getElementById('cep');
+const cepResult = document.getElementById('cep-result');
+if (cepInput && cepResult) {
+  cepInput.addEventListener('blur', function() {
+    const cep = cepInput.value.replace(/\D/g, '');
+    if (cep.length === 8) {
+      cepResult.textContent = 'Buscando endereço...';
+      cepResult.style.display = 'block';
+      fetch('https://viacep.com.br/ws/' + cep + '/json/')
+        .then(r => r.json())
+        .then(data => {
+          if (data.erro) {
+            cepResult.textContent = 'CEP não encontrado.';
+          } else {
+            cepResult.innerHTML =
+              '<strong>Logradouro:</strong> ' + (data.logradouro || '-') + '<br>' +
+              '<strong>Bairro:</strong> ' + (data.bairro || '-') + '<br>' +
+              '<strong>Cidade:</strong> ' + (data.localidade || '-') + '<br>' +
+              '<strong>UF:</strong> ' + (data.uf || '-') + '<br>' +
+              '<strong>DDD:</strong> ' + (data.ddd || '-');
+          }
+        })
+        .catch(() => {
+          cepResult.textContent = 'Erro ao consultar o CEP.';
+        });
+    } else {
+      cepResult.style.display = 'none';
+      cepResult.textContent = '';
+    }
+  });
+}
+</script>
 
 </body>
 </html>

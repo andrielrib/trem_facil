@@ -1,7 +1,8 @@
-<?php
-include '../public/db.php';
-session_start();
 
+<?php
+include '../../public/db.php';
+session_start();
+// Verifica se o usuario está logado e tem permissão se necessário (não enviado)
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header('Location: ../lista_usuarios.php?msg=ID inválido');
     exit();

@@ -171,10 +171,6 @@ if ($search) {
     <h1>Lista de Usuários</h1>
   </header>
 
-  <?php if (isset($_GET['msg'])): ?>
-  <p style="color:#0B57DA; font-weight:700; text-align:center;"><?php echo htmlspecialchars($_GET['msg']); ?></p>
-  <?php endif; ?>
-
   <form class="search-form" method="get" action="">
     <input type="search" name="search" placeholder="Pesquisar Usuários" value="<?php echo htmlspecialchars($search); ?>" aria-label="Pesquisar Usuários" />
   </form>
