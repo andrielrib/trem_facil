@@ -1,5 +1,5 @@
 <?php
-
+// --- Conexão ---
 $db_host = 'localhost';
 $db_name = 'trem_facil';
 $db_user = 'root';
@@ -10,240 +10,162 @@ try {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Erro ao conectar ao banco de dados: " . $e->getMessage());
+    die("Erro ao conectar: " . $e->getMessage());
 }
 
-include "db.php";
+// --- Lógica de Busca ---
+$trens_para_exibir = [];
 
-$terminal = [
-    "nome" => "Terminal Norte",
-    "linhas" => []
-];
-
-$linhas_db = $pdo->query("
-    SELECT 
-        id_linha, 
-        id_exibicao AS id, 
-        nome, 
-        status, 
-        status_color 
-    FROM linha
-")->fetchAll();
-
+// 1. Busca as Linhas (Trens)
+$sql_linhas = "SELECT id_linha, id_exibicao, nome, status, status_color FROM linha ORDER BY id_exibicao ASC";
+$linhas_db = $pdo->query($sql_linhas)->fetchAll();
 
 foreach ($linhas_db as $linha) {
-    
+    // 2. Paradas
     $stmt_paradas = $pdo->prepare("SELECT nome, tempo FROM parada WHERE id_linha = ?");
     $stmt_paradas->execute([ $linha['id_linha'] ]);
     $linha['paradas'] = $stmt_paradas->fetchAll();
 
-    $stmt_estacoes = $pdo->prepare("
-        SELECT id_estacao_horario, nome_estacao 
-        FROM estacao_horario 
-        WHERE id_linha = ?
-    ");
-    $stmt_estacoes->execute([ $linha['id_linha'] ]);
+    // 3. Horários
+    $stmt_eh = $pdo->prepare("SELECT id_estacao_horario, nome_estacao FROM estacao_horario WHERE id_linha = ?");
+    $stmt_eh->execute([ $linha['id_linha'] ]);
     
     $horarios_agrupados = [];
-    foreach ($stmt_estacoes->fetchAll() as $estacao) {
-        
-        $stmt_horas = $pdo->prepare("
-            SELECT TIME_FORMAT(hora, '%k:%i') AS hora_formatada 
-            FROM horario 
-            WHERE id_estacao_horario = ?
-        ");
-        $stmt_horas->execute([ $estacao['id_estacao_horario'] ]);
-        
-        $lista_de_horas = $stmt_horas->fetchAll(PDO::FETCH_COLUMN); 
-        
-        if (!empty($lista_de_horas)) {
-            $horarios_agrupados[ $estacao['nome_estacao'] ] = $lista_de_horas;
-        }
+    foreach ($stmt_eh->fetchAll() as $eh) {
+        $stmt_h = $pdo->prepare("SELECT TIME_FORMAT(hora, '%H:%i') as h FROM horario WHERE id_estacao_horario = ? ORDER BY hora ASC");
+        $stmt_h->execute([ $eh['id_estacao_horario'] ]);
+        $times = $stmt_h->fetchAll(PDO::FETCH_COLUMN);
+        if($times) $horarios_agrupados[ $eh['nome_estacao'] ] = $times;
     }
-    
     $linha['horarios'] = $horarios_agrupados;
-    
-    $terminal['linhas'][] = $linha;
+    $trens_para_exibir[] = $linha;
 }
 
+// --- Redirecionamento ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $page = $_POST['redirect_page'] ?? '';
-    switch ($page) {
-        case 'sensores':
-            header('Location: ../private/sensor.php');
-            exit();
-        case 'trens':
-            header('Location: trens.php');
-            exit();
-        case 'estacoes':
-            header('Location: estacoes.php');
-            exit();
-        case 'perfil':
-            header('Location: perfil.php');
-            exit();
-        default:
-            header('Location: index.php');
-            exit();
+    $paginas = ['sensores', 'trens', 'estacoes', 'perfil'];
+    if(in_array($page, $paginas)) {
+        header("Location: $page.php");
+        exit;
     }
+    header('Location: index.php');
+    exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Trens - <?=htmlspecialchars($terminal['nome'])?></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trens</title>
     <link rel="stylesheet" href="../style/style3.css">
 </head>
 <body>
-    <div id="app" role="main" aria-label="Lista de linhas de trem">
-        <header>
-            <button class="btn-back" aria-label="Voltar" onclick="history.back();">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24" fill="none" aria-hidden="true" focusable="false">
-                    <polyline points="15 18 9 12 15 6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Voltar
-            </button>
-            <div class="title">Trens</div>
-            <div class="btn-trens" aria-hidden="true">TRENS</div>
-        </header>
 
-        <div class="search-container">
-            <button type="submit" class="search-button">
-                <svg width="20" height="20" viewBox="0 0 24" fill="none" xmlns="../assets/icons/icone_lupa.png">
-                    <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-            <input type="search" id="searchInput" placeholder="Pesquisar Trem" class="search-input">
-        </div>
+<div class="container">
+    <header>
+        <button class="btn-back" onclick="history.back()">&#8592;</button>
+        <span class="header-title">TRENS</span>
+    </header>
 
-        <?php foreach ($terminal['linhas'] as $linha): ?>
-            <article class="trem" data-nome="<?=htmlspecialchars(strtolower($linha['nome']))?>">
+    <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Pesquisar Trem..." autocomplete="off">
+    </div>
+
+    <div id="trainContainer">
+        <?php foreach ($trens_para_exibir as $trem): ?>
+            <div class="trem" data-nome="<?= strtolower(htmlspecialchars($trem['nome'])) ?>">
+                
                 <div class="header-trem">
                     <div class="info-trem">
-                        <svg class="icon-train" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24" 24" aria-hidden="true" focusable="false">
-                            <rect x="3" y="3" width="18" height="14" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="8.5" cy="20.5" r="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="15.5" cy="20.5" r="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <line x1="3" y1="11" x2="21" y2="11" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <img src="../assets/icons/trem_icon_lista.png" width="45" height="45" onerror="this.style.display='none'">
                         <div>
-                            <div class="titulo-trem"><?=htmlspecialchars($linha['nome'])?></div>
-                            <div class="id-status" aria-label="ID e status do trem">
-                                <span>ID #<?=htmlspecialchars($linha['id'])?></span>
-                                <span class="status <?=htmlspecialchars($linha['status'])?>" style="color: <?=htmlspecialchars($linha['status_color'])?>">
-                                    Status: <?=htmlspecialchars($linha['status'])?>
+                            <div class="titulo-trem"><?= htmlspecialchars($trem['nome']) ?></div>
+                            <div class="id-status">
+                                <span style="color:#ccc; margin-right:10px;">ID #<?= $trem['id_exibicao'] ?></span>
+                                
+                                <span class="status-text" style="color: <?= $trem['status_color'] ?>">
+                                    <span class="status-dot" style="background-color: <?= $trem['status_color'] ?>"></span>
+                                    <?= htmlspecialchars($trem['status']) ?>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <button class="btn-notify" aria-label="Ativar notificações para <?=htmlspecialchars($linha['nome'])?>">
-                        <svg class="icon-bell" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                        </svg>
-                    </button>
+                    <button class="btn-notify">🔔</button>
                 </div>
 
-                <?php if (!empty($linha['paradas'])): ?>
-                    <div class="paradas" aria-label="Pontos de Parada">
-                        Pontos de Parada:
-                    </div>
+                <?php if (!empty($trem['paradas'])): ?>
+                    <div class="paradas">Status Local:</div>
                     <div class="paradas-list">
-                        <?php foreach ($linha['paradas'] as $parada): ?>
-                            <?php 
-                                $isAgora = strtolower(trim($parada['tempo'])) === 'agora';
-                                $tempoClass = $isAgora ? 'agora' : 'nao-agora';
-                            ?>
-                            <div class="parada-item <?= $tempoClass ?>">
-                                <span><?=htmlspecialchars($parada['nome'])?></span>
-                                <span class="tempo"><?=htmlspecialchars($parada['tempo'])?></span>
+                        <?php foreach ($trem['paradas'] as $p): 
+                            $isAgora = (strtolower(trim($p['tempo'])) == 'agora');
+                            $cor = $isAgora ? '#00c853' : '#ccc';
+                        ?>
+                            <div class="parada-item">
+                                <span><?= htmlspecialchars($p['nome']) ?></span>
+                                <span style="color: <?= $cor ?>; font-weight: <?= $isAgora?'bold':'normal' ?>">
+                                    <?= htmlspecialchars($p['tempo']) ?>
+                                </span>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
 
-                <?php if (!empty($linha['horarios'])): ?>
+                <?php if (!empty($trem['horarios'])): ?>
                     <div class="horarios-container">
-                        <label class="toggle-label" for="toggle-<?=htmlspecialchars($linha['id'])?>">
-                            <span>Mostrar Horários</span>
+                        <label class="toggle-label" for="t-<?= $trem['id_linha'] ?>">
+                            <span>Ver Horários</span>
                             <div class="toggle-switch">
-                                <input type="checkbox" id="toggle-<?=htmlspecialchars($linha['id'])?>">
+                                <input type="checkbox" id="t-<?= $trem['id_linha'] ?>" onchange="toggleHorario(this)">
                                 <span class="slider"></span>
                             </div>
                         </label>
-                        <div class="horarios" aria-label="Horários dos dias úteis para <?=htmlspecialchars($linha['nome'])?>">
-                            <?php foreach ($linha['horarios'] as $estacao => $horarios): ?>
+                        <div class="horarios" id="h-<?= $trem['id_linha'] ?>" style="display:none;">
+                            <?php foreach ($trem['horarios'] as $est => $horas): ?>
                                 <div class="horarios-column">
-                                    <strong><?=htmlspecialchars($estacao)?></strong>
+                                    <strong><?= htmlspecialchars($est) ?></strong>
                                     <div class="horarios-list">
-                                        <?php foreach ($horarios as $hora): ?>
-                                            <span><?=htmlspecialchars($hora)?></span>
-                                        <?php endforeach; ?>
+                                        <?php foreach ($horas as $h) echo "<span>$h</span>"; ?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endif; ?>
-            </article>
+
+            </div>
         <?php endforeach; ?>
     </div>
+</div>
 
-    <footer>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="sensores">
-            <button type="submit" title="Sensores">
-                <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores">
-            </button>
+<footer>
+    <?php 
+    $botoes = ['sensores'=>'tela_sensor_icon.png', 'trens'=>'tela_tren_icon.png', 'estacoes'=>'tela_estacao_icon.png', 'perfil'=>'tela_perfil_icon.png'];
+    foreach($botoes as $pg => $img): ?>
+        <form action="" method="post" style="display:inline;">
+            <input type="hidden" name="redirect_page" value="<?= $pg ?>">
+            <button type="submit"><img src="../assets/icons/<?= $img ?>"></button>
         </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="trens">
-            <button type="submit" title="Trens">
-                <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="estacoes">
-            <button type="submit" title="Estações">
-                <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estações">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="perfil">
-            <button type="submit" title="Perfil">
-                <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
-            </button>
-        </form>
-    </footer>
-    
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const linhas = document.querySelectorAll('.trem');
+    <?php endforeach; ?>
+</footer>
 
-        searchInput.addEventListener('input', () => {
-            const term = searchInput.value.toLowerCase().trim();
-
-            linhas.forEach(linha => {
-                const nome = linha.getAttribute('data-nome');
-                if (!term || nome.includes(term)) {
-                    linha.style.display = '';
-                } else {
-                    linha.style.display = 'none';
-                }
-            });
+<script>
+    // Pesquisa
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+        const term = e.target.value.toLowerCase();
+        document.querySelectorAll('.trem').forEach(t => {
+            t.style.display = t.getAttribute('data-nome').includes(term) ? '' : 'none';
         });
+    });
 
-        document.querySelectorAll('.horarios-container').forEach(container => {
-            const checkbox = container.querySelector('input[type="checkbox"]');
-            const horariosDiv = container.querySelector('.horarios');
-
-            horariosDiv.style.display = 'none';
-
-            checkbox.addEventListener('change', () => {
-                horariosDiv.style.display = checkbox.checked ? 'flex' : 'none';
-            });
-        });
-
-    </script>
+    // Mostrar Horários
+    function toggleHorario(checkbox) {
+        const id = checkbox.id.replace('t-', 'h-');
+        document.getElementById(id).style.display = checkbox.checked ? 'flex' : 'none';
+    }
+</script>
 </body>
 </html>

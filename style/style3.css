@@ -21,13 +21,70 @@ body {
 }
 
 .container {
-    flex: 1; 
+    flex: 1;
     overflow-y: auto;
     padding: 15px;
     padding-bottom: 100px;
     width: 100%;
 }
 
+.line-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    color: #e0e0e0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.line-item:last-child {
+    border-bottom: none;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.status-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #e0e0e0;
+    font-family: sans-serif;
+}
+
+.legend-bar {
+    display: block;
+    width: 4px;
+    height: 14px;
+    margin-right: 6px;
+    border-radius: 2px;
+}
+
+.bg-green {
+    background-color: #00c853;
+}
+
+.bg-yellow {
+    background-color: #ffb300;
+}
+
+.bg-red {
+    background-color: #d50000;
+}
 
 header {
     display: flex;
@@ -113,7 +170,7 @@ header .header-title {
     width: 30px;
     height: 30px;
     margin-right: 15px;
-    filter: brightness(0) invert(1); 
+    filter: brightness(0) invert(1);
 }
 
 .station-header h2 {
@@ -224,6 +281,20 @@ header {
     z-index: 10;
 }
 
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-text {
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
 .btn-back {
     background: #004ecb;
     border: none;
@@ -309,7 +380,7 @@ header {
 
 .trem {
     border: none;
-    background-color: #02145e;
+    background-color: #000000;
     color: white;
     margin: 12px;
     border-radius: 12px;
@@ -520,19 +591,19 @@ input:checked+.slider:before {
 }
 
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background-color: black;
-            border-top: 1px solid #0B57DA;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            user-select: none;
-        }
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    border-top: 1px solid #0B57DA;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    user-select: none;
+}
 
 footer form {
     display: inline;

@@ -13,6 +13,31 @@ if (!isset($_SESSION['user'])) {
 }
 $user = $_SESSION['user'];
 
+// Fetch fox background image
+$fox_image = '';
+$api_url = "https://randomfox.ca/floof.json";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $api_url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Accept: application/json',
+    'User-Agent: PHP'
+]);
+$response = curl_exec($ch);
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+if ($response !== false && $http_code == 200) {
+    $data = json_decode($response, true);
+    if (isset($data['image'])) {
+        $fox_image = $data['image'];
+    }
+}
+// Fallback to a static fox image if API fails
+if (empty($fox_image)) {
+    $fox_image = 'https://randomfox.ca/images/' . rand(1, 100) . '.jpg'; // Random static fox image
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Só altera a foto se houver upload novo
     if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
@@ -86,7 +111,7 @@ if (isset($_GET['action'])) {
     <title>Perfil</title>
     <link rel="stylesheet" href="../style/style2.css">
 </head>
-<body onload="loadRandomFoxBackground()">
+<body style="<?php if (!empty($fox_image)) { echo 'background-image: url(\'' . htmlspecialchars($fox_image) . '\'); background-size: cover; background-repeat: no-repeat; background-position: center;'; } ?>">
     <div class="wrapper">
         <form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
             <div class="foto-container">
@@ -116,12 +141,7 @@ if (isset($_GET['action'])) {
                 </div>
             </div>
 
-            <div class="suporte-section">
-                <b>SUPORTE</b>
-                <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
-            </div>
-            <br>
-            <br>
+
         </form>
 
         <!-- Botão de Logout -->
@@ -165,21 +185,6 @@ if (isset($_GET['action'])) {
                     document.getElementById('imagemPerfil').src = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        async function loadRandomFoxBackground() {
-            try {
-                const response = await fetch('./apis.php/apis.php?fox');
-                const data = await response.json();
-                if (data.image) {
-                    document.body.style.backgroundImage = `url('${data.image}')`;
-                    document.body.style.backgroundSize = 'cover';
-                    document.body.style.backgroundRepeat = 'no-repeat';
-                    document.body.style.backgroundPosition = 'center';
-                }
-            } catch (error) {
-                console.error('Erro ao carregar fundo de raposa:', error);
             }
         }
     </script>
