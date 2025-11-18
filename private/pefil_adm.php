@@ -117,7 +117,7 @@ if (isset($_GET['action'])) {
         }
     </style>
 </head>
-<body>
+<body onload="loadRandomFoxBackground()">
     <div class="wrapper">
         <form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
             <div class="foto-container">
@@ -250,6 +250,21 @@ if (isset($_GET['action'])) {
         icone.alt = 'Editar Nome';
         icone.className = 'icone-editar';
         nomeDisplay.appendChild(icone);
+    }
+
+    async function loadRandomFoxBackground() {
+        try {
+            const response = await fetch('../public/apis.php/apis.php?fox');
+            const data = await response.json();
+            if (data.image) {
+                document.body.style.backgroundImage = `url('${data.image}')`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundRepeat = 'no-repeat';
+                document.body.style.backgroundPosition = 'center';
+            }
+        } catch (error) {
+            console.error('Erro ao carregar fundo de raposa:', error);
+        }
     }
 </script>
 </body>

@@ -11,7 +11,7 @@ if (isset($_GET['logout'])) {
   session_unset();
   session_destroy();
   $msg = "Você saiu com sucesso.";
-  // Após logout, redirecionar para index.php para tela inicial
+
   header("Location: ../index.php");
   exit;
 }
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 }
 
-// Verificar se o usuário já está logado e redirecionar imediatamente
+
 if (!empty($_SESSION["user_id"])) {
   if ($_SESSION["tipo_usuario"] == 2) {
     header("Location: ../private/pagina_inicial_adm.php");
