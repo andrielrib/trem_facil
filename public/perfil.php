@@ -66,7 +66,7 @@ if (isset($_GET['action'])) {
             header('Location: login.php');
             exit;
         case 'remover_conta':
-            header('Location: voce_tem_certza.php');
+            header('Location: ../private/voce_tem_certza.php');
             exit;
         case 'suporte':
             header('Location: suporte_alerta.php');
