@@ -13,11 +13,10 @@ try {
     die("Erro ao conectar ao banco de dados: " . $e->getMessage());
 }
 
-require_once 'db.php'; // Este arquivo fornece a variável $pdo
+require_once 'db.php'; 
 
 function buscarEstacoesComLinhas($pdo) {
-    // Esta SQL busca os nomes das estações e agrupa todas as linhas
-    // que passam por ela, usando as tabelas que REALMENTE têm dados.
+    
     $sql = "
         SELECT 
             eh.nome_estacao, 
@@ -63,7 +62,7 @@ function processarPost() {
             case 'perfil':
                 header('Location: perfil.php');
                 exit();
-            case 'estacoes': // Adicionado para evitar loop
+            case 'estacoes': 
                 header('Location: estacoes.php');
                 exit();
             default:
@@ -73,10 +72,10 @@ function processarPost() {
     }
 }
 
-$estacoes_finais = buscarEstacoesComLinhas($pdo); // Usando $pdo
+$estacoes_finais = buscarEstacoesComLinhas($pdo); 
 processarPost();
 
-// $conn->close(); // Não é necessário para PDO, a conexão fecha sozinha
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
