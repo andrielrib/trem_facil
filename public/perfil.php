@@ -151,12 +151,7 @@ if (isset($_GET['action'])) {
     </div>
 
     <footer>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="sensores">
-            <button type="submit" title="Sensores">
-                <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores">
-            </button>
-        </form>
+        
         <form action="" method="post">
             <input type="hidden" name="redirect_page" value="trens">
             <button type="submit" title="Trens">
