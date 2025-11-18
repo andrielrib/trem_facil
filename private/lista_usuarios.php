@@ -46,6 +46,10 @@ if ($search) {
     font-weight: 700;
     font-size: 1.3rem;
   }
+  header a.back-btn img {
+    width: 40px;
+    height: 40px;
+  }
   header a.back-btn:hover {
     text-decoration: underline;
   }
@@ -163,7 +167,7 @@ if ($search) {
 
 <div class="container" role="main" aria-label="Lista de usuários">
   <header>
-    <a href="pagina_inicial_adm.php" class="back-btn" aria-label="Voltar">&#8592;</a>
+    <a href="pagina_inicial_adm.php" class="back-btn" aria-label="Voltar"><img src="../assets/icons/seta_esquerda.png" alt="Voltar"></a>
     <h1>Lista de Usuários</h1>
   </header>
 
