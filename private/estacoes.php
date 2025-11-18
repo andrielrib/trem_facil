@@ -13,7 +13,7 @@ try {
     die("Erro ao conectar ao banco de dados: " . $e->getMessage());
 }
 
-require_once 'db.php'; // Este arquivo fornece a variável $pdo
+require_once '../public/db.php'; // Este arquivo fornece a variável $pdo
 
 function buscarEstacoesComLinhas($pdo) {
     // Esta SQL busca os nomes das estações e agrupa todas as linhas
@@ -52,7 +52,7 @@ function processarPost() {
         $page = $_POST['redirect_page'] ?? '';
         switch ($page) {
             case 'sensores':
-                header('Location: sensor.php');
+                header('Location: ../private/sensor.php');
                 exit();
             case 'trens':
                 header('Location: trens.php');
