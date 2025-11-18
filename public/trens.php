@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $page = $_POST['redirect_page'] ?? '';
     switch ($page) {
         case 'sensores':
-            header('Location: sensor.php');
+            header('Location: ../private/sensor.php');
             exit();
         case 'trens':
             header('Location: trens.php');

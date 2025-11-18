@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['redirect_page'])) {
         $page = $_POST['redirect_page'];
         if ($page === 'sensores') {
-            header('Location: sensor.php');
+            header('Location: ../private/sensor.php');
             exit();
         } elseif ($page === 'trens') {
             header('Location: trens.php');
@@ -66,7 +66,7 @@ if (isset($_GET['action'])) {
             header('Location: login.php');
             exit;
         case 'remover_conta':
-            header('Location: voce_tem_certza.php');
+            header('Location: ../private/voce_tem_certza.php');
             exit;
         case 'suporte':
             header('Location: suporte_alerta.php');
