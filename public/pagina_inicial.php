@@ -95,8 +95,8 @@ if ($tipo) {
                 <img src="../assets/icons/trens.png" alt="Trens">
             </a>
 
-            <a href="../private/sensor.php" class="card">
-                <img src="../assets/icons/sensores.png" alt="Sensores">
+            <a href="suporte_alerta.php" class="card">
+                <img src="../assets/icons/suporte_icone.png" alt="Suporte">
             </a>
 
             <a href="estacoes.php" class="card">

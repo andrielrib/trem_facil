@@ -13,11 +13,10 @@ try {
     die("Erro ao conectar ao banco de dados: " . $e->getMessage());
 }
 
-require_once '../public/db.php'; // Este arquivo fornece a variável $pdo
+require_once '../public/db.php'; 
 
 function buscarEstacoesComLinhas($pdo) {
-    // Esta SQL busca os nomes das estações e agrupa todas as linhas
-    // que passam por ela, usando as tabelas que REALMENTE têm dados.
+   
     $sql = "
         SELECT 
             estacao, 

@@ -12,7 +12,14 @@ try {
     die("Erro ao conectar: " . $e->getMessage());
 }
 
+<<<<<<< HEAD
 function buscarEstacoes($pdo) {
+=======
+require_once 'db.php'; 
+
+function buscarEstacoesComLinhas($pdo) {
+    
+>>>>>>> 5eb6f576565ccb133e6831513e4e3a5d007292a0
     $sql = "
         SELECT 
             e.nome AS nome_estacao, 
@@ -31,12 +38,46 @@ function buscarEstacoes($pdo) {
     }
 }
 
+<<<<<<< HEAD
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
     header("Location: " . $_POST['redirect_page'] . ".php");
     exit();
 }
 
 $estacoes = buscarEstacoes($pdo);
+=======
+
+function processarPost() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $page = $_POST['redirect_page'] ?? '';
+        switch ($page) {
+            case 'sensores':
+                header('Location: sensor.php');
+                exit();
+            case 'trens':
+                header('Location: trens.php');
+                exit();
+            case 'adicionar_perfil':
+                header('Location: perfil.php');
+                exit();
+            case 'perfil':
+                header('Location: perfil.php');
+                exit();
+            case 'estacoes': 
+                header('Location: estacoes.php');
+                exit();
+            default:
+                header('Location: index.php');
+                exit();
+        }
+    }
+}
+
+$estacoes_finais = buscarEstacoesComLinhas($pdo); 
+processarPost();
+
+
+>>>>>>> 5eb6f576565ccb133e6831513e4e3a5d007292a0
 ?>
 
 <!DOCTYPE html>

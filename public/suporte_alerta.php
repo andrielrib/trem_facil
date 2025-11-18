@@ -10,6 +10,9 @@
 <body>
 
     <div class="suporEalert">
+        <a href="pagina_inicial.php" style="position: absolute; top: 10px; left: 10px;">
+            <img src="../assets/icons/seta_esquerda.png" alt="Voltar" width="50" height="50">
+        </a>
         <p>Suporte e Alertas</p>
     </div>
 
