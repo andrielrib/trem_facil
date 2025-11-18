@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['redirect_page'])) {
         $page = $_POST['redirect_page'];
         if ($page === 'sensores') {
-            header('Location: sensor.php');
+            header('Location: ../private/sensor.php');
             exit();
         } elseif ($page === 'trens') {
             header('Location: trens.php');

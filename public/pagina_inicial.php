@@ -95,7 +95,7 @@ if ($tipo) {
                 <img src="../assets/icons/trens.png" alt="Trens">
             </a>
 
-            <a href="sensor.php" class="card">
+            <a href="../private/sensor.php" class="card">
                 <img src="../assets/icons/sensores.png" alt="Sensores">
             </a>
 

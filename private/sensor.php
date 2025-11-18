@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
             header('Location: sensor.php');
             exit();
         case 'trens':
-            header('Location: trens.php');
+            header('Location: ../public/trens.php');
             exit();
         case 'estacoes':
-            header('Location: estacoes.php');
+            header('Location: ../public/estacoes.php');
             exit();
         case 'perfil':
-            header('Location: perfil.php');
+            header('Location: pefil_adm.php');
             exit();
         default:
             header('Location: index.php');
@@ -141,15 +141,14 @@ $conn->close();
         .btn-voltar {
             background-color: transparent;
             border: none;
-            color: #0B57DA;
-            font-size: 22px;
             cursor: pointer;
             display: flex;
             align-items: center;
-        }
-        .btn-voltar::before {
-            content: "←";
-            margin-right: 6px;
+            background-image: url('../assets/icons/seta_esquerda.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 30px;
+            height: 30px;
         }
 
         .titulo-principal {
@@ -369,7 +368,7 @@ $conn->close();
 </head>
 <body>
     <header class="header">
-        <button class="btn-voltar" title="Voltar" onclick="window.location.href='pagina_inicial.php';"></button>
+        <button class="btn-voltar" title="Voltar" onclick="window.location.href='pagina_inicial_adm.php';"></button>
         <div class="titulo-principal">SENSORES</div>
     </header>
 
