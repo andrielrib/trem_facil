@@ -15,26 +15,24 @@ $data = [
   'cep' => '',
   'email' => '',
   'telefone' => '',
-  'nome_usuario' => '', // Caso queira usar
+  'tipo_usuario' => 2,
 ];
 
 // POST: salvar alterações
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Receber dados do formulário
     $data['nome_completo'] = trim($_POST['nome_completo'] ?? '');
     $data['cpf'] = trim($_POST['cpf'] ?? '');
     $data['cep'] = trim($_POST['cep'] ?? '');
     $data['email'] = trim($_POST['email'] ?? '');
     $data['telefone'] = trim($_POST['telefone'] ?? '');
-    
-    // Validações
+    $data['tipo_usuario'] = isset($_POST['tipo_usuario']) && in_array($_POST['tipo_usuario'], ['1', '2']) ? (int)$_POST['tipo_usuario'] : 2;
+
     if (!$data['nome_completo']) $errors[] = "Nome completo é obrigatório.";
     if (!$data['cpf'] || !preg_match('/^\d{11}$/', $data['cpf'])) $errors[] = "CPF inválido.";
     if (!$data['cep'] || !preg_match('/^\d{8}$/', $data['cep'])) $errors[] = "CEP inválido.";
     if (!$data['email'] || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors[] = "Email inválido.";
     if (!$data['telefone'] || !preg_match('/^\d{10,11}$/', $data['telefone'])) $errors[] = "Telefone inválido.";
-    
-    // Evitar duplicidade em outros usuários
+
     if (!$errors) {
         $stmt = $conn->prepare("SELECT id_usuario FROM usuario WHERE (cpf = ? OR email = ? OR telefone = ?) AND id_usuario != ?");
         $stmt->bind_param("sssi", $data['cpf'], $data['email'], $data['telefone'], $id);
@@ -45,11 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $stmt->close();
     }
-    
-    // Atualizar dados
+
     if (!$errors) {
-        $stmt = $conn->prepare("UPDATE usuario SET nome_completo=?, cpf=?, cep=?, email=?, telefone=? WHERE id_usuario=?");
-        $stmt->bind_param("sssssi", $data['nome_completo'], $data['cpf'], $data['cep'], $data['email'], $data['telefone'], $id);
+        $stmt = $conn->prepare("UPDATE usuario SET nome_completo=?, cpf=?, cep=?, email=?, telefone=?, tipo_usuario=? WHERE id_usuario=?");
+        $stmt->bind_param("sssssii", $data['nome_completo'], $data['cpf'], $data['cep'], $data['email'], $data['telefone'], $data['tipo_usuario'], $id);
         if ($stmt->execute()) {
             $stmt->close();
             header("Location: ../lista_usuarios.php?msg=Usuário atualizado com sucesso");
@@ -60,13 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
     }
 } else {
-    // GET: carregar dados atuais do usuário para preencher o formulário
-    $stmt = $conn->prepare("SELECT nome_completo, cpf, cep, email, telefone FROM usuario WHERE id_usuario = ?");
+    $stmt = $conn->prepare("SELECT nome_completo, cpf, cep, email, telefone, tipo_usuario FROM usuario WHERE id_usuario = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $stmt->bind_result($nome_completo, $cpf, $cep, $email, $telefone);
+    $stmt->bind_result($nome_completo, $cpf, $cep, $email, $telefone, $tipo_usuario);
     if ($stmt->fetch()) {
-        $data = compact('nome_completo', 'cpf', 'cep', 'email', 'telefone');
+        $data = compact('nome_completo', 'cpf', 'cep', 'email', 'telefone', 'tipo_usuario');
     } else {
         $stmt->close();
         header("Location: ../lista_usuarios.php?msg=Usuário não encontrado");
@@ -83,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Editar Usuário - Trem Fácil</title>
 <style>
-  /* Reutilize seu estilo baseado em cadastrar_user.php, adaptando cores, fontes, responsividade etc. */
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   body {
     margin: 0; background: #000; color: white; font-family: 'Montserrat', sans-serif;
@@ -103,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     margin-bottom: 20px;
     color: white;
   }
-  form input[type=text], form input[type=email], form input[type=tel] {
+  form input[type=text], form input[type=email], form input[type=tel], form select {
     width: 100%;
     border-radius: 28px;
     border: 1px solid #0B57DA;
@@ -116,6 +111,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     background-color: #222;
     outline: none;
     box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
   }
   button {
     width: 100%;
@@ -159,6 +158,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" name="cep" placeholder="CEP (apenas números)" maxlength="8" pattern="\d{8}" value="<?php echo htmlspecialchars($data['cep']); ?>" required />
     <input type="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($data['email']); ?>" required />
     <input type="tel" name="telefone" placeholder="Telefone (apenas números)" maxlength="11" pattern="\d{10,11}" value="<?php echo htmlspecialchars($data['telefone']); ?>" required />
+    
+    <select name="tipo_usuario" required>
+      <option value="2" <?php echo ($data['tipo_usuario'] == 2) ? 'selected' : ''; ?>>USUÁRIO</option>
+      <option value="1" <?php echo ($data['tipo_usuario'] == 1) ? 'selected' : ''; ?>>ADMINISTRADOR</option>
+    </select>
+    
     <button type="submit">ATUALIZAR</button>
   </form>
 </div>

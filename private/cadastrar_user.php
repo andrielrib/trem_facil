@@ -1,5 +1,4 @@
 <?php
-
 include '../public/db.php';
 session_start();
 
@@ -40,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data['senha'] = $_POST['senha'] ?? '';
     $data['confirmar_senha'] = $_POST['confirmar_senha'] ?? '';
     $data['nome_usuario'] = trim($_POST['nome_usuario'] ?? '');
+    $data['tipo_usuario'] = isset($_POST['tipo_usuario']) && in_array($_POST['tipo_usuario'], ['1', '2']) ? (int)$_POST['tipo_usuario'] : 2;
 
     if (!$data['telefone'] || !preg_match('/^\d{10,11}$/', $data['telefone'])) $errors[] = "Telefone deve conter 10 ou 11 números.";
     if (!$data['nome_usuario']) $errors[] = "Nome de usuário é obrigatório.";
@@ -82,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <title>Cadastrar Usuário - Trem Fácil</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
   body {
     margin: 0; background: #000; color: white; font-family: 'Montserrat', sans-serif;
     display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;
@@ -103,10 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   .icon-user {
     font-size: 5rem;
-    color: #006400; /* Verde escuro */
+    color: #006400;
     margin-bottom: 20px;
   }
-  form input[type=text], form input[type=email], form input[type=tel], form input[type=password] {
+  form input[type=text], form input[type=email], form input[type=tel], form input[type=password], form select {
     width: 100%;
     border-radius: 28px;
     border: 1px solid #0B57DA;
@@ -119,6 +118,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     background-color: #222;
     outline: none;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
   form input::placeholder {
     color: #777;
@@ -140,6 +142,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   button:hover {
     background: #0943b0;
+  }
+  .btn-back {
+    margin-top: 12px;
+    background: #006400;
+    font-weight: 700;
+  }
+  .btn-back:hover {
+    background: #004d00;
   }
   .errors {
     background: #e74c3c; border-radius: 15px; color: white;
@@ -181,8 +191,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     width: 60px;
     height: 60px;
   }
-
-  /* Responsividade adicional */
   @media (max-width: 480px) {
     .container {
       padding: 20px 15px 40px;
@@ -194,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .icon-user {
       font-size: 4rem;
     }
-    form input[type=text], form input[type=email], form input[type=tel], form input[type=password] {
+    form input[type=text], form input[type=email], form input[type=tel], form input[type=password], form select {
       padding: 12px 15px;
       font-size: 1rem;
     }
@@ -231,11 +239,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input type="password" name="senha" placeholder="Senha (min 6 caracteres)" minlength="6" required />
       <input type="password" name="confirmar_senha" placeholder="Confirmar senha" minlength="6" required />
       <input type="text" name="nome_usuario" placeholder="Nome de Usuário" value="<?php echo htmlspecialchars($data['nome_usuario']); ?>" required />
+      
+      <select name="tipo_usuario" required>
+        <option value="2" <?php echo ($data['tipo_usuario'] == 2) ? 'selected' : ''; ?>>USUÁRIO</option>
+        <option value="1" <?php echo ($data['tipo_usuario'] == 1) ? 'selected' : ''; ?>>ADMINISTRADOR</option>
+      </select>
+
       <button type="submit">REGISTRAR</button>
     <?php endif; ?>
   </form>
 
-  <div class="page-indicator">
+  <button class="btn-back" onclick="location.href='lista_usuarios.php'" aria-label="Voltar para lista de usuários">VOLTAR PARA LISTA</button>
+
+  <div class="page-indicator" aria-label="Indicador da página">
     <span class="<?php echo $step === 1 ? 'active' : ''; ?>"></span>
     <span class="<?php echo $step === 2 ? 'active' : ''; ?>"></span>
   </div>
