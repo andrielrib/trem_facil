@@ -1,0 +1,2 @@
+- [x] Remove the dog API code from public/apis.php/apis.php
+- [x] Test the profile page to confirm fox background loads

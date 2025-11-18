@@ -170,10 +170,13 @@ if (isset($_GET['action'])) {
 
         async function loadRandomFoxBackground() {
             try {
-                const response = await fetch('../public/apis.php/apis.php?fox');
+                const response = await fetch('./apis.php/apis.php?fox');
                 const data = await response.json();
                 if (data.image) {
                     document.body.style.backgroundImage = `url('${data.image}')`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundRepeat = 'no-repeat';
+                    document.body.style.backgroundPosition = 'center';
                 }
             } catch (error) {
                 console.error('Erro ao carregar fundo de raposa:', error);
