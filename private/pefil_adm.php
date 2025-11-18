@@ -149,8 +149,6 @@ if (isset($_GET['action'])) {
             </div>
 
             <div class="links-conta">
-                <b>EDITAR CONTA</b>
-                <small> Clique <a href="?action=editar">aqui</a> para ser redirecionado para tela de cadastro </small>
                 <b>SUPORTE</b>
                 <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
             </div>
