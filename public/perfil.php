@@ -116,12 +116,7 @@ if (isset($_GET['action'])) {
                 </div>
             </div>
 
-            <div class="suporte-section">
-                <b>SUPORTE</b>
-                <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
-            </div>
-            <br>
-            <br>
+
         </form>
 
         <!-- Botão de Logout -->
