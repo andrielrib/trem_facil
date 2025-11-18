@@ -117,7 +117,7 @@ if (isset($_GET['action'])) {
         }
     </style>
 </head>
-<body onload="loadRandomFoxBackground()">
+<body onload="loadRandomDogBackground()">
     <div class="wrapper">
         <form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
             <div class="foto-container">
@@ -252,18 +252,18 @@ if (isset($_GET['action'])) {
         nomeDisplay.appendChild(icone);
     }
 
-    async function loadRandomFoxBackground() {
+    async function loadRandomDogBackground() {
         try {
-            const response = await fetch('../public/apis.php/apis.php?fox');
+            const response = await fetch('https://dog.ceo/api/breeds/image/random');
             const data = await response.json();
-            if (data.image) {
-                document.body.style.backgroundImage = `url('${data.image}')`;
+            if (data.message) {
+                document.body.style.backgroundImage = `url('${data.message}')`;
                 document.body.style.backgroundSize = 'cover';
                 document.body.style.backgroundRepeat = 'no-repeat';
                 document.body.style.backgroundPosition = 'center';
             }
         } catch (error) {
-            console.error('Erro ao carregar fundo de raposa:', error);
+            console.error('Erro ao carregar fundo de cachorro:', error);
         }
     }
 </script>

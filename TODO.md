@@ -1,0 +1,7 @@
+- [x] Alterar a função JavaScript em private/pefil_adm.php para usar API de cachorros aleatórios
+- [x] Atualizar URL da API para https://dog.ceo/api/breeds/image/random
+- [x] Mudar propriedade de data.image para data.message
+- [x] Renomear função para loadRandomDogBackground
+- [x] Atualizar mensagem de erro para 'Erro ao carregar fundo de cachorro:'
+- [x] Atualizar chamada onload para loadRandomDogBackground
+- [x] Testar a mudança executando a página
