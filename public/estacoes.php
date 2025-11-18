@@ -1,5 +1,4 @@
 <?php
-
 $db_host = 'localhost';
 $db_name = 'trem_facil';
 $db_user = 'root';
@@ -10,86 +9,47 @@ try {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Erro ao conectar ao banco de dados: " . $e->getMessage());
+    die("Erro ao conectar: " . $e->getMessage());
 }
 
-require_once 'db.php'; 
-
-function buscarEstacoesComLinhas($pdo) {
-    
+function buscarEstacoes($pdo) {
     $sql = "
         SELECT 
-            eh.nome_estacao, 
-            GROUP_CONCAT(l.nome SEPARATOR '|') AS linhas
-        FROM estacao eh
-        JOIN linha l ON eh.id_linha = l.id_linha
-        GROUP BY eh.nome_estacao
-        ORDER BY eh.nome_estacao ASC
+            e.nome AS nome_estacao, 
+            GROUP_CONCAT(DISTINCT CONCAT(l.id_exibicao, ' - ', l.nome, '|', l.status_color) ORDER BY l.id_exibicao ASC SEPARATOR '||') AS dados_linhas
+        FROM estacao e
+        LEFT JOIN estacao_linha el ON e.id_estacao = el.id_estacao
+        LEFT JOIN linha l ON el.id_linha = l.id_linha
+        GROUP BY e.id_estacao, e.nome
+        ORDER BY e.nome ASC
     ";
     
     try {
-        $stmt = $pdo->query($sql);
-        $estacoes = [];
-        
-        while ($row = $stmt->fetch()) {
-            $linhas = $row['linhas'] ? explode('|', $row['linhas']) : [];
-            $estacoes[] = [
-                'nome_estacao' => $row['nome_estacao'],
-                'linhas' => $linhas
-            ];
-        }
-        return $estacoes;
-
+        return $pdo->query($sql)->fetchAll();
     } catch (PDOException $e) {
-        die("Erro na consulta: " . $e->getMessage());
+        return [];
     }
 }
 
-
-function processarPost() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $page = $_POST['redirect_page'] ?? '';
-        switch ($page) {
-            case 'sensores':
-                header('Location: sensor.php');
-                exit();
-            case 'trens':
-                header('Location: trens.php');
-                exit();
-            case 'adicionar_perfil':
-                header('Location: perfil.php');
-                exit();
-            case 'perfil':
-                header('Location: perfil.php');
-                exit();
-            case 'estacoes': 
-                header('Location: estacoes.php');
-                exit();
-            default:
-                header('Location: index.php');
-                exit();
-        }
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
+    header("Location: " . $_POST['redirect_page'] . ".php");
+    exit();
 }
 
-$estacoes_finais = buscarEstacoesComLinhas($pdo); 
-processarPost();
-
-
+$estacoes = buscarEstacoes($pdo);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/style3.css">
-
     <title>Estações</title>
 </head>
 <body>
 
 <div class="container">
-
     <header>
         <button class="btn-back" onclick="history.back()">&#8592;</button>
         <span class="header-title">ESTAÇÕES</span>
@@ -97,112 +57,81 @@ processarPost();
 
     <div class="search-container">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Pesquisar Estaçőes" onkeyup="filterStations()" autocomplete="off" />
+        <input type="text" id="searchInput" placeholder="Pesquisar Estações..." onkeyup="filterStations()" autocomplete="off" />
     </div>
 
+    <div class="status-legend">
+        <div class="legend-item">
+            <span class="legend-bar bg-green"></span>
+            <span>ATIVO</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-bar bg-yellow"></span>
+            <span>MANUTENÇÃO</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-bar bg-red"></span>
+            <span>INATIVO</span>
+        </div>
+    </div>
     <div id="stationsContainer">
-        <?php 
-        foreach ($estacoes_finais as $index => $estacao): 
-            $nome_estacao_seguro = htmlspecialchars($estacao['nome_estacao']);
-            $linhas = $estacao['linhas'];
+        <?php foreach ($estacoes as $index => $estacao): 
+            $linhas_raw = $estacao['dados_linhas'] ? explode('||', $estacao['dados_linhas']) : [];
         ?>
-            <div class="station" data-name="<?= strtolower($nome_estacao_seguro) ?>">
+            <div class="station" data-name="<?= strtolower($estacao['nome_estacao']) ?>">
                 
                 <div class="station-header" onclick="toggleLines(<?= $index ?>)">
-                    <img src="../assets/icons/estacao_icon.png" alt="" width="50" heigth="50"/>
-                    <h2><?= $nome_estacao_seguro ?></h2>
-                    
+                    <img src="../assets/icons/estacao_icon.png" alt="" width="50" height="50"/>
+                    <h2><?= htmlspecialchars($estacao['nome_estacao']) ?></h2>
                     <span class="toggle-arrow" id="arrow-<?= $index ?>">&#9660;</span>
                 </div>
                 
                 <div class="lines-list" id="lines-<?= $index ?>"> 
-                    <?php if (count($linhas) > 0 && !empty($linhas[0])): // Verificação extra ?>
-                        <?php foreach ($linhas as $linha): ?>
-                            <span><?= htmlspecialchars($linha) ?></span>
+                    <?php if (!empty($linhas_raw)): ?>
+                        <?php foreach ($linhas_raw as $linha_data): 
+                            $parts = explode('|', $linha_data);
+                            $nome_linha = $parts[0] ?? 'Linha';
+                            $cor = $parts[1] ?? '#ccc';
+                        ?>
+                            <div class="line-item">
+                                <span class="status-dot" style="background-color: <?= $cor ?>;" title="Status da Linha"></span>
+                                <span><?= htmlspecialchars($nome_linha) ?></span>
+                            </div>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <p>Nenhuma linha disponível</p>
+                        <p style="padding: 10px; color: #777;">Nenhuma linha ativa no momento.</p>
                     <?php endif; ?>
                 </div>
             </div>
-        <?php 
-        endforeach; 
-        ?>
-        
-        <?php if (empty($estacoes_finais)): ?>
-            <p style="color: white; text-align: center; padding: 20px;">
-                Nenhuma estação encontrada. Verifique seu banco de dados.
-            </p>
-        <?php endif; ?>
+        <?php endforeach; ?>
     </div>
-
 </div>
 
 <footer>
-    <form action="" method="post">
-        <input type="hidden" name="redirect_page" value="sensores">
-        <button type="submit" title="Sensores">
-            <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores">
-        </button>
-    </form>
-    <form action="" method="post">
-        <input type="hidden" name="redirect_page" value="trens">
-        <button type="submit" title="Trens">
-            <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens">
-        </button>
-    </form>
-    <form action="" method="post">
-        <input type="hidden" name="redirect_page" value="estacoes">
-        <button type="submit" title="Estações">
-            <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estações">
-        </button>
-    </form>
-    <form action="" method="post">
-        <input type="hidden" name="redirect_page" value="perfil">
-        <button type="submit" title="Perfil">
-            <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
-        </button>
-    </form>
+    <?php 
+    $menu = ['sensores' => 'tela_sensor_icon.png', 'trens' => 'tela_tren_icon.png', 'estacoes' => 'tela_estacao_icon.png', 'perfil' => 'tela_perfil_icon.png'];
+    foreach($menu as $page => $icon): ?>
+        <form action="" method="post" style="display:inline;">
+            <input type="hidden" name="redirect_page" value="<?= $page ?>">
+            <button type="submit"><img src="../assets/icons/<?= $icon ?>"></button>
+        </form>
+    <?php endforeach; ?>
 </footer>
 
 <script>
-    function toggleLines(index) {
-        const lines = document.getElementById('lines-' + index);
-        const arrow = document.getElementById('arrow-' + index);
-        
-        if (lines.classList.contains('visible')) {
-            lines.classList.remove('visible');
-            arrow.innerHTML = '&#9660;';
-        } else {
-            lines.classList.add('visible');
-            arrow.innerHTML = '&#9650;';
-        }
+    function toggleLines(idx) {
+        const el = document.getElementById(`lines-${idx}`);
+        const arrow = document.getElementById(`arrow-${idx}`);
+        el.classList.toggle('visible');
+        arrow.innerHTML = el.classList.contains('visible') ? '&#9650;' : '&#9660;';
     }
 
     function filterStations() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase(); 
-        const stationsContainer = document.getElementById('stationsContainer');
-        const stations = stationsContainer.getElementsByClassName('station');
-
-        for (let i = 0; i < stations.length; i++) {
-            const stationName = stations[i].getAttribute('data-name');
-            
-            if (stationName.includes(filter)) {
-                stations[i].style.display = "block"; 
-            } else {
-                stations[i].style.display = "none"; 
-            }
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const allLines = document.querySelectorAll('.lines-list');
-        allLines.forEach(lines => {
-            lines.classList.remove('visible'); 
+        const term = document.getElementById('searchInput').value.toLowerCase();
+        document.querySelectorAll('.station').forEach(st => {
+            st.style.display = st.dataset.name.includes(term) ? 'block' : 'none';
         });
-    });
+    }
 </script>
-
 </body>
 </html>

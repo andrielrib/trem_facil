@@ -19,7 +19,7 @@ function buscarEstacoesComLinhas($pdo) {
    
     $sql = "
         SELECT 
-            eh.nome_estacao, 
+            estacao, 
             GROUP_CONCAT(l.nome SEPARATOR '|') AS linhas
         FROM estacao eh
         JOIN linha l ON eh.id_linha = l.id_linha
