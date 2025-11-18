@@ -1,4 +1,5 @@
 <?php
+
 include '../public/db.php';
 session_start();
 
@@ -62,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt->bind_param("ssssssi", $data['nome_completo'], $data['email'], $data['telefone'], $data['cep'], $data['cpf'], $senha_hash, $data['tipo_usuario']);
       if ($stmt->execute()) {
         unset($_SESSION['usuario_form']);
-        header("Location: ../lista_usuarios.php?msg=Usuário cadastrado com sucesso");
+        header("Location: lista_usuarios.php?msg=Usuário cadastrado com sucesso");
         exit();
       } else {
         $errors[] = "Erro ao cadastrar: " . $stmt->error;
