@@ -100,7 +100,7 @@ if ($tipo) {
 
         <div class="menu">
             <div class="top-row">
-                <a href="perfil.php" class="card">
+                <a href="pefil_adm.php" class="card">
                     <img src="../assets/icons/perfil.png" alt="Perfil">
                 </a>
 

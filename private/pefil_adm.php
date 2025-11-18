@@ -155,9 +155,9 @@ if (isset($_GET['action'])) {
                 <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
             </div>
 
-            <div class="botoes-conta">
-                <button type="button" class="btn-alterar" onclick="window.location.href='?action=alterar_conta'">ALTERAR CONTA</button>
-                <button type="button" class="btn-remover" onclick="window.location.href='?action=remover_conta'">REMOVER CONTA</button>
+            <!-- Botão de Logout -->
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="../public/login.php?logout=1" onclick="return confirm('Tem certeza que deseja sair?')" style="background-color: #f44336; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Logout</a>
             </div>
 
             <input type="hidden" name="novo_nome" id="inputNome" value="<?php echo htmlspecialchars($user['nome']); ?>" />
