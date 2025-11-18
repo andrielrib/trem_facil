@@ -74,9 +74,17 @@ body {
     border-radius: 2px;
 }
 
-.bg-green { background-color: #00c853; }
-.bg-yellow { background-color: #ffb300; }
-.bg-red { background-color: #d50000; }
+.bg-green {
+    background-color: #00c853;
+}
+
+.bg-yellow {
+    background-color: #ffb300;
+}
+
+.bg-red {
+    background-color: #d50000;
+}
 
 header {
     display: flex;
@@ -273,6 +281,20 @@ header {
     z-index: 10;
 }
 
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-text {
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
 .btn-back {
     background: #004ecb;
     border: none;
@@ -358,7 +380,7 @@ header {
 
 .trem {
     border: none;
-    background-color: #02145e;
+    background-color: #000000;
     color: white;
     margin: 12px;
     border-radius: 12px;

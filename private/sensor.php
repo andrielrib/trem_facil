@@ -234,7 +234,7 @@ $conn->close();
             margin-bottom: 18px;
             padding: 15px 15px 18px;
             border-radius: 12px;
-            box-shadow: 0 2px 9px rgba(11, 87, 218, 0.3);
+            box-shadow: 0 10px 15px rgba(0, 94, 255, 0.3);
         }
 
         .sensor-header {
