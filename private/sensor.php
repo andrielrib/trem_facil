@@ -378,9 +378,7 @@ $conn->close();
 
     <div class="btn-group">
         <button class="btn-primary" type="button" onclick="openModal()">ADICIONAR SENSOR</button>
-        <button class="btn-filter" type="button" title="Filtro">
-            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="white" viewBox="0 0 24 24"><path d="M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 .8 1.6l-6.4 7.2v6.4a1 1 0 0 1-1.5.85l-3-2a1 1 0 0 1-.3-1.35L17.2 6H4a1 1 0 0 1-1-1z"/></svg>
-        </button>
+        
     </div>
 
     <div id="sensores-container">
