@@ -13,30 +13,7 @@ if (!isset($_SESSION['user'])) {
 }
 $user = $_SESSION['user'];
 
-// Fetch fox background image
-$fox_image = '';
-$api_url = "https://randomfox.ca/floof.json";
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $api_url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Accept: application/json',
-    'User-Agent: PHP'
-]);
-$response = curl_exec($ch);
-$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-if ($response !== false && $http_code == 200) {
-    $data = json_decode($response, true);
-    if (isset($data['image'])) {
-        $fox_image = $data['image'];
-    }
-}
-// Fallback to a static fox image if API fails
-if (empty($fox_image)) {
-    $fox_image = 'https://randomfox.ca/images/' . rand(1, 100) . '.jpg'; // Random static fox image
-}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Só altera a foto se houver upload novo
