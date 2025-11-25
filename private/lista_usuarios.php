@@ -161,6 +161,28 @@ if ($search) {
     width: 60px;
     height: 60px;
   }
+  @media (max-width: 480px) {
+    .container {
+      padding: 8px 2px 90px;
+      max-width: 100vw;
+    }
+    article.user-card {
+      padding: 10px 6px;
+      font-size: 0.95rem;
+    }
+    button.btn-add {
+      padding: 10px;
+      font-size: 1.1rem;
+    }
+    footer img {
+      width: 44px;
+      height: 44px;
+    }
+    footer {
+      height: 60px;
+      padding: 0 2px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -182,7 +204,7 @@ if ($search) {
       echo '<p style="color:#777; text-align:center;">Nenhum usuário encontrado.</p>';
     } else {
       while ($user = $result->fetch_assoc()) {
-        $cargo_texto = ($user['tipo_usuario'] == 1) ? 'ADMINISTRADOR' : 'USUÁRIO';
+        $cargo_texto = ($user['tipo_usuario'] == 2) ? 'ADMINISTRADOR' : 'FUNCIONÁRIO';
         $cpf_formt = preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $user['cpf']);
   ?>
     <article class="user-card" tabindex="0" aria-label="Usuário <?php echo htmlspecialchars($user['nome_completo']); ?>">
@@ -203,11 +225,27 @@ if ($search) {
 </div>
 
 <footer role="contentinfo" aria-label="Menu principal">
-  <form action="" method="post"><input type="hidden" name="redirect_page" value="sensores"><button type="submit" title="Sensores"><img src="../assets/icons/tela_sensor_icon.png" alt="Ícone sensores"></button></form>
-  <form action="" method="post"><input type="hidden" name="redirect_page" value="trens"><button type="submit" title="Trens"><img src="../assets/icons/tela_tren_icon.png" alt="Ícone trens"></button></form>
-  <form action="" method="post"><input type="hidden" name="redirect_page" value="estacoes"><button type="submit" title="Estações"><img src="../assets/icons/tela_estacao_icon.png" alt="Ícone estações"></button></form>
-  <form action="" method="post"><input type="hidden" name="redirect_page" value="perfil"><button type="submit" title="Perfil"><img src="../assets/icons/tela_perfil_icon.png" alt="Ícone perfil"></button></form>
+  <?php 
+  $menu = ['sensores' => 'tela_sensor_icon.png', 'trens' => 'tela_tren_icon.png', 'estacoes' => 'tela_estacao_icon.png', 'perfil' => 'tela_perfil_icon.png'];
+  foreach($menu as $page => $icon): ?>
+      <form action="" method="post" style="display:inline;">
+          <input type="hidden" name="redirect_page" value="<?= $page ?>">
+          <button type="submit" title="<?= ucfirst($page) ?>"><img src="../assets/icons/<?= $icon ?>" alt="Ícone <?= $page ?>"></button>
+      </form>
+  <?php endforeach; ?>
 </footer>
+
+<script>
+// Torna o footer funcional para alternar entre telas
+const forms = document.querySelectorAll('footer form');
+forms.forEach(form => {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const page = form.querySelector('input[name="redirect_page"]').value;
+    window.location.href = `../public/${page}.php`;
+  });
+});
+</script>
 
 </body>
 </html>
