@@ -117,7 +117,7 @@ if (isset($_GET['action'])) {
         }
     </style>
 </head>
-<body onload="loadRandomDogBackground()">
+<body style="<?php if (!empty($fox_image)) { echo 'background-image: url(\'' . htmlspecialchars($fox_image) . '\'); background-size: cover; background-repeat: no-repeat; background-position: center;'; } ?>">
     <div class="wrapper">
         <form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
             <div class="foto-container">
@@ -146,11 +146,6 @@ if (isset($_GET['action'])) {
                     <b>PERMISSÕES</b>
                     <?php echo htmlspecialchars($user['permissoes']); ?>
                 </div>
-            </div>
-
-            <div class="links-conta">
-                <b>SUPORTE</b>
-                <small> Clique <a href="?action=suporte">aqui</a> para ser redirecionado para tela de suporte </small>
             </div>
 
             <!-- Botão de Logout -->
@@ -248,21 +243,6 @@ if (isset($_GET['action'])) {
         icone.alt = 'Editar Nome';
         icone.className = 'icone-editar';
         nomeDisplay.appendChild(icone);
-    }
-
-    async function loadRandomDogBackground() {
-        try {
-            const response = await fetch('https://dog.ceo/api/breeds/image/random');
-            const data = await response.json();
-            if (data.message) {
-                document.body.style.backgroundImage = `url('${data.message}')`;
-                document.body.style.backgroundSize = 'cover';
-                document.body.style.backgroundRepeat = 'no-repeat';
-                document.body.style.backgroundPosition = 'center';
-            }
-        } catch (error) {
-            console.error('Erro ao carregar fundo de cachorro:', error);
-        }
     }
 </script>
 </body>
