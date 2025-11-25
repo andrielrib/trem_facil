@@ -111,7 +111,7 @@ if (isset($_GET['action'])) {
                 </div>
                 <div class="info">
                     <b>CARGO</b>
-                    <?php echo htmlspecialchars($user['cargo']); ?>
+                    usuario
                 </div>
                 <div class="info">
                     <b>PERMISSÕES</b>
