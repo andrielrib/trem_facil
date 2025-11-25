@@ -168,12 +168,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
             <input class="caixa_verde_login" type="submit" value="ENVIAR">
         </form>
     </div>
-    <footer>
-        <form method="post"><input type="hidden" name="redirect_page" value="inicio"><button type="submit" title="Início"><img src="../assets/icons/tela_inicial_icon.png" alt="Início"></button></form>
-        <form method="post"><input type="hidden" name="redirect_page" value="sensores"><button type="submit" title="Sensores"><img src="../assets/icons/tela_sensor_icon.png" alt="Sensores"></button></form>
-        <form method="post"><input type="hidden" name="redirect_page" value="trens"><button type="submit" title="Trens"><img src="../assets/icons/tela_tren_icon.png" alt="Trens"></button></form>
-        <form method="post"><input type="hidden" name="redirect_page" value="estacoes"><button type="submit" title="Estações"><img src="../assets/icons/tela_estacao_icon.png" alt="Estações"></button></form>
-        <form method="post"><input type="hidden" name="redirect_page" value="perfil"><button type="submit" title="Perfil"><img src="../assets/icons/tela_perfil_icon.png" alt="Perfil"></button></form>
-    </footer>
 </body>
 </html>
