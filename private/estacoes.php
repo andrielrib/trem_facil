@@ -55,7 +55,7 @@ $estacoes = buscarEstacoes($pdo);
     <title>Estações - Admin</title>
 </head>
 <body>
-<a href="<?= $backPage ?>"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
+<a href="<?= $backPage ?>"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer; z-index: 1000;"></a>
 
 <div class="container">
     <header>
@@ -88,125 +88,58 @@ $estacoes = buscarEstacoes($pdo);
         ?>
             <div class="station" data-name="<?= strtolower($estacao['nome_estacao']) ?>">
                 
-<div class="container">
-
-    <header>
-
-    <div class = "afastamento">
-        <button class="btn-back" onclick="history.back()">&#8592;</button>
-        <span class="header-title">ESTAÇÕES</span>
-        </div>
-         <a href="pagina_inicial.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
-    </header>
-
-    <div class="search-container">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Pesquisar Estaçőes" onkeyup="filterStations()" autocomplete="off" />
-    </div>
-
-    <div id="stationsContainer">
-        <?php 
-        foreach ($estacoes_finais as $index => $estacao): 
-            $nome_estacao_seguro = htmlspecialchars($estacao['nome_estacao']);
-            $linhas = $estacao['linhas'];
-        ?>
-            <div class="station" data-name="<?= strtolower($nome_estacao_seguro) ?>">
-                
                 <div class="station-header" onclick="toggleLines(<?= $index ?>)">
-                    <img src="../assets/icons/estacao_icon.png" alt="" width="50" heigth="50"/>
-                    <h2><?= $nome_estacao_seguro ?></h2>
-                    
+                    <img src="../assets/icons/estacao_icon.png" alt="" width="50" height="50"/>
+                    <h2><?= htmlspecialchars($estacao['nome_estacao']) ?></h2>
                     <span class="toggle-arrow" id="arrow-<?= $index ?>">&#9660;</span>
                 </div>
                 
                 <div class="lines-list" id="lines-<?= $index ?>"> 
-                    <?php if (count($linhas) > 0 && !empty($linhas[0])): // Verificação extra ?>
-                        <?php foreach ($linhas as $linha): ?>
-                            <span><?= htmlspecialchars($linha) ?></span>
+                    <?php if (!empty($linhas_raw)): ?>
+                        <?php foreach ($linhas_raw as $linha_data): 
+                            $parts = explode('|', $linha_data);
+                            $nome_linha = $parts[0] ?? 'Linha';
+                            $cor = $parts[1] ?? '#ccc';
+                        ?>
+                            <div class="line-item">
+                                <span class="status-dot" style="background-color: <?= $cor ?>;" title="Status da Linha"></span>
+                                <span><?= htmlspecialchars($nome_linha) ?></span>
+                            </div>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <p>Nenhuma linha disponível</p>
+                        <p style="padding: 10px; color: #777;">Nenhuma linha ativa no momento.</p>
                     <?php endif; ?>
                 </div>
             </div>
-        <?php 
-        endforeach; 
-        ?>
-        
-        <?php if (empty($estacoes_finais)): ?>
-            <p style="color: white; text-align: center; padding: 20px;">
-                Nenhuma estação encontrada. Verifique seu banco de dados.
-            </p>
-        <?php endif; ?>
+        <?php endforeach; ?>
     </div>
-
 </div>
 
 <footer>
-    <form action="" method="post">
-        <input type="hidden" name="redirect_page" value="sensores">
-        <button type="submit" title="Sensores">
-            <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores">
-        </button>
-    </form>
-    <form action="" method="post">
-        <input type="hidden" name="redirect_page" value="trens">
-        <button type="submit" title="Trens">
-            <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens">
-        </button>
-    </form>
-    <form action="" method="post">
-        <input type="hidden" name="redirect_page" value="estacoes">
-        <button type="submit" title="Estações">
-            <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estações">
-        </button>
-    </form>
-    <form action="" method="post">
-        <input type="hidden" name="redirect_page" value="perfil">
-        <button type="submit" title="Perfil">
-            <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
-        </button>
-    </form>
+    <?php 
+    $menu = ['sensores' => 'tela_sensor_icon.png', 'trens' => 'tela_tren_icon.png', 'estacoes' => 'tela_estacao_icon.png', 'perfil' => 'tela_perfil_icon.png'];
+    foreach($menu as $page => $icon): ?>
+        <form action="" method="post" style="display:inline;">
+            <input type="hidden" name="redirect_page" value="<?= $page ?>">
+            <button type="submit"><img src="../assets/icons/<?= $icon ?>"></button>
+        </form>
+    <?php endforeach; ?>
 </footer>
 
 <script>
-    function toggleLines(index) {
-        const lines = document.getElementById('lines-' + index);
-        const arrow = document.getElementById('arrow-' + index);
-        
-        if (lines.classList.contains('visible')) {
-            lines.classList.remove('visible');
-            arrow.innerHTML = '&#9660;';
-        } else {
-            lines.classList.add('visible');
-            arrow.innerHTML = '&#9650;';
-        }
+    function toggleLines(idx) {
+        const el = document.getElementById(`lines-${idx}`);
+        const arrow = document.getElementById(`arrow-${idx}`);
+        el.classList.toggle('visible');
+        arrow.innerHTML = el.classList.contains('visible') ? '&#9650;' : '&#9660;';
     }
 
     function filterStations() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase(); 
-        const stationsContainer = document.getElementById('stationsContainer');
-        const stations = stationsContainer.getElementsByClassName('station');
-
-        for (let i = 0; i < stations.length; i++) {
-            const stationName = stations[i].getAttribute('data-name');
-            
-            if (stationName.includes(filter)) {
-                stations[i].style.display = "block"; 
-            } else {
-                stations[i].style.display = "none"; 
-            }
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const allLines = document.querySelectorAll('.lines-list');
-        allLines.forEach(lines => {
-            lines.classList.remove('visible'); 
+        const term = document.getElementById('searchInput').value.toLowerCase();
+        document.querySelectorAll('.station').forEach(st => {
+            st.style.display = st.dataset.name.includes(term) ? 'block' : 'none';
         });
-    });
+    }
 </script>
-
 </body>
 </html>

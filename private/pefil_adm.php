@@ -117,7 +117,14 @@ if (isset($_GET['action'])) {
         }
     </style>
 </head>
+<?php
+$backPage = 'pagina_inicial.php';
+if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 2) {
+    $backPage = '../private/pagina_inicial_adm.php';
+}
+?>
 <body onload="loadRandomDogBackground()">
+<a href="<?= $backPage ?>"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
     <div class="wrapper">
         <form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
             <div class="foto-container">
