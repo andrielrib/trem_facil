@@ -55,7 +55,7 @@ $estacoes = buscarEstacoes($pdo);
     <title>Estações</title>
 </head>
 <body>
-<a href="<?= $backPage ?>"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
+<a href="<?= $backPage ?>"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer; z-index: 1000;"></a>
 
 <div class="container">
     <header>
