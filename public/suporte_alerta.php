@@ -168,7 +168,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
             <input class="caixa_verde_login" type="submit" value="ENVIAR">
         </form>
     </div>
-<<<<<<< HEAD
     <footer>
         <form method="post"><input type="hidden" name="redirect_page" value="inicio"><button type="submit" title="Início"><img src="../assets/icons/tela_inicial_icon.png" alt="Início"></button></form>
         <form method="post"><input type="hidden" name="redirect_page" value="sensores"><button type="submit" title="Sensores"><img src="../assets/icons/tela_sensor_icon.png" alt="Sensores"></button></form>
@@ -176,94 +175,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
         <form method="post"><input type="hidden" name="redirect_page" value="estacoes"><button type="submit" title="Estações"><img src="../assets/icons/tela_estacao_icon.png" alt="Estações"></button></form>
         <form method="post"><input type="hidden" name="redirect_page" value="perfil"><button type="submit" title="Perfil"><img src="../assets/icons/tela_perfil_icon.png" alt="Perfil"></button></form>
     </footer>
-=======
-
-
-    <div class="coisas">
-
-        <div class="texto_sobre">
-            <h2>Onde</h2>
-        </div>
-
-
-        <div class="texto_sobre">
-            <h3>Selecione aqui</h3>
-        </div>
-        <select class="caixa_selecione">
-            <option value="valor1">Garuva</option>
-            <option value="valor2" selected>Joinville</option>
-            <option value="valor3">São paulo</option>
-        </select>
-
-
-        <div class="texto_sobre">
-            <h2>Linha</h2>
-        </div>
-
-
-        <div class="texto_sobre">
-            <h3>Selecione aqui</h3>
-        </div>
-        <select class="caixa_selecione">
-            <option value="valor1">Linha 1-Azul</option>
-            <option value="valor2" selected>Linha 8-Diamante</option>
-            <option value="valor3">Ferrovia Norte-Sul</option>
-        </select>
-
-
-        <div class="texto_sobre">
-            <h2>Problema</h2>
-        </div>
-
-
-        <div class="texto_sobre">
-            <h3>Selecione aqui</h3>
-        </div>
-        <select class="caixa_selecione">
-            <option value="valor1">Descarrilamento</option>
-            <option value="valor2" selected>Esbarro de trens</option>
-            <option value="valor3">Falhas no sistema de sinalização</option>
-            <option value="valor1">descarrilamento</option>
-            <option value="valor2" selected>tombamento</option>
-            <option value="valor3">choque de trens</option>
-        </select>
-
-
-        <div class="texto_sobre">
-            <h2>Emergência</h2>
-        </div>
-
-
-        <div class="texto_sobre">
-            <h3>Selecione aqui</h3>
-        </div>
-        <select class="caixa_selecione">
-            <option value="valor1">Incêndio</option>
-            <option value="valor2" selected>Problemas elétricos</option>
-            <option value="valor3">Abalroamento</option>
-            <option value="valor1">SOS</option>
-            <option value="valor2" selected>Centro de Controle Operacional (CCO)</option>
-            <option value="valor3">Serviços de Emergência</option>
-        </select>
-    </div>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <button class="caixa_verde_supEale"><strong><p class="centralizar_text_alert">ENVIAR</p></strong></button>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <script>
-        document.querySelector(".caixa_verde_supEale").addEventListener("click", function() {
-            alert("Enviado");
-            window.location.href = "pagina_inicial.php";
-        });
-    </script>
-
->>>>>>> 4cafd698b7769f02cdc13292c1e31a3fc87c42bd
 </body>
 </html>
