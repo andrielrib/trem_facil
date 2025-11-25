@@ -89,6 +89,7 @@ if (isset($_GET['action'])) {
     <link rel="stylesheet" href="../style/style2.css">
 </head>
 <body style="<?php if (!empty($fox_image)) { echo 'background-image: url(\'' . htmlspecialchars($fox_image) . '\'); background-size: cover; background-repeat: no-repeat; background-position: center;'; } ?>">
+<a href="pagina_inicial.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
     <div class="wrapper">
         <form method="POST" enctype="multipart/form-data" id="perfilForm" class="perfil-container" action="">
             <div class="foto-container">

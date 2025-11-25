@@ -6,20 +6,25 @@ session_start();
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : null;
 
 if ($tipo) {
+
+    // salva na sessão
     $_SESSION['tipo_usuario'] = $tipo;
 
-    if ($tipo == "1") {
-        header('Location: cliente_dashboard.php'); 
-        exit();
-    } elseif ($tipo == "2") {
-        header('Location: admin_dashboard.php'); 
+    // Tipos 1 e 3 → Cliente
+    if (in_array($tipo, ["1", "3"])) {
+        header('Location: cliente_dashboard.php');
         exit();
     }
-    if ($tipo == "3") {
-        header('Location: cliente_dashboard.php'); 
+
+    // Tipos 2 e 4 → Admin
+    elseif (in_array($tipo, ["2", "4"])) {
+        header('Location: admin_dashboard.php');
         exit();
-    } elseif ($tipo == "4") {
-        header('Location: admin_dashboard.php'); 
+    }
+
+    // Se o tipo for inválido
+    else {
+        echo "Tipo de usuário inválido.";
         exit();
     }
 }
