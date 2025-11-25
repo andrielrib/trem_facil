@@ -100,9 +100,9 @@ if (isset($_GET['action'])) {
                 <input type="file" name="nova_foto" id="nova_foto" accept="image/*" onchange="previewImagem(this)" />
             </div>
 
-            <div class="nome-editavel" id="nomeDisplay">
-                <span id="nomeTexto"><?php echo htmlspecialchars($user['nome']); ?></span>
-            </div>
+<div class="nome-editavel" id="nomeDisplay" style="text-align:center;">
+    RAFAEL
+</div>
 
             <div class="info-section">
                 <div class="info">
@@ -111,7 +111,7 @@ if (isset($_GET['action'])) {
                 </div>
                 <div class="info">
                     <b>CARGO</b>
-                    <?php echo htmlspecialchars($user['cargo']); ?>
+                    usuario
                 </div>
                 <div class="info">
                     <b>PERMISSÕES</b>
