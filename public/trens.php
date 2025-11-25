@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
     });
 
-    // Mostrar Horários
+   // horarios
     function toggleHorario(checkbox) {
         const id = checkbox.id.replace('t-', 'h-');
         document.getElementById(id).style.display = checkbox.checked ? 'flex' : 'none';
