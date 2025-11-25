@@ -13,8 +13,6 @@ if (!isset($_SESSION['user'])) {
 }
 $user = $_SESSION['user'];
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Só altera a foto se houver upload novo
     if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] === UPLOAD_ERR_OK) {
@@ -119,7 +117,6 @@ if (isset($_GET['action'])) {
                 </div>
             </div>
 
-
         </form>
 
         <!-- Botão de Logout -->
@@ -127,28 +124,6 @@ if (isset($_GET['action'])) {
             <a href="login.php?logout=1" onclick="return confirm('Tem certeza que deseja sair?')" style="background-color: #f44336; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Logout</a>
         </div>
     </div>
-
-    <footer>
-        
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="trens">
-            <button type="submit" title="Trens">
-                <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="estacoes">
-            <button type="submit" title="Estações">
-                <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estações">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="perfil">
-            <button type="submit" title="Perfil">
-                <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
-            </button>
-        </form>
-    </footer>
 
     <script>
         function previewImagem(input) {

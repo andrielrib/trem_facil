@@ -95,9 +95,6 @@ if (!empty($_SESSION["user_id"])) {
 
 <body>
 
-<a href="pagina_inicial.php"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
-    
-
   <div class="login_icon">
     <img src="../assets/icons/trem_bala_icon.png" alt="icone trem" width="200" height="150">
   </div>

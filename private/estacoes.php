@@ -22,13 +22,13 @@ if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 1) {
 function buscarEstacoes($pdo) {
     $sql = "
         SELECT 
-            e.nome AS nome_estacao, 
+            e.nome_estacao AS nome_estacao, 
             GROUP_CONCAT(DISTINCT CONCAT(l.id_exibicao, ' - ', l.nome, '|', l.status_color) ORDER BY l.id_exibicao ASC SEPARATOR '||') AS dados_linhas
-        FROM estacao e
-        LEFT JOIN estacao_linha el ON e.id_estacao = el.id_estacao
-        LEFT JOIN linha l ON el.id_linha = l.id_linha
-        GROUP BY e.id_estacao, e.nome
-        ORDER BY e.nome ASC
+        FROM estacoes e
+        LEFT JOIN linhas_trens lt ON e.estacao_id = lt.estacao_id
+        LEFT JOIN linha l ON lt.linha_id = l.id_linha
+        GROUP BY e.estacao_id, e.nome_estacao
+        ORDER BY e.nome_estacao ASC
     ";
     
     try {
@@ -114,17 +114,6 @@ $estacoes = buscarEstacoes($pdo);
         <?php endforeach; ?>
     </div>
 </div>
-
-<footer>
-    <?php 
-    $menu = ['sensores' => 'tela_sensor_icon.png', 'trens' => 'tela_tren_icon.png', 'estacoes' => 'tela_estacao_icon.png', 'perfil' => 'tela_perfil_icon.png'];
-    foreach($menu as $page => $icon): ?>
-        <form action="" method="post" style="display:inline;">
-            <input type="hidden" name="redirect_page" value="<?= $page ?>">
-            <button type="submit"><img src="../assets/icons/<?= $icon ?>"></button>
-        </form>
-    <?php endforeach; ?>
-</footer>
 
 <script>
     function toggleLines(idx) {

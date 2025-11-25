@@ -153,17 +153,6 @@ if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 2) {
     </div>
 </div>
 
-<footer>
-    <?php 
-    $botoes = ['sensores'=>'tela_sensor_icon.png', 'trens'=>'tela_tren_icon.png', 'estacoes'=>'tela_estacao_icon.png', 'perfil'=>'tela_perfil_icon.png'];
-    foreach($botoes as $pg => $img): ?>
-        <form action="" method="post" style="display:inline;">
-            <input type="hidden" name="redirect_page" value="<?= $pg ?>">
-            <button type="submit"><img src="../assets/icons/<?= $img ?>"></button>
-        </form>
-    <?php endforeach; ?>
-</footer>
-
 <script>
     // Pesquisa
     document.getElementById('searchInput').addEventListener('input', function(e) {
