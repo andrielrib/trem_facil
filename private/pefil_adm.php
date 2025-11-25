@@ -137,7 +137,7 @@ if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 2) {
             </div>
 
             <div class="nome-editavel" id="nomeDisplay" onclick="editarNome()" title="Clique para editar nome">
-                <span id="nomeTexto"><?php echo htmlspecialchars($user['nome']); ?></span>
+<span id="nomeTexto">ANDRIEL</span>
                 <img src="../assets/icons/caneta.png" alt="Editar Nome" class="icone-editar" />
             </div>
 
