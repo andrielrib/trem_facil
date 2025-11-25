@@ -95,14 +95,12 @@
     <br>
     <br>
 
-       
-        <div class="flex_perfil">
-        <button class="button_icones" onclick="telaRotas()"><img src="../assets/icons/tela_inicial_icon.png" alt="icone da tela inicial" width="86" height="70"></button>
-        <button class="button_icones" onclick="telaSensor()"><img src="../assets/icons/tela_sensor_icon.png" alt="icone da tela de sensores" width="86" height="70"></button>
-        <button class="button_icones" onclick="telaPesquisa()"><img src="../assets/icons/tela_pesquisa_icon.png" alt="icone da tela de pesquisa" width="86" height="70"></button>
-        <button class="button_icones" onclick="telaSuporteAlerta()"><img src="../assets/icons/tela_suporte_alerta_icon.png" alt="icone da tela de suport e alerta" width="86" height="70"></button>
-        <button class="button_icones" onclick="telaPerfil()"><img src="../assets/icons/tela_perfil_icon.png" alt="icone da tela de perfil" width="86" height="70"></button>
-    </div>
+    <script>
+        document.querySelector(".caixa_verde_supEale").addEventListener("click", function() {
+            alert("Enviado");
+            window.location.href = "pagina_inicial.php";
+        });
+    </script>
 
 </body>
 
