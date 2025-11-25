@@ -611,3 +611,17 @@ ALTER TABLE `rotas`
   ADD CONSTRAINT `rotas_ibfk_1` FOREIGN KEY (`FKid_sensores`) REFERENCES `sensores` (`id_sensores`),
   ADD CONSTRAINT `rotas_ibfk_2` FOREIGN KEY (`FKid_trens`) REFERENCES `trens` (`id_trens`);
 COMMIT;
+<<<<<<< HEAD
+=======
+=======
+INSERT INTO horario (id_estacao_horario, hora) VALUES
+((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '06:00:00'),
+((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '07:30:00'),
+((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '09:00:00');
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> f688e85f6d2f351393d64b8ea42e390e3cdc042e
+>>>>>>> fc91d155f3b7010d698c362494f65b48c1831f36
+>>>>>>> 17615a55e9c4270f6a55599c3212c688eb564105
