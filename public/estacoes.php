@@ -114,7 +114,6 @@ $estacoes = buscarEstacoes($pdo);
         <?php endforeach; ?>
     </div>
 </div>
-
 <footer>
     <?php 
     $menu = ['sensores' => 'tela_sensor_icon.png', 'trens' => 'tela_tren_icon.png', 'estacoes' => 'tela_estacao_icon.png', 'perfil' => 'tela_perfil_icon.png'];

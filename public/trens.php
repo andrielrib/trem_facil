@@ -173,7 +173,7 @@ if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 2) {
         });
     });
 
-    // Mostrar Horários
+   // horarios
     function toggleHorario(checkbox) {
         const id = checkbox.id.replace('t-', 'h-');
         document.getElementById(id).style.display = checkbox.checked ? 'flex' : 'none';
