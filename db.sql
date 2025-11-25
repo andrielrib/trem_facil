@@ -1,5 +1,4 @@
 CREATE DATABASE trem_facil;
-
 USE trem_facil;
 
 CREATE TABLE usuario (
@@ -17,7 +16,12 @@ CREATE TABLE usuario (
 CREATE TABLE sensor (
     id_sensor INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(120) UNIQUE NOT NULL,
-    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'ATIVO',
+    localizacao VARCHAR(120) DEFAULT 'DESCONHECIDA',
+    ultima_atualizacao_texto VARCHAR(50) DEFAULT 'AGORA',
+    ultima_atualizacao_valor VARCHAR(20) DEFAULT '0',
+    ultima_atualizacao_unidade VARCHAR(10) DEFAULT 'KM/H'
 );
 
 CREATE TABLE rota (
@@ -42,17 +46,12 @@ CREATE TABLE estacao (
     FOREIGN KEY (id_trem) REFERENCES trem(id_trem)
 );
 
-USE trem_facil;
-
-ALTER TABLE sensor ADD COLUMN status VARCHAR(20) DEFAULT 'ATIVO';
-ALTER TABLE sensor ADD COLUMN localizacao VARCHAR(120) DEFAULT 'DESCONHECIDA';
-ALTER TABLE sensor ADD COLUMN ultima_atualizacao_texto VARCHAR(50) DEFAULT 'AGORA';
-ALTER TABLE sensor ADD COLUMN ultima_atualizacao_valor VARCHAR(20) DEFAULT '0';
-ALTER TABLE sensor ADD COLUMN ultima_atualizacao_unidade VARCHAR(10) DEFAULT 'KM/H';
-
 CREATE TABLE linha (
     id_linha INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) UNIQUE NOT NULL,
+    id_exibicao INT UNIQUE NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    status_color VARCHAR(10) NOT NULL,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -65,7 +64,28 @@ CREATE TABLE estacao_linha (
     UNIQUE(id_estacao, id_linha)
 );
 
--- NÃO APAGA A PORRA DA SENHA CARALHO
+CREATE TABLE parada (
+    id_parada INT AUTO_INCREMENT PRIMARY KEY,
+    id_linha INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    tempo VARCHAR(50) NOT NULL,
+    FOREIGN KEY (id_linha) REFERENCES linha(id_linha) ON DELETE CASCADE
+);
+
+CREATE TABLE estacao_horario (
+    id_estacao_horario INT AUTO_INCREMENT PRIMARY KEY,
+    id_linha INT NOT NULL,
+    nome_estacao VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id_linha) REFERENCES linha(id_linha) ON DELETE CASCADE,
+    UNIQUE KEY (id_linha, nome_estacao)
+);
+
+CREATE TABLE horario (
+    id_horario INT AUTO_INCREMENT PRIMARY KEY,
+    id_estacao_horario INT NOT NULL,
+    hora TIME NOT NULL,
+    FOREIGN KEY (id_estacao_horario) REFERENCES estacao_horario(id_estacao_horario) ON DELETE CASCADE
+);
 
 INSERT INTO usuario (nome_completo, email, telefone, cep, cpf, senha, tipo_usuario) VALUES
 ('Rafael Almeida', 'rafael_almeida@gmail.com', '11987654321', '01234567', '12345678901', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1),
@@ -74,45 +94,13 @@ INSERT INTO usuario (nome_completo, email, telefone, cep, cpf, senha, tipo_usuar
 ('Caio', 'caio@gmail.com', '11987654324', '01234570', '12345678904', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2);
 
 
-CREATE TABLE IF NOT EXISTS linha (
-    id_linha INT AUTO_INCREMENT PRIMARY KEY,
-    id_exibicao INT UNIQUE NOT NULL,
-    nome VARCHAR(255) NOT NULL,
-    status VARCHAR(50) NOT NULL,
-    status_color VARCHAR(10) NOT NULL,
-    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
-CREATE TABLE IF NOT EXISTS parada (
-    id_parada INT AUTO_INCREMENT PRIMARY KEY,
-    id_linha INT NOT NULL,
-    nome VARCHAR(255) NOT NULL,
-    tempo VARCHAR(50) NOT NULL,
-    FOREIGN KEY (id_linha) REFERENCES linha(id_linha) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS estacao_horario (
-    id_estacao_horario INT AUTO_INCREMENT PRIMARY KEY,
-    id_linha INT NOT NULL,
-    nome_estacao VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id_linha) REFERENCES linha(id_linha) ON DELETE CASCADE,
-    UNIQUE KEY (id_linha, nome_estacao)
-);
-
-CREATE TABLE IF NOT EXISTS horario (
-    id_horario INT AUTO_INCREMENT PRIMARY KEY,
-    id_estacao_horario INT NOT NULL,
-    hora TIME NOT NULL,
-    FOREIGN KEY (id_estacao_horario) REFERENCES estacao_horario(id_estacao_horario) ON DELETE CASCADE
-);
-
 INSERT INTO linha (id_exibicao, nome, status, status_color) VALUES
 (101, 'Costa e Silva Centro', 'Ativo', '#00c853'),
 (102, 'Pirabeiraba Centro', 'Inativo', '#d50000'),
 (103, 'Tupy / Norte via Centro', 'Ativo', '#00c853'),
 (104, 'Norte / Vila Nova via Walmor Harger', 'Ativo', '#00c853'),
 (105, 'Circulares Rui Barbosa', 'Ativo', '#00c853');
+
 
 INSERT INTO parada (id_linha, nome, tempo) VALUES
 ((SELECT id_linha FROM linha WHERE id_exibicao = 101), 'Estação do Príncipe - Centro', 'Agora'),
@@ -129,6 +117,7 @@ INSERT INTO parada (id_linha, nome, tempo) VALUES
 INSERT INTO parada (id_linha, nome, tempo) VALUES
 ((SELECT id_linha FROM linha WHERE id_exibicao = 105), 'Circular Parque Douat', 'Agora'),
 ((SELECT id_linha FROM linha WHERE id_exibicao = 105), 'Circular Rui Barbosa', '5 min');
+
 
 INSERT INTO estacao_horario (id_linha, nome_estacao) VALUES
 ((SELECT id_linha FROM linha WHERE id_exibicao = 101), 'Estação Príncipe'),
