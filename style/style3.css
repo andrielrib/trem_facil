@@ -586,7 +586,6 @@ footer {
 footer form {
     display: inline;
 }
-
 footer img {
     height: 60px;
     width: 60px;
@@ -594,4 +593,8 @@ footer img {
 
 footer button:hover {
     color: #1aff1a;
+}
+
+.afastamento{
+margin-left: 50px;
 }

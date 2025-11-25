@@ -1,5 +1,4 @@
 CREATE DATABASE trem_facil;
-
 USE trem_facil;
 
 CREATE TABLE `estacao` (
@@ -8,10 +7,22 @@ CREATE TABLE `estacao` (
   `id_trem` int NOT NULL
 );
 
+<<<<<<< HEAD
 CREATE TABLE `estacao_horario` (
   `id_estacao_horario` int NOT NULL,
   `id_linha` int NOT NULL,
   `nome_estacao` varchar(255) NOT NULL
+=======
+CREATE TABLE sensor (
+    id_sensor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(120) UNIQUE NOT NULL,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'ATIVO',
+    localizacao VARCHAR(120) DEFAULT 'DESCONHECIDA',
+    ultima_atualizacao_texto VARCHAR(50) DEFAULT 'AGORA',
+    ultima_atualizacao_valor VARCHAR(20) DEFAULT '0',
+    ultima_atualizacao_unidade VARCHAR(10) DEFAULT 'KM/H'
+>>>>>>> f688e85f6d2f351393d64b8ea42e390e3cdc042e
 );
 
 INSERT INTO `estacao_horario` (`id_estacao_horario`, `id_linha`, `nome_estacao`) VALUES
@@ -81,6 +92,7 @@ CREATE TABLE `linha` (
   `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+<<<<<<< HEAD
 INSERT INTO `linha` (`id_linha`, `id_exibicao`, `nome`, `status`, `status_color`, `data_criacao`) VALUES
 (1, 101, 'Costa e Silva Centro', 'Ativo', '#00c853', '2025-11-14 11:34:37'),
 (2, 102, 'Pirabeiraba Centro', 'Inativo', '#d50000', '2025-11-14 11:34:37'),
@@ -92,6 +104,15 @@ CREATE TABLE `linhas_trens` (
   `linha_id` int NOT NULL,
   `nome_linha` varchar(255) NOT NULL,
   `estacao_id` int NOT NULL
+=======
+CREATE TABLE linha (
+    id_linha INT AUTO_INCREMENT PRIMARY KEY,
+    id_exibicao INT UNIQUE NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    status_color VARCHAR(10) NOT NULL,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+>>>>>>> f688e85f6d2f351393d64b8ea42e390e3cdc042e
 );
 
 INSERT INTO `linhas_trens` (`linha_id`, `nome_linha`, `estacao_id`) VALUES
@@ -376,6 +397,7 @@ CREATE TABLE `parada` (
   `tempo` varchar(50) NOT NULL
 );
 
+<<<<<<< HEAD
 INSERT INTO `parada` (`id_parada`, `id_linha`, `nome`, `tempo`) VALUES
 (1, 1, 'Estação do Príncipe - Centro', 'Agora'),
 (2, 1, 'Estação Ruy Barbosa - Costa e Silva', '15 min'),
@@ -438,6 +460,49 @@ CREATE TABLE `trens` (
   `parada_tren` varchar(120) NOT NULL,
   `status_trens` tinyint NOT NULL DEFAULT '1'
 );
+=======
+CREATE TABLE parada (
+    id_parada INT AUTO_INCREMENT PRIMARY KEY,
+    id_linha INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    tempo VARCHAR(50) NOT NULL,
+    FOREIGN KEY (id_linha) REFERENCES linha(id_linha) ON DELETE CASCADE
+);
+
+CREATE TABLE estacao_horario (
+    id_estacao_horario INT AUTO_INCREMENT PRIMARY KEY,
+    id_linha INT NOT NULL,
+    nome_estacao VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id_linha) REFERENCES linha(id_linha) ON DELETE CASCADE,
+    UNIQUE KEY (id_linha, nome_estacao)
+);
+
+CREATE TABLE horario (
+    id_horario INT AUTO_INCREMENT PRIMARY KEY,
+    id_estacao_horario INT NOT NULL,
+    hora TIME NOT NULL,
+    FOREIGN KEY (id_estacao_horario) REFERENCES estacao_horario(id_estacao_horario) ON DELETE CASCADE
+);
+
+INSERT INTO usuario (nome_completo, email, telefone, cep, cpf, senha, tipo_usuario) VALUES
+('Rafael Almeida', 'rafael_almeida@gmail.com', '11987654321', '01234567', '12345678901', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1),
+('Andriel', 'andriel@gmail.com', '11987654322', '01234568', '12345678902', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2),
+('Arthur', 'arthur@gmail.com', '11987654323', '01234569', '12345678903', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2),
+('Caio', 'caio@gmail.com', '11987654324', '01234570', '12345678904', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2);
+
+
+INSERT INTO linha (id_exibicao, nome, status, status_color) VALUES
+(101, 'Costa e Silva Centro', 'Ativo', '#00c853'),
+(102, 'Pirabeiraba Centro', 'Inativo', '#d50000'),
+(103, 'Tupy / Norte via Centro', 'Ativo', '#00c853'),
+(104, 'Norte / Vila Nova via Walmor Harger', 'Ativo', '#00c853'),
+(105, 'Circulares Rui Barbosa', 'Ativo', '#00c853');
+
+
+INSERT INTO parada (id_linha, nome, tempo) VALUES
+((SELECT id_linha FROM linha WHERE id_exibicao = 101), 'Estação do Príncipe - Centro', 'Agora'),
+((SELECT id_linha FROM linha WHERE id_exibicao = 101), 'Estação Ruy Barbosa - Costa e Silva', '15 min');
+>>>>>>> f688e85f6d2f351393d64b8ea42e390e3cdc042e
 
 CREATE TABLE `usuario` (
   `id_usuario` int NOT NULL,
@@ -469,10 +534,17 @@ CREATE TABLE `usuarios` (
   `data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ;
 
+<<<<<<< HEAD
 ALTER TABLE `estacao`
   ADD PRIMARY KEY (`id_estacao`),
   ADD UNIQUE KEY `nome` (`nome`),
   ADD KEY `id_trem` (`id_trem`);
+=======
+
+INSERT INTO estacao_horario (id_linha, nome_estacao) VALUES
+((SELECT id_linha FROM linha WHERE id_exibicao = 101), 'Estação Príncipe'),
+((SELECT id_linha FROM linha WHERE id_exibicao = 101), 'Estação Ruy Barbosa');
+>>>>>>> f688e85f6d2f351393d64b8ea42e390e3cdc042e
 
 ALTER TABLE `estacao_horario`
   ADD PRIMARY KEY (`id_estacao_horario`),
@@ -494,6 +566,7 @@ ALTER TABLE `linhas_trens`
   ADD PRIMARY KEY (`linha_id`),
   ADD KEY `estacao_id` (`estacao_id`);
 
+<<<<<<< HEAD
 ALTER TABLE `parada`
   ADD PRIMARY KEY (`id_parada`),
   ADD KEY `id_linha` (`id_linha`);
@@ -612,3 +685,9 @@ ALTER TABLE `rotas`
   ADD CONSTRAINT `rotas_ibfk_1` FOREIGN KEY (`FKid_sensores`) REFERENCES `sensores` (`id_sensores`),
   ADD CONSTRAINT `rotas_ibfk_2` FOREIGN KEY (`FKid_trens`) REFERENCES `trens` (`id_trens`);
 COMMIT;
+=======
+INSERT INTO horario (id_estacao_horario, hora) VALUES
+((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '06:00:00'),
+((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '07:30:00'),
+((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '09:00:00');
+>>>>>>> f688e85f6d2f351393d64b8ea42e390e3cdc042e

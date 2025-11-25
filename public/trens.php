@@ -62,12 +62,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Trens</title>
     <link rel="stylesheet" href="../style/style3.css">
 </head>
+<?php
+session_start();
+$backPage = 'pagina_inicial.php';
+if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 2) {
+    $backPage = '../private/pagina_inicial_adm.php';
+}
+?>
 <body>
+
 
 <div class="container">
     <header>
+
+    <div class = "afastamento">
         <button class="btn-back" onclick="history.back()">&#8592;</button>
         <span class="header-title">TRENS</span>
+        </div>
+        <a href="<?= $backPage ?>"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
     </header>
 
     <div class="search-container">
@@ -161,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
     });
 
-    // Mostrar Horários
+   // horarios
     function toggleHorario(checkbox) {
         const id = checkbox.id.replace('t-', 'h-');
         document.getElementById(id).style.display = checkbox.checked ? 'flex' : 'none';
