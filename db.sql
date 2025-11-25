@@ -163,3 +163,5 @@ INSERT INTO horario (id_estacao_horario, hora) VALUES
 ((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '06:00:00'),
 ((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '07:30:00'),
 ((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '09:00:00');
+
+
