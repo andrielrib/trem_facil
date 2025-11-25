@@ -43,10 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       ]);
       exit;
     } else {
+      // Permite login para tipo_usuario 1 (funcionário) e 2 (administrador)
       if ($usuario["tipo_usuario"] == 2) {
         header("Location: ../private/pagina_inicial_adm.php");
-      } else {
+      } else if ($usuario["tipo_usuario"] == 1) {
         header("Location: pagina_inicial.php");
+      } else {
+        $errors[] = "Tipo de usuário inválido.";
       }
       exit;
     }
@@ -67,10 +70,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 if (!empty($_SESSION["user_id"])) {
+  // Permite acesso para tipo_usuario 1 e 2
   if ($_SESSION["tipo_usuario"] == 2) {
     header("Location: ../private/pagina_inicial_adm.php");
-  } else {
+  } else if ($_SESSION["tipo_usuario"] == 1) {
     header("Location: pagina_inicial.php");
+  } else {
+    // Usuário logado com tipo inválido
+    session_unset();
+    session_destroy();
+    header("Location: login.php?msg=Tipo de usuário inválido");
   }
   exit;
 }
