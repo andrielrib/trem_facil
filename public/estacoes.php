@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $db_host = 'localhost';
 $db_name = 'trem_facil';
 $db_user = 'root';
@@ -10,6 +12,11 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Erro ao conectar: " . $e->getMessage());
+}
+
+$backPage = 'pagina_inicial.php';
+if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 2) {
+    $backPage = '../private/pagina_inicial_adm.php';
 }
 
 function buscarEstacoes($pdo) {
@@ -48,6 +55,7 @@ $estacoes = buscarEstacoes($pdo);
     <title>Estações</title>
 </head>
 <body>
+<a href="<?= $backPage ?>"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
 
 <div class="container">
     <header>
