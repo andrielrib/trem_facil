@@ -5,7 +5,7 @@ $default_user = [
     'id' => 329,
     'nome' => 'Nome',
     'cargo' => 'Administrador',
-    'permissoes' => 'Geral',
+    'permissoes' => 'LIMITADA',
     'foto' => 'default-profile.png'
 ];
 if (!isset($_SESSION['user'])) {
