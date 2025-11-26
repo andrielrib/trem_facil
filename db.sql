@@ -617,3 +617,77 @@ INSERT INTO horario (id_estacao_horario, hora) VALUES
 ((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '07:30:00'),
 ((SELECT id_estacao_horario FROM estacao_horario WHERE nome_estacao = 'Dona Francisca' AND id_linha = (SELECT id_linha FROM linha WHERE id_exibicao = 103)), '09:00:00');
 
+USE trem_facil;
+
+-- 1. Desativa verificações de segurança temporariamente
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 2. Usa DELETE em vez de TRUNCATE (Isso corrige o erro #1701)
+DELETE FROM `linha`;
+
+-- 3. Reseta o contador de IDs para começar do 1 (opcional, mas bom para organização)
+ALTER TABLE `linha` AUTO_INCREMENT = 1;
+
+-- 4. INSERE AS LINHAS DE JOINVILLE
+-- Cores: #00c853 (Verde), #ffeb3b (Amarelo), #d50000 (Vermelho)
+
+INSERT INTO `linha` (`id_exibicao`, `nome`, `status`, `status_color`) VALUES
+(0040, 'Norte / Centro', 'Ativo', '#00c853'),
+(0041, 'Norte / Centro via Dona Francisca', 'Ativo', '#00c853'),
+(0130, 'Norte / Iririú / Tupy', 'Ativo', '#00c853'),
+(0200, 'Norte / Visconde de Taunay', 'Ativo', '#00c853'),
+(0242, 'Costa e Silva / Centro via Benjamin Constant', 'Manutenção', '#ffeb3b'),
+(0247, 'Costa e Silva / Centro via Elza Meinert', 'Ativo', '#00c853'),
+(0290, 'Costa e Silva / Tupy via Iririú', 'Inativo', '#d50000'),
+(0300, 'Itaum / Centro', 'Ativo', '#00c853'),
+(0302, 'Itaum / Centro via Anitápolis', 'Ativo', '#00c853'),
+(0304, 'Itaum / Centro via Procópio Gomes', 'Ativo', '#00c853'),
+(0306, 'Itaum / Campus via Guanabara', 'Manutenção', '#ffeb3b'),
+(0401, 'Praia Grande via Baltazar Buschle', 'Ativo', '#00c853'),
+(0403, 'Espinheiros', 'Ativo', '#00c853'),
+(0500, 'Vila Nova / Centro', 'Ativo', '#00c853'),
+(0501, 'Vila Nova / Centro via Lajeado', 'Ativo', '#00c853'),
+(0600, 'Guanabara/Centro', 'Ativo', '#00c853'),
+(0601, 'Guanabara/Centro Escola do Moinho', 'Inativo', '#d50000'),
+(0650, 'Nova Brasília / Centro', 'Ativo', '#00c853'),
+(0700, 'Sul / Centro', 'Ativo', '#00c853'),
+(0702, 'Sul / Centro via Nilo Peçanha', 'Ativo', '#00c853'),
+(0800, 'Iririú / Centro', 'Ativo', '#00c853'),
+(0801, 'Iririú / Centro via Saguaçu', 'Ativo', '#00c853'),
+(0802, 'Iririú / Centro via Castro Alves', 'Ativo', '#00c853'),
+(0900, 'Rodoviária', 'Manutenção', '#ffeb3b'),
+(1201, 'Getúlio Vargas', 'Ativo', '#00c853'),
+(1206, 'Estevão de Matos', 'Ativo', '#00c853'),
+(1209, 'Jardim Edilene', 'Inativo', '#d50000'),
+(1401, 'Petrópolis', 'Ativo', '#00c853'),
+(1411, 'Circular Noturno Itinga', 'Ativo', '#00c853'),
+(1512, 'Morro do Meio/Centro', 'Ativo', '#00c853'),
+(1513, 'Jativoca/Centro', 'Manutenção', '#ffeb3b'),
+(1514, 'Jativoca/Centro via Olaria', 'Ativo', '#00c853'),
+(1601, 'Rodoviária via Centrinho', 'Ativo', '#00c853'),
+(1602, 'Rodoviária via Sociesc', 'Ativo', '#00c853'),
+(1603, 'Rodoviária via Otto Boehm', 'Ativo', '#00c853'),
+(1605, 'Rodoviária via Paula Ramos', 'Ativo', '#00c853'),
+(1704, 'Itaum / Doutor João Colin', 'Ativo', '#00c853'),
+(1706, 'Sul / Doutor João Colin', 'Ativo', '#00c853'),
+(1720, 'Colégio Celso Ramos / Centro', 'Inativo', '#d50000'),
+(1725, 'Escola do Moinho/Centro', 'Inativo', '#d50000'),
+(2010, 'Circular Centro', 'Ativo', '#00c853'),
+(2015, 'Mirante', 'Manutenção', '#ffeb3b'),
+(3001, 'Tupy / Norte via Centro', 'Ativo', '#00c853'),
+(3002, 'Tupy / Centro via Goes Monteiro', 'Ativo', '#00c853'),
+(3003, 'Tupy / Centro', 'Ativo', '#00c853'),
+(3004, 'Espinheiros/Centro', 'Ativo', '#00c853'),
+(4016, 'Pirabeiraba/Centro', 'Ativo', '#00c853'),
+(4017, 'Pirabeiraba / Rio Bonito', 'Ativo', '#00c853'),
+(4020, 'Pirabeiraba / Quiriri', 'Ativo', '#00c853'),
+(4030, 'Pirabeiraba / Estrada do Oeste', 'Manutenção', '#ffeb3b'),
+(4033, 'Pirabeiraba / Rio da Prata', 'Ativo', '#00c853'),
+(4100, 'Norte / Quiriri', 'Ativo', '#00c853'),
+(4103, 'Norte / Rio Bonito', 'Ativo', '#00c853'),
+(7001, 'Escolinha / Centro', 'Ativo', '#00c853'),
+(7002, 'Escolinha via Boehmerwaldt', 'Ativo', '#00c853'),
+(7003, 'Escolinha via Santa Helena', 'Ativo', '#00c853');
+
+-- 5. Reativa verificações de segurança
+SET FOREIGN_KEY_CHECKS = 1;
