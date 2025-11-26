@@ -122,7 +122,6 @@ $estacoes = buscarEstacoes($pdo);
             padding: 20px 10px; display: flex; align-items: center; 
             justify-content: space-between; cursor: pointer; transition: background 0.2s;
         }
-        .station-header:hover { background-color: #111; }
         
         .station-info { display: flex; align-items: center; gap: 15px; }
         .station-icon { width: 40px; height: 40px; }
