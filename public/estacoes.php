@@ -143,7 +143,7 @@ $estacoes = buscarEstacoes($pdo);
 <body>
 
 <a href="<?= $backPage ?>">
-    <img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 15px; left: 15px; width: 40px; height: 40px; cursor: pointer; z-index: 1000; filter: invert(1);">
+    <img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 15px; left: 15px; width: 40px; height: 40px; cursor: pointer; z-index: 1000; filter:">
 </a>
 
 <div class="container">
