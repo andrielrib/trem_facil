@@ -224,17 +224,6 @@ if ($search) {
 
 </div>
 
-<footer role="contentinfo" aria-label="Menu principal">
-  <?php 
-  $menu = ['sensores' => 'tela_sensor_icon.png', 'trens' => 'tela_tren_icon.png', 'estacoes' => 'tela_estacao_icon.png', 'perfil' => 'tela_perfil_icon.png'];
-  foreach($menu as $page => $icon): ?>
-      <form action="" method="post" style="display:inline;">
-          <input type="hidden" name="redirect_page" value="<?= $page ?>">
-          <button type="submit" title="<?= ucfirst($page) ?>"><img src="../assets/icons/<?= $icon ?>" alt="Ícone <?= $page ?>"></button>
-      </form>
-  <?php endforeach; ?>
-</footer>
-
 <script>
 // Torna o footer funcional para alternar entre telas
 const forms = document.querySelectorAll('footer form');
