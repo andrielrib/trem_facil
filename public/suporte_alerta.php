@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST['redirect_page'])) {
     $linha = $_POST['linha'] ?? '';
     $problema = $_POST['problema'] ?? '';
     $emergencia = $_POST['emergencia'] ?? '';
-    $mensagem = 'Alerta enviado com sucesso!';
+    $mensagem = 'Alerta enviado com sucesso no email!';
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect_page'])) {
     $page = $_POST['redirect_page'];
