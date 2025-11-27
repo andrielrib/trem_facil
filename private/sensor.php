@@ -432,33 +432,6 @@ $conn->close();
         </div>
     </div>
 
-    <footer>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="sensores">
-            <button type="submit" title="Sensores">
-                <img src="../assets/icons/tela_sensor_icon.png" alt="botão para tela sensores">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="trens">
-            <button type="submit" title="Trens">
-                <img src="../assets/icons/tela_tren_icon.png" alt="botão para tela trens">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="estacoes">
-            <button type="submit" title="Estações">
-                <img src="../assets/icons/tela_estacao_icon.png" alt="botão para tela estações">
-            </button>
-        </form>
-        <form action="" method="post">
-            <input type="hidden" name="redirect_page" value="perfil">
-            <button type="submit" title="Perfil">
-                <img src="../assets/icons/tela_perfil_icon.png" alt="botão para tela perfil">
-            </button>
-        </form>
-    </footer>
-
     <script>
         function openModal() {
             document.getElementById('addSensorModal').style.display = 'flex';

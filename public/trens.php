@@ -74,11 +74,6 @@ if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 2) {
 
 <div class="container">
     <header>
-
-    <div class = "afastamento">
-        <button class="btn-back" onclick="history.back()">&#8592;</button>
-        <span class="header-title">TRENS</span>
-        </div>
         <a href="<?= $backPage ?>"><img src="../assets/icons/seta_esquerda.png" alt="Voltar" style="position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; cursor: pointer;"></a>
     </header>
 
