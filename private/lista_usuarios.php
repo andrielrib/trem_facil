@@ -28,10 +28,10 @@ if ($search) {
     color: white;
     display: flex;
     justify-content: center;
+    width: 100%;
   }
   .container {
     width: 100%;
-    max-width: 380px;
     padding: 10px 15px 100px;
   }
   header {
